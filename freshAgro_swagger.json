@@ -1,0 +1,1632 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "version": "1.0.0",
+    "title": "Fresh-Agro",
+    "description": "Fresh-Agro"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "login",
+        "description": "login with email and password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "default": "Enter your email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "Enter your password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createuser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "create user",
+        "description": "create user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "default": "Enter your name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "default": "Enter your email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "Enter your password"
+                  },
+                  "roleid": {
+                    "type": "number",
+                    "default": "Enter your role id"
+                  },
+                  "username": {
+                    "type": "string",
+                    "default": "Enter your form name"
+                  },
+                  "formlist": {
+                    "type": [],
+                    "default": "Enter your form list"
+                  },
+                  "menus": {
+                    "type": [],
+                    "default": "Enter your menus"
+                  },
+                  "submenus": {
+                    "type": [],
+                    "default": "Enter your sub menus"
+                  },
+                  "roletype": {
+                    "type": "number",
+                    "default": "Enter your role type"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "create user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/menulist": {
+      "get": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Menu",
+        "description": "Menu",
+        "responses": {
+          "200": {
+            "description": "Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submenulist": {
+      "get": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Menu",
+        "description": "Menu",
+        "responses": {
+          "200": {
+            "description": "Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/userlist": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User List",
+        "description": "User List",
+        "responses": {
+          "200": {
+            "description": "User List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/userlist/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User List",
+        "description": "User List",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createmenu": {
+      "post": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Create Menu",
+        "description": "Create Menu",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "menuName": {
+                    "type": "string",
+                    "default": "Enter your menu name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createsubmenu": {
+      "post": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Create Sub Menu",
+        "description": "Create Sub Menu",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "SubMenuName": {
+                    "type": "string",
+                    "default": "Enter your sub menu name"
+                  },
+                  "menuId": {
+                    "type": "number",
+                    "default": "Enter your menu id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateuser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "update user",
+        "description": "update user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "default": "Enter your name"
+                  },
+                  "email": {
+                    "type": "string",
+                    "default": "Enter your email"
+                  },
+                  "menus": {
+                    "type": [],
+                    "default": "Enter your menus"
+                  },
+                  "submenus": {
+                    "type": [],
+                    "default": "Enter your sub menus"
+                  },
+                  "id": {
+                    "type": "number",
+                    "default": "Enter your user id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "update user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createTables": {
+      "get": {
+        "tags": [
+          "Table Creation"
+        ],
+        "summary": "Create tables",
+        "description": "Create tables",
+        "responses": {
+          "200": {
+            "description": "Create tables",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createforms": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Create Form",
+        "description": "Create Form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "menuId": {
+                    "type": "string",
+                    "default": "Enter your menu id"
+                  },
+                  "submenuId": {
+                    "type": "string",
+                    "default": "Enter your sub menu id"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your form name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productionScheduleForm": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save production schedule form",
+        "description": "Save production schedule form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "productionitem": {
+                    "type": "string",
+                    "default": "Enter your production item"
+                  },
+                  "productiontype": {
+                    "type": "string",
+                    "default": "Enter your production type"
+                  },
+                  "machineinprocess": {
+                    "type": "string",
+                    "default": "Enter your machine in process"
+                  },
+                  "quantity": {
+                    "type": "string",
+                    "default": "Enter your quantity"
+                  },
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "supervisor": {
+                    "type": "string",
+                    "default": "Enter your supervisor name"
+                  },
+                  "duedate": {
+                    "type": "string",
+                    "default": "Enter your due date"
+                  },
+                  "userid": {
+                    "type": "string",
+                    "default": "Enter your userid"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your form name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save production schedule form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/raw_material_incoming_register": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save raw_material_incoming_register form",
+        "description": "Save raw_material_incoming_register form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "invoiceno": {
+                    "type": "string",
+                    "default": "Enter your invoice no"
+                  },
+                  "vehicleno": {
+                    "type": "string",
+                    "default": "Enter your vehicle no"
+                  },
+                  "drivername": {
+                    "type": "string",
+                    "default": "driver name"
+                  },
+                  "driverno": {
+                    "type": "string",
+                    "default": "driver no"
+                  },
+                  "pono": {
+                    "type": "string",
+                    "default": "Enter your po number"
+                  },
+                  "itemname": {
+                    "type": "string",
+                    "default": "Enter your item name"
+                  },
+                  "valueofitem": {
+                    "type": "string",
+                    "default": "Enter your value of item"
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "default": "Enter your quantity"
+                  },
+                  "driverlicenseno": {
+                    "type": "string",
+                    "default": "Enter your driver license no"
+                  },
+                  "remarks": {
+                    "type": "string",
+                    "default": "Enter your remarks"
+                  },
+                  "userid": {
+                    "type": "number",
+                    "default": "Enter your userid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save raw_material_incoming_register form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inward_vehicle_checklist": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save inward_vehicle_checklist form",
+        "description": "Save inward_vehicle_checklist form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "transportername": {
+                    "type": "string",
+                    "default": "Enter your invoice no"
+                  },
+                  "vehicleno": {
+                    "type": "string",
+                    "default": "Enter your vehicle no"
+                  },
+                  "drivername": {
+                    "type": "string",
+                    "default": "driver name"
+                  },
+                  "driverno": {
+                    "type": "string",
+                    "default": "driver no"
+                  },
+                  "driverlicenseno": {
+                    "type": "string",
+                    "default": "Enter your driver license no"
+                  },
+                  "rawmaterialcondition": {
+                    "type": "object",
+                    "default": {
+                      "ok": true,
+                      "not_ok": false,
+                      "remark": "enter remark"
+                    }
+                  },
+                  "properlycleaned": {
+                    "type": "object",
+                    "default": {
+                      "ok": true,
+                      "not_ok": false,
+                      "remark": "enter remark"
+                    }
+                  },
+                  "freefromabnormalodor": {
+                    "type": "object",
+                    "default": {
+                      "ok": true,
+                      "not_ok": false,
+                      "remark": "enter remark"
+                    }
+                  },
+                  "insetfree": {
+                    "type": "object",
+                    "default": {
+                      "ok": true,
+                      "not_ok": false,
+                      "remark": "enter remark"
+                    }
+                  },
+                  "tarapulincondition": {
+                    "type": "object",
+                    "default": {
+                      "ok": true,
+                      "not_ok": false,
+                      "remark": "enter remark"
+                    }
+                  },
+                  "breaksandsteering": {
+                    "type": "object",
+                    "default": {
+                      "ok": true,
+                      "not_ok": false,
+                      "remark": "enter remark"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save inward_vehicle_checklist form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rolelist": {
+      "get": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Role list",
+        "description": "Role list",
+        "responses": {
+          "200": {
+            "description": "Role list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/formlist": {
+      "get": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Form list",
+        "description": "Form list",
+        "responses": {
+          "200": {
+            "description": "Form list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/formlist/{menuid}/{submenuid}": {
+      "get": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Forms List with id",
+        "description": "Forms List with id",
+        "parameters": [
+          {
+            "name": "menuid",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "submenuid",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Forms List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submenulist/{menuid}": {
+      "get": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Sub List with id",
+        "description": "Sub List with id",
+        "parameters": [
+          {
+            "name": "menuid",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sub List with id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getProductionScheduleFormList": {
+      "get": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "get Production Schedule Form list",
+        "description": "get Production Schedule Form list",
+        "responses": {
+          "200": {
+            "description": "get Production Schedule Form list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getraw_material_incoming_registerList": {
+      "get": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "getraw material incoming registerList",
+        "description": "getraw material incoming registerList",
+        "responses": {
+          "200": {
+            "description": "getraw material incoming registerList",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getInward_vehicle_checklist": {
+      "get": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "get Inward vehicle checklist",
+        "description": "get Inward vehicle checklist",
+        "responses": {
+          "200": {
+            "description": "get Inward vehicle checklist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createRole": {
+      "post": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Create Role",
+        "description": "Create Role",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "rolename": {
+                    "type": "string",
+                    "default": "Enter your role name"
+                  },
+                  "roletype": {
+                    "type": "string",
+                    "default": "Enter your role type"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Menu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/formlistIds": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Forms List with id",
+        "description": "Forms List with id",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "menuids": {
+                    "type": "Array",
+                    "default": "Enter your menu ids"
+                  },
+                  "submenuids": {
+                    "type": "Array",
+                    "default": "Enter your sub menu ids"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Forms List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submenulistByMenuId": {
+      "post": {
+        "tags": [
+          "Menu"
+        ],
+        "summary": "Sub List with id",
+        "description": "Sub List with id",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "menuids": {
+                    "type": "Array",
+                    "default": "Enter your menu ids"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sub List with id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/materialRequestListById": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Formdetails List with id",
+        "description": "Formdetails List with id",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "userid": {
+                    "type": "string",
+                    "default": "Enter your user id"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your user id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sub List with id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "required": [
+          "status",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "1 for success 0 for failure"
+          },
+          "message": {
+            "type": "string",
+            "description": "message to be displayed in alert"
+          }
+        }
+      }
+    }
+  }
+}
