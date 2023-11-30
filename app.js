@@ -7,7 +7,7 @@ const dotEnv = require("dotenv")
 dotEnv.config()
 const router = require("./api/route")
 const cors = require("cors");
-const {checkForms} = require("./utills/checkForms")
+const { checkForms, checkRole } = require("./utills/checkForms")
 var corsOptions = {
   origin: "*",
 };
@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 //Swagger api configure
-app.use("/freshAgro",swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use("/freshAgro", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 //Define router here
 app.use("/api/v1", router)
 //create forms name
 checkForms()
-
-app.listen(process.env.PORT, ()=>{
+checkRole()
+app.listen(process.env.PORT, () => {
   console.log('server started....', process.env.PORT)
 })

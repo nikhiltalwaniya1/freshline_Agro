@@ -1,6 +1,6 @@
 const formModel = require("../model/form")
 const { formName } = require("../utills/constant")
-
+const roleModel = require("../model/role")
 const formNames = [
   {
     formName: "FPRD04Production_Schedule",
@@ -66,6 +66,42 @@ exports.checkForms = async () => {
         }
         const saveForm = new formModel(query)
         await saveForm.save()
+      }
+    }
+    return Promise.resolve()
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const roleName = [
+  {
+    rolename:"Super Admin",
+    roletype:0
+  },
+  {
+    rolename:"Admin",
+    roletype:1
+  },
+  {
+    rolename:"User",
+    roletype:2
+  }
+]
+
+exports.checkRole = async () => {
+  try {
+    for (let index = 0; index < roleName.length; index++) {
+      const roleNameDetails = roleName[index];
+      const roleDetails = await roleModel.findOne({ rolename: roleNameDetails.rolename }).lean();
+      if (roleDetails === null) {
+        const obj = {
+          rolename:roleNameDetails.rolename,
+          roletype:roleNameDetails.roletype
+        }
+        const saveRole = new roleModel(obj)
+        await saveRole.save()
       }
     }
     return Promise.resolve()
