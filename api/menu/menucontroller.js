@@ -132,7 +132,10 @@ exports.formlist = async (req, res) => {
 
 exports.formlistwithid = async (req, res) => {
   try {
-    const formsdetails = await formListModel.find({menuid:req.params.menuid, submenuid:req.params.submenuid}).lean()
+    const formsdetails = await formListModel.find({menuid:req.params.menuid, submenuid:req.params.submenuid})
+    .populate('menuid')
+    .populate('submenuid')
+    .lean()
     if (formsdetails && formsdetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
