@@ -11,7 +11,10 @@ const message = {
   File_not_upload:"File Not Uploaded",
   MenuCreatedSuccessfully:"Menu created successfully...",
   user_update_successfully:"User update successfully...",
-  SubMenuCreatedSuccessfully:"Sub Menu created successfully..."
+  SubMenuCreatedSuccessfully:"Sub Menu created successfully...",
+  MenuDeleteSuccessfully:"Menu deleted successfully...",
+  SubMenuDeleteSuccessfully:"Sub Menu deleted successfully...",
+  FormDeleteSuccessfully:"Form deleted successfully..."
 }
 
 module.exports = message

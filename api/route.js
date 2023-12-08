@@ -63,4 +63,11 @@ router.post("/formDetailsByIds", formController.formDetailsByIds)
 router.post("/materialRequestListById", formController.materialRequestListById)
 //Api for form list
 router.get("/formlistById", menuController.formlistById)
+//Api for delete menu
+router.post("/deleteMenu", menuController.deleteMenu)
+//Api for delete Sub menu
+router.post("/deleteSubMenu", menuController.deleteSubMenu)
+//Api for delete Forms
+router.post("/deleteForm", menuController.deleteForm)
+
 module.exports = router

@@ -118,21 +118,17 @@
                     "type": "string",
                     "default": "Enter your form name"
                   },
-                  "formlist": {
+                  "details": {
                     "type": [],
                     "default": "Enter your form list"
-                  },
-                  "menus": {
-                    "type": [],
-                    "default": "Enter your menus"
-                  },
-                  "submenus": {
-                    "type": [],
-                    "default": "Enter your sub menus"
                   },
                   "roletype": {
                     "type": "number",
                     "default": "Enter your role type"
+                  },
+                  "createdBy": {
+                    "type": "string",
+                    "default": "Enter your user id"
                   }
                 }
               }

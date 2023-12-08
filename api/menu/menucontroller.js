@@ -86,128 +86,6 @@ exports.createSubMenu = async (req, res) => {
   }
 }
 
-exports.createTables = async (req, res) => {
-  try {
-    const roleTableQuery = `create table role (
-      id serial PRIMARY KEY,
-      rolename text not null,
-      roletype INT,
-      created_at timestamp DEFAULT NOW(),
-      updated_at timestamp DEFAULT NOW()
-    );`
-    const menusTableQuery = `create table menus (
-      id serial PRIMARY KEY,
-      menuname text not null,
-      created_at timestamp DEFAULT NOW(),
-      updated_at timestamp DEFAULT NOW()
-    );`
-    const submenuTableQuery = `create table submenus (
-      id serial PRIMARY KEY,
-      submenuname text not null,
-      menuid int not null,
-      FOREIGN KEY (menuid) REFERENCES menus (id),
-      created_at timestamp DEFAULT NOW(),
-      updated_at timestamp DEFAULT NOW()
-    );`
-    const formTableQuery = `create table forms (
-      id serial PRIMARY KEY,
-      formlist text,
-      menuid int,
-      submenuid int,
-      created_at timestamp DEFAULT NOW(),
-      updated_at timestamp DEFAULT NOW()
-    )`
-    const UserTableQuery = `CREATE TABLE users (
-      id serial PRIMARY KEY,
-      name text NOT NULL,
-      email text NOT NULL,
-      password text NOT NULL,
-      roleid int REFERENCES role (id),
-      username text NOT NULL,
-      roletype text NOT NULL,
-      menulist text[] DEFAULT '{}'::text[],
-      submenulist text[] DEFAULT '{}'::text[],
-      formslist text[] DEFAULT '{}'::text[],
-      created_at timestamp DEFAULT NOW(),
-      updated_at timestamp DEFAULT NOW()
-    );`
-    const FPRD04Production_ScheduleTableQuery = `CREATE TABLE FPRD04Production_Schedule (
-    id serial PRIMARY KEY,
-    productionitem text NOT NULL,
-    productiontype text NOT NULL,
-    machineinprocess text NOT NULL,
-    quantity int NOT NULL,
-    duedate DATE NOT NULL,
-    dates DATE NOT NULL,
-    times time NOT NULL,
-    supervisor text NOT NULL,
-    operationid int ,
-    created_at timestamp DEFAULT NOW(),
-    updated_at timestamp DEFAULT NOW()
-    )`
-    const FQC01Inward_Vehicle_ChecklistTableQuery = `CREATE TABLE FQC01Inward_Vehicle_Checklist (
-      id serial PRIMARY KEY,
-      dates DATE NOT NULL,
-	  	transportername text NOT NULL,
-      vehicleno text NOT NULL,
-      drivername text NOT NULL,
-      driverlicenseno text NOT NULL,
-			rawMaterialCondition jsonb NOT NULL,
-			properlyCleaned jsonb NOT NULL,
-			freeFromAbnormalOdor jsonb NOT NULL,
-			insetFree jsonb NOT NULL,
-			tarapulinCondition jsonb NOT NULL,
-			breaksAndSteering jsonb NOT NULL,
-      operationid int ,
-      created_at timestamp DEFAULT NOW(),
-      updated_at timestamp DEFAULT NOW()
-    )`
-    const RST01Raw_Material_Incoming_RegisterTableQuery = `CREATE TABLE RST01Raw_Material_Incoming_Register (
-    id serial PRIMARY KEY,
-    dates DATE NOT NULL,
-    invoiceno text,
-    vehicleno text ,
-    drivername text ,
-    driverno text ,
-    pono text ,
-    itemname text,
-    valueOfItem text,
-    quantity int,
-    driverlicenseno text,
-    remarks text,
-    userId int,
-    operationid int ,
-    created_at timestamp DEFAULT NOW(),
-    updated_at timestamp DEFAULT NOW()
-    )`
-
-    //Create roles table 
-    const createRoleTable = await query(roleTableQuery)
-    //Create roles table 
-    const createMenuTable = await query(menusTableQuery)
-    //Create roles table 
-    const createSubMenuTable = await query(submenuTableQuery)
-    //Create roles table 
-    const createFormsTable = await query(formTableQuery)
-    //Create users table 
-    const createUsersTable = await query(UserTableQuery)
-    //Create form table 
-    const createFPRD04Production_ScheduleTable = await query(FPRD04Production_ScheduleTableQuery)
-    //Create form table 
-    const createFQC01Inward_Vehicle_ChecklistTable = await query(FQC01Inward_Vehicle_ChecklistTableQuery)
-    //Create form table 
-    const createRST01Raw_Material_Incoming_RegisterTable = await query(RST01Raw_Material_Incoming_RegisterTableQuery)
-    return res.status(statusCode.success).send({
-      message: message.SUCCESS
-    })
-  } catch (error) {
-    console.log("error in createTables function ========", error)
-    return res.status(statusCode.error).send({
-      message: message.SOMETHING_WENT_WRONG
-    })
-  }
-}
-
 exports.rolelist = async (req, res) => {
   try {
     const roledetails = await role.find({}).lean()
@@ -396,6 +274,48 @@ exports.formlistById = async (req, res) => {
         data: []
       })
     }
+  } catch (error) {
+    console.log("error in userlist function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.deleteMenu = async (req, res) => {
+  try {
+    const menuDelete = await menu.deleteOne({_id:req.body.menuId})
+    return res.status(statusCode.error).send({
+      message: message.MenuDeleteSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in userlist function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.deleteSubMenu = async (req, res) => {
+  try {
+    const submenuDelete = await submenu.deleteOne({_id:req.body.menuId})
+    return res.status(statusCode.error).send({
+      message: message.SubMenuDeleteSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in userlist function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.deleteForm = async (req, res) => {
+  try {
+    const formdelete = await formListModel.deleteOne({_id:req.body.menuId})
+    return res.status(statusCode.error).send({
+      message: message.MenuDeleteSuccessfully,
+    })
   } catch (error) {
     console.log("error in userlist function ========", error)
     return res.status(statusCode.error).send({

@@ -1,4 +1,4 @@
-const { statusCode } = require("../../utills/constant")
+const { statusCode, roleType } = require("../../utills/constant")
 const message = require("../../utills/message")
 const { encryptPassword, comparePassword, createToken } = require("../../utills/utill")
 const authService = require("../auth/authService")
@@ -6,7 +6,13 @@ const users = require("../../model/user")
 
 exports.userlist = async (req, res) => {
   try {
-    const userDetails = await users.find({}).lean()
+    let query = {}
+    if (req.query.roleType == roleType.super_admin) {
+      query = {}
+    } else {
+      query = { createdBy: req.query.id }
+    }
+    const userDetails = await users.find(query).lean()
     if (userDetails && userDetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,

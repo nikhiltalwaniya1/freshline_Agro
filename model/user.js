@@ -32,7 +32,12 @@ const user = new Schema(
     },
     details: {
       type: Array
-    }
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
+    },
   },
   {
     timestamps: true,
