@@ -6,13 +6,12 @@ const users = require("../../model/user")
 
 exports.userlist = async (req, res) => {
   try {
-    let query = {}
+    let userDetails = []
     if (req.query.roleType == roleType.super_admin) {
-      query = {}
-    } else {
-      query = { createdBy: req.query.id }
+      userDetails = await users.find({}).lean()
+    } else if(req.query.roleType == roleType.admin || req.query.roleType == roleType.user){
+      userDetails = await users.find({ createdBy: req.query.id }).lean()
     }
-    const userDetails = await users.find(query).lean()
     if (userDetails && userDetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,

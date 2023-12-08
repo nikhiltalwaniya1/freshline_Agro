@@ -23,8 +23,6 @@ router.post("/createmenu", menuController.createMenu)
 router.post("/createsubmenu", menuController.createSubMenu)
 //Api for create user
 router.post("/updateuser", userController.updateuser)
-//Script for creating all require table
-router.get("/createTables", menuController.createTables)
 //Api for create forms 
 router.post("/createforms", formController.createforms)
 //Api for submit production shedule form
