@@ -5,6 +5,7 @@ const menu = require("../../model/menu")
 const submenu = require("../../model/submenu")
 const forms = require("../../model/form")
 const usersModel = require("../../model/user")
+const formListModel = require("../../model/formLIstByMenuId")
 
 exports.menulist = async (req, res) => {
   try {
@@ -253,7 +254,7 @@ exports.formlist = async (req, res) => {
 
 exports.formlistwithid = async (req, res) => {
   try {
-    const formsdetails = await forms.find({menuid:req.params.menuid, submenuid:req.params.submenuid}).lean()
+    const formsdetails = await formListModel.find({menuid:req.params.menuid, submenuid:req.params.submenuid}).lean()
     if (formsdetails && formsdetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
@@ -366,6 +367,28 @@ exports.submenulistByMenuId = async (req, res) => {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
         data: submenudetails
+      })
+    } else {
+      return res.status(statusCode.error).send({
+        message: message.Data_not_found,
+        data: []
+      })
+    }
+  } catch (error) {
+    console.log("error in userlist function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.formlistById = async (req, res) => {
+  try {
+    const formsdetails = await formListModel.find({}).populate('menuid').populate('submenuid').lean()
+    if (formsdetails && formsdetails.length > 0) {
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data: formsdetails
       })
     } else {
       return res.status(statusCode.error).send({

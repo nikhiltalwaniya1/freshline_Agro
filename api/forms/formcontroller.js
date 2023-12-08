@@ -10,10 +10,11 @@ const Raw_Material_Rejection_RegisterForm = require("../../model/Raw_Material_Re
 const materialRequestModel = require("../../model/materialRequest")
 const usersModel = require("../../model/user")
 const { ObjectId } = require('mongodb');
+const formListModel = require("../../model/formLIstByMenuId")
 
 exports.createforms = async (req, res) => {
   try {
-    const saveForm = new forms({
+    const saveForm = new formListModel({
       formname: req.body.formName,
       menuid: req.body.menuId,
       submenuid: req.body.submenuId,

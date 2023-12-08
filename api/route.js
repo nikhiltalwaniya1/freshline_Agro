@@ -61,4 +61,6 @@ router.post("/acceptedMaterialRequest", formController.acceptedMaterialRequest)
 router.post("/formDetailsByIds", formController.formDetailsByIds)
 //Api for reject materials
 router.post("/materialRequestListById", formController.materialRequestListById)
+//Api for form list
+router.get("/formlistById", menuController.formlistById)
 module.exports = router
