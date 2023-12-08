@@ -31,7 +31,7 @@ exports.menulist = async (req, res) => {
 
 exports.submenulist = async (req, res) => {
   try {
-    const submenudetails = await submenu.find({}).lean()
+    const submenudetails = await submenu.find({}).populate('menuid').lean()
     if (submenudetails && submenudetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
