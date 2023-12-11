@@ -163,7 +163,7 @@ exports.getProductionScheduleFormList = async (req, res) => {
         data: productionScheduleData
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -186,7 +186,7 @@ exports.getraw_material_incoming_registerList = async (req, res) => {
         data: raw_material_incoming_registerData
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -209,7 +209,7 @@ exports.getInward_vehicle_checklist = async (req, res) => {
         data: inward_vehicle_checklistData
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })

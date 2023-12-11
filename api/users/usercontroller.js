@@ -20,7 +20,7 @@ exports.userlist = async (req, res) => {
         data: userDetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -45,7 +45,7 @@ exports.userlistwithid = async (req, res) => {
         data: userDetails
       });
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
       });
     }
@@ -122,7 +122,7 @@ exports.updateuser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const userdelete = await users.deleteOne({_id:req.body.userid})
-    return res.status(statusCode.error).send({
+    return res.status(statusCode.success).send({
       message: message.MenuDeleteSuccessfully,
     })
   } catch (error) {

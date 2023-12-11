@@ -16,7 +16,7 @@ exports.menulist = async (req, res) => {
         data: menudetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -38,7 +38,7 @@ exports.submenulist = async (req, res) => {
         data: submenudetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -117,7 +117,7 @@ exports.formlist = async (req, res) => {
         data: formsdetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -142,7 +142,7 @@ exports.formlistwithid = async (req, res) => {
         data: formsdetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -164,7 +164,7 @@ exports.submenulistwithid = async (req, res) => {
         data: submenudetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -220,7 +220,7 @@ exports.formlistIds = async (req, res) => {
         data: formsdetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -250,7 +250,7 @@ exports.submenulistByMenuId = async (req, res) => {
         data: submenudetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -272,7 +272,7 @@ exports.formlistById = async (req, res) => {
         data: formsdetails
       })
     } else {
-      return res.status(statusCode.error).send({
+      return res.status(statusCode.success).send({
         message: message.Data_not_found,
         data: []
       })
@@ -288,7 +288,7 @@ exports.formlistById = async (req, res) => {
 exports.deleteMenu = async (req, res) => {
   try {
     const menuDelete = await menu.deleteOne({_id:req.body.menuId})
-    return res.status(statusCode.error).send({
+    return res.status(statusCode.success).send({
       message: message.MenuDeleteSuccessfully,
     })
   } catch (error) {
@@ -302,7 +302,7 @@ exports.deleteMenu = async (req, res) => {
 exports.deleteSubMenu = async (req, res) => {
   try {
     const submenuDelete = await submenu.deleteOne({_id:req.body.submenuId})
-    return res.status(statusCode.error).send({
+    return res.status(statusCode.success).send({
       message: message.SubMenuDeleteSuccessfully,
     })
   } catch (error) {
@@ -316,7 +316,7 @@ exports.deleteSubMenu = async (req, res) => {
 exports.deleteForm = async (req, res) => {
   try {
     const formdelete = await formListModel.deleteOne({_id:req.body.formId})
-    return res.status(statusCode.error).send({
+    return res.status(statusCode.success).send({
       message: message.MenuDeleteSuccessfully,
     })
   } catch (error) {
