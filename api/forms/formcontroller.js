@@ -224,28 +224,10 @@ exports.getInward_vehicle_checklist = async (req, res) => {
 
 exports.rejectMaterialRequest = async (req, res) => {
   try {
-    const dates = new Date(req.body.date)
-    let obj = {
-      dates,
-      invoiceno: req.body.invoiceno,
-      supplier: req.body.supplier,
-      pono: req.body.pono,
-      valueOfProduct: req.body.valueOfProduct,
-      quantityAndWeight: req.body.quantityAndWeight,
-      accepted: req.body.accepted,
-      rejected: req.body.rejected,
-      reasonOfRejection: req.body.reasonOfRejection,
-      operationid: req.body.operationid
-    }
-    const submitDetails = new Raw_Material_Incoming_RegisterForm(obj)
-    const formDetails = await submitDetails.save()
+    
     let obj1 = {
-      form6Id: formDetails._id.toString(),
       userId: req.body.userid,
-      userName: req.body.userName,
-      formName: req.body.formName,
       operationid: req.body.operationid,
-      prevAssigneeIds: req.body.prevAssigneeIds,
       workStatus: workStatus.Rejected
     }
     await movetonext(obj1)
@@ -264,7 +246,6 @@ exports.acceptedMaterialRequest = async (req, res) => {
   try {
     let obj1 = {
       userId: req.body.userid,
-      formName: req.body.formName,
       operationid: req.body.operationid,
       workStatus: workStatus.Accepted
     }

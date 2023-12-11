@@ -6,7 +6,7 @@ exports.movetonext = async (data) => {
   try {
     let query = {}
     if (data.formName == formName.form1) {
-      const userId = await usersModel.find({ "details.formDetails.formname": formName.form2 }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form2 }, { _id: 1 }).lean()
       let obj = {
         status: data.status,
         currentAssigneeId: userId,
@@ -28,7 +28,7 @@ exports.movetonext = async (data) => {
       return Promise.resolve()
     }
     if (data.formName == formName.form2) {
-      const userId = await usersModel.find({ "details.formDetails.formname": formName.form3 }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form3 }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
@@ -49,7 +49,7 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.formName == formName.form3) {
-      const userId = await usersModel.find({ "details.formDetails.formname": formName.form4 }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4 }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
@@ -69,7 +69,7 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.formName == formName.form4) {
-      const userId = await usersModel.find({ "details.formDetails.formname": formName.form5 }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form5 }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
@@ -89,12 +89,11 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.workStatus == workStatus.Rejected) {
-      const userId = await usersModel.find({ "details.formDetails.formname": formName.form6 }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form6 }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
           currentFormName: formName.form6,
-          form6Id: data.form6Id,
           status: workStatus.Rejected
         },
         $push: {
@@ -110,7 +109,7 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.workStatus == workStatus.Accepted) {
-      const userId = await usersModel.find({ "details.formDetails.formname": formName.form4 }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4 }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
