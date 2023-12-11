@@ -97,6 +97,7 @@ exports.updateuser = async (req, res) => {
       const updateQuery = {
         name: req.body.name,
         email: req.body.email,
+        username: req.body.email,
         details: req.body.details
       }
       const updateUser = await users.updateOne(
@@ -112,6 +113,20 @@ exports.updateuser = async (req, res) => {
     }
   } catch (error) {
     console.log("error in updateuser function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const userdelete = await users.deleteOne({_id:req.body.userid})
+    return res.status(statusCode.error).send({
+      message: message.MenuDeleteSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in userlist function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
     })

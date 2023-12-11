@@ -301,7 +301,7 @@ exports.deleteMenu = async (req, res) => {
 
 exports.deleteSubMenu = async (req, res) => {
   try {
-    const submenuDelete = await submenu.deleteOne({_id:req.body.menuId})
+    const submenuDelete = await submenu.deleteOne({_id:req.body.submenuId})
     return res.status(statusCode.error).send({
       message: message.SubMenuDeleteSuccessfully,
     })
@@ -315,7 +315,7 @@ exports.deleteSubMenu = async (req, res) => {
 
 exports.deleteForm = async (req, res) => {
   try {
-    const formdelete = await formListModel.deleteOne({_id:req.body.menuId})
+    const formdelete = await formListModel.deleteOne({_id:req.body.formId})
     return res.status(statusCode.error).send({
       message: message.MenuDeleteSuccessfully,
     })

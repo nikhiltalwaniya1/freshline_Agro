@@ -67,5 +67,7 @@ router.post("/deleteMenu", menuController.deleteMenu)
 router.post("/deleteSubMenu", menuController.deleteSubMenu)
 //Api for delete Forms
 router.post("/deleteForm", menuController.deleteForm)
+//Api for delete User
+router.post("/deleteUser", userController.deleteUser)
 
 module.exports = router
