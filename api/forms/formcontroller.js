@@ -11,7 +11,7 @@ const materialRequestModel = require("../../model/materialRequest")
 const usersModel = require("../../model/user")
 const { ObjectId } = require('mongodb');
 const formListModel = require("../../model/formLIstByMenuId")
-
+const Raw_Material_and_Packaging_Material_InspectionModel = require("../../model/Raw_Material_&_Packaging_Material_Inspection")
 exports.createforms = async (req, res) => {
   try {
     const saveForm = new formListModel({
@@ -328,3 +328,79 @@ exports.materialRequestListById = async (req, res) => {
     });
   }
 };
+
+//Submit Raw_Material_&_Packaging_Material_Inspection form 
+exports.Raw_Material_And_Packaging_Material_Inspection = async (req, res) => {
+  try {
+    const dates = new Date(req.body.date)
+    let obj = {
+      dates,
+      invoiceno: req.body.invoiceno,
+      documentVerification: req.body.documentVerification,
+      preUnloadingOperation: req.body.preUnloadingOperation,
+      unloadingOperation: req.body.unloadingOperation,
+      weighingOperation: req.body.weighingOperation,
+      physicalInspactionCheckListForVeg: req.body.physicalInspactionCheckListForVeg,
+      physicalInspactionCheckListForPackagingMaterial: req.body.physicalInspactionCheckListForPackagingMaterial,      
+      userid: req.body.userid,
+      doneBy: req.body.userid,
+      checkedBy: req.body.userid,
+      operationid: req.body.operationid,
+      status:true
+    }
+    const submitDetails = new Raw_Material_and_Packaging_Material_InspectionModel(obj)
+    const formDetails = await submitDetails.save()
+    let obj1 = {
+      form4Id: formDetails._id.toString(),
+      userId: req.body.userid,
+      operationid: req.body.operationid,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  } catch (error) {
+    console.log("error in raw_material_incoming_register function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+//Submit Raw_Material_Rejection_Register form 
+exports.Raw_Material_Rejection_Register = async (req, res) => {
+  try {
+    const dates = new Date(req.body.date)
+    let obj = {
+      dates,
+      invoiceno: req.body.invoiceno,
+      supplier: req.body.supplier,
+      pono: req.body.pono,
+      valueOfProduct: req.body.valueOfProduct,
+      quantityAndWeight: req.body.quantityAndWeight,
+      accepted: req.body.accepted,
+      rejected: req.body.rejected,
+      reasonOfRejection: req.body.reasonOfRejection,
+      operationid: req.body.operationid,
+      status:true
+    }
+    const submitDetails = new Raw_Material_Rejection_RegisterForm(obj)
+    const formDetails = await submitDetails.save()
+    let obj1 = {
+      form5Id: formDetails._id.toString(),
+      userId: req.body.userid,
+      operationid: req.body.operationid,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  } catch (error) {
+    console.log("error in raw_material_incoming_register function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}

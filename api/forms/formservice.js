@@ -128,6 +128,26 @@ exports.movetonext = async (data) => {
           }
         })
     }
+    if (data.formName == formName.form6) {
+      query = {
+        $set: {
+          currentAssigneeId: "",
+          currentFormName: "",
+          form6Id: data.form6Id,
+          status:workStatus.Rejected
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
+    //   const updateForms = await formModel.updateOne(
+    //     { formname: formName.form5 },
+    //     {
+    //       $set: {
+    //         status: true
+    //       }
+    //     })
+    }
     const updateMaterialRequest = await materialRequestModel.updateOne(
       { operationid: data.operationid },
       query
