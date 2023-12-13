@@ -6,7 +6,7 @@ const submenu = require("../../model/submenu")
 const forms = require("../../model/form")
 const usersModel = require("../../model/user")
 const formListModel = require("../../model/formLIstByMenuId")
-
+const materialModel = require("../../model/material")
 exports.menulist = async (req, res) => {
   try {
     const menudetails = await menu.find({}).lean()
@@ -321,6 +321,76 @@ exports.deleteForm = async (req, res) => {
     })
   } catch (error) {
     console.log("error in userlist function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createMaterial = async (req, res) => {
+  try {
+    const saveMaterial = new materialModel({
+      materialname: req.body.materialname,
+      materialid: req.body.materialid
+    })
+    await saveMaterial.save()
+    return res.status(statusCode.success).send({
+      message: message.MaterialCreatedSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.updateMaterial = async (req, res) => {
+  try {
+    let obj = {
+      materialname: req.body.materialname,
+      materialid: req.body.materialid
+    }
+    const updateMaterials = await materialModel.updateOne(
+      {_id:req.body.id},
+      {$set:obj}
+      )
+    return res.status(statusCode.success).send({
+      message: message.updateSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.deleteMaterial = async (req, res) => {
+  try {
+    const deleteMaterials = await materialModel.deleteOne(
+      {_id:req.body.id}
+      )
+    return res.status(statusCode.success).send({
+      message: message.deleteSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.allMaterialList = async (req, res) => {
+  try {
+    const deleteMaterial = await materialModel.find({}).lean()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS,
+      data:deleteMaterial
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
     })

@@ -2203,6 +2203,248 @@
           }
         }
       }
+    },
+    "/createMaterial": {
+      "post": {
+        "tags": [
+          "Material"
+        ],
+        "summary": "Create Material",
+        "description": "Create Material",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "materialname": {
+                    "type": "string",
+                    "default": "Enter your Material name"
+                  },
+                  "materialid": {
+                    "type": "string",
+                    "default": "Enter your Material Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Material",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateMaterial": {
+      "post": {
+        "tags": [
+          "Material"
+        ],
+        "summary": "update Material",
+        "description": "update Material",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "materialname": {
+                    "type": "string",
+                    "default": "Enter your Material name"
+                  },
+                  "materialid": {
+                    "type": "string",
+                    "default": "Enter your Material Id"
+                  },
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your  Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "update Material",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteMaterial": {
+      "post": {
+        "tags": [
+          "Material"
+        ],
+        "summary": "delete Material",
+        "description": "delete Material",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your  Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "delete Material",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/allMaterialList": {
+      "get": {
+        "tags": [
+          "Material"
+        ],
+        "summary": "all Material List",
+        "description": "all Material List",
+        "responses": {
+          "200": {
+            "description": "all Material List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

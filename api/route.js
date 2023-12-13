@@ -73,5 +73,12 @@ router.post("/deleteUser", userController.deleteUser)
 router.post("/Raw_Material_And_Packaging_Material_Inspection", formController.Raw_Material_And_Packaging_Material_Inspection)
 //Api for submit Raw_Material_Rejection_Register form
 router.post("/Raw_Material_Rejection_Register", formController.Raw_Material_Rejection_Register)
-
+//Api for Add matrial
+router.post("/createMaterial", menuController.createMaterial)
+//Api for Add matrial
+router.post("/updateMaterial", menuController.updateMaterial)
+//Api for Add matrial
+router.post("/deleteMaterial", menuController.deleteMaterial)
+//Api for Get matrial list
+router.get("/allMaterialList", menuController.allMaterialList)
 module.exports = router

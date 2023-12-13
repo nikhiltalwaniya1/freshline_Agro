@@ -14,7 +14,11 @@ const message = {
   SubMenuCreatedSuccessfully:"Sub Menu created successfully...",
   MenuDeleteSuccessfully:"Menu deleted successfully...",
   SubMenuDeleteSuccessfully:"Sub Menu deleted successfully...",
-  FormDeleteSuccessfully:"Form deleted successfully..."
+  FormDeleteSuccessfully:"Form deleted successfully...",
+  MaterialCreatedSuccessfully:"Material created successfully...",
+  updateSuccessfully:"Updated successfully...",
+  deleteSuccessfully:"Deleted successfully...",
+
 }
 
 module.exports = message
