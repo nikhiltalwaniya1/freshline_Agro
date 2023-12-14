@@ -48,30 +48,28 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.formName == formName.form3) {
-      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4 }, { _id: 1 }).lean()
+      // const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": { $in: [formName.form4_1, formName.form4_2]} }, { _id: 1 }).lean()
       query = {
         $set: {
-          currentAssigneeId: userId,
-          currentFormName: formName.form4,
+          currentAssigneeId: [],
+          currentFormName: [],
           form3Id: data.form3Id,
         },
         $push: {
           prevAssigneeIds: data.userId
         }
       }
-      const updateForms = await formModel.updateOne(
-        {
-          formname: { $in: [formName.form4_1, formName.form4_2] }
-        },
-        {
-          $set: {
-            status: true
-          }
-        }
-      );      
+      // const updateForms = await formModel.updateMany(
+      //   { formname: { $in: [formName.form4_1, formName.form4_2] } },
+      //   {
+      //     $set: {
+      //       status: true
+      //     }
+      //   }
+      // );
+            
     }
     if (data.formName == formName.form4_1) {
-      console.log("formName.form4_1_b===", formName.form4_1_b);
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_1_b }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -143,13 +141,15 @@ exports.movetonext = async (data) => {
           prevAssigneeIds: data.userId
         }
       }
-      const updateForms = await formModel.updateOne(
-        { formname: formName.form4 },
+      const updateForms = await formModel.updateMany(
+        { formname: { $in: [formName.form4_1, formName.form4_2] } },
         {
           $set: {
             status: true
           }
-        })
+        }
+      );
+      
     }
     if (data.formName == formName.form6) {
       query = {

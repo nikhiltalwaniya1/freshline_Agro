@@ -15,6 +15,7 @@ const Raw_Material_InspectionModel = require("../../model/Raw_Material_Inspectio
 const Packaging_Material_InspectionModel = require("../../model/Packaging_Material_Inspection")
 const Raw_Material_Release_recordForm = require("../../model/Raw_Material_Release_record")
 const MATERIAL_DISCREPANCY_REPORTForm = require("../../model/Material_Discrepancy_Report")
+const formModel = require("../../model/form")
 
 
 exports.createforms = async (req, res) => {
