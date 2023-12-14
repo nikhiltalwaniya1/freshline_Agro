@@ -131,7 +131,7 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.workStatus == workStatus.Accepted) {
-      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4 }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": { $in: [formName.form4_1, formName.form4_2]} }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
