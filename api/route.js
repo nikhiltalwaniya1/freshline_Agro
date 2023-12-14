@@ -69,8 +69,8 @@ router.post("/deleteSubMenu", menuController.deleteSubMenu)
 router.post("/deleteForm", menuController.deleteForm)
 //Api for delete User
 router.post("/deleteUser", userController.deleteUser)
-//Api for submit Raw_Material_And_Packaging_Material_Inspection form
-router.post("/Raw_Material_And_Packaging_Material_Inspection", formController.Raw_Material_And_Packaging_Material_Inspection)
+//Api for submit Raw_Material_Inspection form
+router.post("/Raw_Material_Inspection", formController.Raw_Material_Inspection)
 //Api for submit Raw_Material_Rejection_Register form
 router.post("/Raw_Material_Rejection_Register", formController.Raw_Material_Rejection_Register)
 //Api for Add matrial
@@ -81,4 +81,15 @@ router.post("/updateMaterial", menuController.updateMaterial)
 router.post("/deleteMaterial", menuController.deleteMaterial)
 //Api for Get matrial list
 router.get("/allMaterialList", menuController.allMaterialList)
+//Api for submit Packaging_Material_Inspection form
+router.post("/Packaging_Material_Inspection", formController.Packaging_Material_Inspection)
+//Api for submit Raw_Material_Rejection_Register form
+router.post("/Verify_Raw_Material_Inspection", formController.Verify_Raw_Material_Inspection)
+//Api for submit Packaging_Material_Inspection form
+router.post("/Verify_Packaging_Material_Inspection", formController.Verify_Packaging_Material_Inspection)
+//Api for submit Raw_Material_Release_record form
+router.post("/Raw_Material_Release_record", formController.Raw_Material_Release_record)
+//Api for submit Raw_Material_Release_record form
+router.post("/Material_Discrepancy_Report", formController.Material_Discrepancy_Report)
+
 module.exports = router

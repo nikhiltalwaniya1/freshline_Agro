@@ -55,6 +55,10 @@ const Inward_Vehicle_ChecklistSchema = new Schema(
     status:{
       type:Boolean,
       default:false
+    },
+    formateNumber: {
+      type: String,
+      default: ''
     }
   },
   {

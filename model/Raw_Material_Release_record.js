@@ -2,59 +2,52 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 var mongoosePaginate = require('mongoose-paginate');
 
-const Raw_Material_Incoming_RegisterSchema = new Schema(
+const Raw_Material_Release_recordSchema = new Schema(
   {
+    materialName: {
+      type: String,
+      default: ''
+    },
+    doneBy: {
+      type: String,
+      default: '',
+      ref:"user"
+    },
     dates: {
       type: Date,
       default: ''
     },
-    invoiceno: {
+    materialId: {
       type: String,
       default: ''
     },
-    vehicleno: {
+    qualityAcceptance: {
       type: String,
       default: ''
     },
-    drivername: {
+    analytical: {
       type: String,
       default: ''
     },
-    driverlicenseno: {
+    microBiological: {
       type: String,
       default: ''
     },
-    driverno: {
+    sensory: {
       type: String,
       default: ''
     },
-    pono: {
+    Other: {
       type: String,
       default: ''
-    },
-    itemname: {
-      type: String,
-      default: ''
-    },
-    valueOfItem: {
-      type: String,
-      default: ''
-    },
-    quantity: {
-      type: Number,
-      default: ''
-    },
-    remarks: {
-      type: String,
-      default: ''
-    },
-    operationid: {
-      type: Number,
-      default: 0
     },
     userId: {
       type: String,
-      default: ''
+      default: {}
+    },
+    operationId: {
+      type: String,
+      default: {}
     },
     status:{
       type:Boolean,
@@ -71,6 +64,6 @@ const Raw_Material_Incoming_RegisterSchema = new Schema(
   }
 )
 
-Raw_Material_Incoming_RegisterSchema.plugin(mongoosePaginate);
-var Raw_Material_Incoming_RegisterModel = mongoose.model('RST01Raw_Material_Incoming_Register', Raw_Material_Incoming_RegisterSchema);
-module.exports = Raw_Material_Incoming_RegisterModel
+Raw_Material_Release_recordSchema.plugin(mongoosePaginate);
+var Raw_Material_Release_recordModel = mongoose.model('FQC06Raw_Material_Release_record', Raw_Material_Release_recordSchema);
+module.exports = Raw_Material_Release_recordModel

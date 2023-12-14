@@ -43,6 +43,10 @@ const Production_ScheduleSchema = new Schema(
     status:{
       type:Boolean,
       default:false
+    },
+    formateNumber: {
+      type: String,
+      default: ''
     }
   },
   {

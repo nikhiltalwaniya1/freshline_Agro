@@ -17,8 +17,20 @@ const formNames = [
 
   },
   {
-    formName: "FPRD01Raw_Material_&_Packaging_Material_Inspection",
-    path: "/materialInspection"
+    formName: "FPRD01Raw_Material_Inspection",
+    path: "/Raw-Material-Inspection-List"
+  },
+  {
+    formName: "FPRD01Verify_Raw_Material_Inspection",
+    path: "/Verify-Raw-Material-Inspection"
+  },
+  {
+    formName: "FPRD01Packaging_Material_Inspection",
+    path: "/Packaging-Material-Inspection-List"
+  },
+  {
+    formName: "FPRD01Verify_Packaging_Material_Inspection",
+    path: "/Verify-Packaging-Material-Inspection"
   },
   {
     formName: "FQC06Raw_Material_Release_record",

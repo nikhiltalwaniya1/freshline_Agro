@@ -1976,13 +1976,13 @@
         }
       }
     },
-    "/Raw_Material_And_Packaging_Material_Inspection": {
+    "/Packaging_Material_Inspection": {
       "post": {
         "tags": [
           "Forms"
         ],
-        "summary": "Save Raw_Material_And_Packaging_Material_Inspection form",
-        "description": "Save Raw_Material_And_Packaging_Material_Inspection form",
+        "summary": "Save Packaging_Material_Inspection form",
+        "description": "Save Packaging_Material_Inspection form",
         "requestBody": {
           "required": true,
           "content": {
@@ -2024,12 +2024,6 @@
                       
                     }
                   },
-                  "physicalInspactionCheckListForVeg": {
-                    "type": "object",
-                    "default": {
-                      
-                    }
-                  },
                   "physicalInspactionCheckListForPackagingMaterial": {
                     "type": "object",
                     "default": {
@@ -2041,10 +2035,6 @@
                     "default": "Enter your userid"
                   },
                   "doneBy": {
-                    "type": "string",
-                    "default": "Enter your userid"
-                  },
-                  "checkedBy": {
                     "type": "string",
                     "default": "Enter your userid"
                   },
@@ -2063,7 +2053,7 @@
         },
         "responses": {
           "200": {
-            "description": "Save Raw_Material_And_Packaging_Material_Inspection form",
+            "description": "Save Packaging_Material_Inspection form",
             "content": {
               "application/json": {
                 "schema": {
@@ -2412,6 +2402,417 @@
         "responses": {
           "200": {
             "description": "all Material List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Raw_Material_Inspection": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save Raw_Material_Inspection form",
+        "description": "Save Raw_Material_Inspection form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "invoiceno": {
+                    "type": "string",
+                    "default": "Enter your invoiceno"
+                  },
+                  "documentVerification": {
+                    "type": "object",
+                    "default": {
+                      
+                    }
+                  },
+                  "preUnloadingOperation": {
+                    "type": "object",
+                    "default": {
+                      
+                    }
+                  },
+                  "unloadingOperation": {
+                    "type": "object",
+                    "default": {
+                      
+                    }
+                  },
+                  "weighingOperation": {
+                    "type": "object",
+                    "default": {
+                      
+                    }
+                  },
+                  "physicalInspactionCheckListForVeg": {
+                    "type": "object",
+                    "default": {
+                      
+                    }
+                  },                  
+                  "userid": {
+                    "type": "string",
+                    "default": "Enter your userid"
+                  },
+                  "doneBy": {
+                    "type": "string",
+                    "default": "Enter your userid"
+                  },
+                  "operationid": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save Raw_Material_Inspection form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Verify_Raw_Material_Inspection": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save Raw_Material_Inspection form",
+        "description": "Save Raw_Material_Inspection form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "checkedBy": {
+                    "type": "string",
+                    "default": "Enter your checkedBy"
+                  },                 
+                  "userid": {
+                    "type": "string",
+                    "default": "Enter your userid"
+                  },
+                  "operationid": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save Raw_Material_Inspection form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Verify_Packaging_Material_Inspection": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save Raw_Material_Inspection form",
+        "description": "Save Raw_Material_Inspection form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "checkedBy": {
+                    "type": "string",
+                    "default": "Enter your checkedBy"
+                  },                 
+                  "userid": {
+                    "type": "string",
+                    "default": "Enter your userid"
+                  },
+                  "operationid": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save Raw_Material_Inspection form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    ,
+    "/Material_Discrepancy_Report": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save Material_Discrepancy_Report form",
+        "description": "Save Material_Discrepancy_Report form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "materialName": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "natureOfDiscrepancy": {
+                    "type": "string",
+                    "default": "Enter your checkedBy"
+                  },                 
+                  "details": {
+                    "type": "Array",
+                    "default": "It's array field"
+                  },
+                  "supplierName": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "invoiceNo": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "invoiceDate": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "transporterName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "quantity": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "shortageQuantity": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "actualRecivedQuantity": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "qaInspaction": {
+                    "type": "string",
+                    "default": "it's object"
+                  },
+                  "returnToVendor": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "stockToBetaken": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "vehicleNumber": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "driverName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "qaInspactedName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "qaInspactionDate": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "operationId": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save Material_Discrepancy_Report form",
             "content": {
               "application/json": {
                 "schema": {

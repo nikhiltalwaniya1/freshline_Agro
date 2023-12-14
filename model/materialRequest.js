@@ -36,9 +36,13 @@ const materialRequestSchema = new Schema(
       type: String,
       ref:"FQC01Inward_Vehicle_Checklist"
     },
-    form4Id:{
+    form4_1Id:{
       type: String,
-      ref:"FPRD01Raw_Material_&_Packaging_Material_Inspection"
+      ref:"FPRD01Raw_Material_Inspection"
+    },
+    form4_2Id:{
+      type: String,
+      ref:"FPRD01Packaging_Material_Inspection"
     },
     form5Id:{
       type: String,

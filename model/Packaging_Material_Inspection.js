@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 var mongoosePaginate = require('mongoose-paginate');
 
-const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
+const Packaging_Material_InspectionSchema = new Schema(
   {
     materialName: {
       type: String,
@@ -46,10 +46,6 @@ const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
       type: Object,
       default: {}
     },
-    physicalInspactionCheckListForVeg: {
-      type: Object,
-      default: {}
-    },
     physicalInspactionCheckListForPackagingMaterial: {
       type: Object,
       default: {}
@@ -62,13 +58,13 @@ const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
       type: String,
       default: {}
     },
-    operationId: {
-      type: String,
-      default: {}
+    status:{
+      type:Boolean,
+      default:false
     },
-    status: {
+    formateNumber: {
       type: String,
-      default: 0
+      default: ''
     }
   },
   {
@@ -77,6 +73,6 @@ const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
   }
 )
 
-Raw_Material_and_Packaging_Material_InspectionSchema.plugin(mongoosePaginate);
-var Raw_Material_and_Packaging_Material_InspectionModel = mongoose.model('FPRD01Raw_Material_and_Packaging_Material_Inspection', Raw_Material_and_Packaging_Material_InspectionSchema);
-module.exports = Raw_Material_and_Packaging_Material_InspectionModel
+Packaging_Material_InspectionSchema.plugin(mongoosePaginate);
+var Packaging_Material_InspectionModel = mongoose.model('FPRD01Packaging_Material_Inspection', Packaging_Material_InspectionSchema);
+module.exports = Packaging_Material_InspectionModel
