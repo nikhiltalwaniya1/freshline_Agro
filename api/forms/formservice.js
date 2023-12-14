@@ -71,6 +71,7 @@ exports.movetonext = async (data) => {
       );      
     }
     if (data.formName == formName.form4_1) {
+      console.log("formName.form4_1_b===", formName.form4_1_b);
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_1_b }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -83,7 +84,7 @@ exports.movetonext = async (data) => {
         }
       }
       const updateForms = await formModel.updateOne(
-        { formname: formName.formName.form4_1_b },
+        { formname: formName.form4_1_b },
         {
           $set: {
             status: true
