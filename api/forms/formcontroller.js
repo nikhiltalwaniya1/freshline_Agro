@@ -341,7 +341,9 @@ exports.Raw_Material_Inspection = async (req, res) => {
     const dates = new Date(req.body.date)
     let obj = {
       dates,
-      invoiceno: req.body.invoiceno,
+      materialName: req.body.materialName,
+      invoiceNo: req.body.invoiceNo,
+      invoiceDate: req.body.invoiceDate,
       documentVerification: req.body.documentVerification,
       preUnloadingOperation: req.body.preUnloadingOperation,
       unloadingOperation: req.body.unloadingOperation,
@@ -416,7 +418,9 @@ exports.Packaging_Material_Inspection = async (req, res) => {
     const dates = new Date(req.body.date)
     let obj = {
       dates,
-      invoiceno: req.body.invoiceno,
+      materialName: req.body.materialName,
+      invoiceNo: req.body.invoiceNo,
+      invoiceDate: req.body.invoiceDate,
       documentVerification: req.body.documentVerification,
       preUnloadingOperation: req.body.preUnloadingOperation,
       unloadingOperation: req.body.unloadingOperation,
