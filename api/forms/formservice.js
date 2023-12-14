@@ -135,7 +135,7 @@ exports.movetonext = async (data) => {
       query = {
         $set: {
           currentAssigneeId: userId,
-          currentFormName: formName.form4,
+          currentFormName: [formName.form4_1,formName.form4_2],
           status: workStatus.Accepted
         },
         $push: {
