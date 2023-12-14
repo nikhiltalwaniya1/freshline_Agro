@@ -131,12 +131,12 @@ exports.inward_vehicle_checklist = async (req, res) => {
       vehicleno: req.body.vehicleno,
       drivername: req.body.drivername,
       driverlicenseno: req.body.driverlicenseno,
-      rawmaterialcondition: req.body.rawmaterialcondition,
-      properlycleaned: req.body.properlycleaned,
-      freefromabnormalodor: req.body.freefromabnormalodor,
-      insetfree: req.body.insetfree,
-      tarapulincondition: req.body.tarapulincondition,
-      breaksandsteering: req.body.breaksandsteering,
+      rawMaterialCondition: req.body.rawmaterialcondition,
+      properlyCleaned: req.body.properlycleaned,
+      freeFromAbnormalOdor: req.body.freefromabnormalodor,
+      insetFree: req.body.insetfree,
+      tarapulinCondition: req.body.tarapulincondition,
+      breaksAndSteering: req.body.breaksandsteering,
       operationid,
       status:true,
       formateNumber:formateNumber.form3
@@ -323,9 +323,6 @@ exports.materialRequestListById = async (req, res) => {
       .populate('form5Id')
       .populate('form6Id')
       .lean();
-
-    console.log("requestDetails===", requestDetails);
-
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
       data: requestDetails
