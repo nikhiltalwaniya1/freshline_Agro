@@ -318,7 +318,8 @@ exports.materialRequestListById = async (req, res) => {
       .populate('form1Id')
       .populate('form2Id')
       .populate('form3Id')
-      .populate('form4Id')
+      .populate('form4_1Id')
+      .populate('form4_2Id')
       .populate('form5Id')
       .populate('form6Id')
       .lean();
