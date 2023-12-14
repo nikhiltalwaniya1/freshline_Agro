@@ -52,11 +52,11 @@ const Packaging_Material_InspectionSchema = new Schema(
     },
     userId: {
       type: String,
-      default: {}
+      default: ""
     },
     operationId: {
       type: String,
-      default: {}
+      default: ""
     },
     status:{
       type:Boolean,

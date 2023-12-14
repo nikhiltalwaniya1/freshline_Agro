@@ -52,11 +52,11 @@ const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
     },
     userId: {
       type: String,
-      default: {}
+      default: ''
     },
     operationId: {
       type: String,
-      default: {}
+      default: ''
     },
     status:{
       type:Boolean,
@@ -74,5 +74,5 @@ const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
 )
 
 Raw_Material_and_Packaging_Material_InspectionSchema.plugin(mongoosePaginate);
-var Raw_Material_and_Packaging_Material_InspectionModel = mongoose.model('FPRD01Raw_Material_and_Packaging_Material_Inspection', Raw_Material_and_Packaging_Material_InspectionSchema);
+var Raw_Material_and_Packaging_Material_InspectionModel = mongoose.model('FPRD01Raw_Material_Inspection', Raw_Material_and_Packaging_Material_InspectionSchema);
 module.exports = Raw_Material_and_Packaging_Material_InspectionModel
