@@ -102,7 +102,7 @@ exports.movetonext = async (data) => {
         }
       }
       const updateForms = await formModel.updateOne(
-        { formname: formName.formName.form4_2_b },
+        { formname: formName.form4_2_b },
         {
           $set: {
             status: true
@@ -183,7 +183,7 @@ exports.movetonext = async (data) => {
         }
       }
       const updateForms = await formModel.updateOne(
-        { formname: formName.formName.form5 },
+        { formname: formName.form5 },
         {
           $set: {
             status: true
