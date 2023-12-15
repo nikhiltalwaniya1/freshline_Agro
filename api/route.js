@@ -91,5 +91,10 @@ router.post("/Verify_Packaging_Material_Inspection", formController.Verify_Packa
 router.post("/Raw_Material_Release_record", formController.Raw_Material_Release_record)
 //Api for submit Raw_Material_Release_record form
 router.post("/Material_Discrepancy_Report", formController.Material_Discrepancy_Report)
+//Api for get Packaging_Material_Inspection data by id
+router.get("/Get_Packaging_Material_Inspection_byId/:id", formController.Get_Packaging_Material_Inspection_byId)
+//Api for get Raw_Material_Inspection data by id
+router.get("/Get_Raw_Material_Inspection_byId/:id", formController.Get_Raw_Material_Inspection_byId)
+
 
 module.exports = router

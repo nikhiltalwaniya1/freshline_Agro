@@ -590,3 +590,55 @@ exports.Material_Discrepancy_Report = async (req, res) => {
     })
   }
 }
+
+//Get Packaging_Material_Inspection data by id 
+exports.Get_Packaging_Material_Inspection_byId = async (req, res) => {
+  try {
+    const Packaging_Material_Inspection_Data = await Packaging_Material_InspectionModel.findById(
+      {_id:req.params.id}
+    ).lean()
+    if(Packaging_Material_Inspection_Data){
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data:Packaging_Material_Inspection_Data
+      })
+    }else{
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data:null
+      })
+    }
+    
+  } catch (error) {
+    console.log("error in raw_material_incoming_register function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+//Get Packaging_Material_Inspection data by id 
+exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
+  try {
+    const Raw_Material_Inspection_Data = await Raw_Material_InspectionModel.findById(
+      {_id:req.params.id}
+    ).lean()
+    if(Raw_Material_Inspection_Data){
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data:Raw_Material_Inspection_Data
+      })
+    }else{
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data:null
+      })
+    }
+    
+  } catch (error) {
+    console.log("error in raw_material_incoming_register function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
