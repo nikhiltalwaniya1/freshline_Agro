@@ -2000,6 +2000,10 @@
                     "type": "string",
                     "default": "Enter your invoiceno"
                   },
+                  "invoicedate": {
+                    "type": "string",
+                    "default": "Enter your invoicedate"
+                  },
                   "documentVerification": {
                     "type": "object",
                     "default": {
