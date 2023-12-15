@@ -344,7 +344,7 @@ exports.Raw_Material_Inspection = async (req, res) => {
       dates,
       materialName: req.body.materialName,
       invoiceNo: req.body.invoiceno,
-      invoiceDate: req.body.invoiceDate,
+      invoiceDate: new Date(req.body.invoiceDate),
       documentVerification: req.body.documentVerification,
       preUnloadingOperation: req.body.preUnloadingOperation,
       unloadingOperation: req.body.unloadingOperation,
@@ -352,7 +352,7 @@ exports.Raw_Material_Inspection = async (req, res) => {
       physicalInspactionCheckListForVeg: req.body.physicalInspactionCheckListForVeg,
       userid: req.body.userid,
       doneBy: req.body.userid,
-      operationid: req.body.operationid,
+      operationId: req.body.operationid,
       status:true,
       formateNumber:formateNumber.form4
     }
@@ -421,7 +421,7 @@ exports.Packaging_Material_Inspection = async (req, res) => {
       dates,
       materialName: req.body.materialName,
       invoiceNo: req.body.invoiceno,
-      invoiceDate: req.body.invoiceDate,
+      invoiceDate: new Date(req.body.invoiceDate),
       documentVerification: req.body.documentVerification,
       preUnloadingOperation: req.body.preUnloadingOperation,
       unloadingOperation: req.body.unloadingOperation,
@@ -429,7 +429,7 @@ exports.Packaging_Material_Inspection = async (req, res) => {
       physicalInspactionCheckListForPackagingMaterial: req.body.physicalInspactionCheckListForPackagingMaterial,      
       userid: req.body.userid,
       doneBy: req.body.userid,
-      operationid: req.body.operationid,
+      operationId: req.body.operationid,
       status:true,
       formateNumber:formateNumber.form4
     }
