@@ -1,6 +1,6 @@
-const { statusCode, workStatus, formName, formateNumber } = require("../../utills/constant")
+const { statusCode, workStatus, formName, formateNumber, materialType } = require("../../utills/constant")
 const message = require("../../utills/message")
-const { generateUniqueNumber } = require("../../utills/utill")
+const { generateUniqueNumber, createRendomId } = require("../../utills/utill")
 const forms = require("../../model/form")
 const production_Schedule_Form = require("../../model/Production_Schedule")
 const Raw_Material_Incoming_RegisterForm = require("../../model/Raw_Material_Incoming_Register")
@@ -84,6 +84,17 @@ exports.productionScheduleForm = async (req, res) => {
 exports.raw_material_incoming_register = async (req, res) => {
   try {
     const dates = new Date(req.body.date)
+    let str = ''
+    const firstThreeDigitOfmaterialType = req.body.itemname.substring(0, 3)
+
+    if(req.body.materialType == materialType.Raw_Material){
+      str = `R/${firstThreeDigitOfmaterialType}`
+    }
+    if(req.body.materialType == materialType.Packaging_Material){
+      str = `P/${firstThreeDigitOfmaterialType}`
+    }
+    const materialId = await createRendomId(str)
+    const operationid = await generateUniqueNumber()
     let obj = {
       dates,
       invoiceno: req.body.invoiceno,
@@ -97,7 +108,7 @@ exports.raw_material_incoming_register = async (req, res) => {
       driverlicenseno: req.body.driverlicenseno,
       remarks: req.body.remarks,
       userid: req.body.userid,
-      operationid: req.body.operationid,
+      operationid: operationid,
       status:true,
       formateNumber:formateNumber.form2
     }
@@ -108,6 +119,8 @@ exports.raw_material_incoming_register = async (req, res) => {
       userId: req.body.userid,
       operationid: req.body.operationid,
       formName: req.body.formName,
+      materialType:req.body.materialType,
+      materialId:materialId
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({

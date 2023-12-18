@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto');
-
+const moment = require("moment")
 //This function is used for encrypt given password
 module.exports.encryptPassword = async (password) => {
   try {
@@ -59,4 +59,13 @@ module.exports.generateUniqueNumber = async () => {
   } catch (error) {
     return Promise.reject(error);
   }
+}
+
+exports.createRendomId = async (str) => {
+  return new Promise((resolve, reject) => {
+    const date = moment(new Date()).format('DD-MM-YYYY')
+    const time = moment(new Date()).format('HH:mm')
+    let key = `${str}/${date}/${time}`
+    resolve(key)
+  })
 }

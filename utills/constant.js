@@ -47,11 +47,16 @@ const formateNumber = {
   form23:"F/PRD/12 Rev.00/01.07.2022",  form24:"R/ST/04 Rev.00/ 01.07.2021",
   form25:"F/QC/11 Rev.00/ 01.07.2022"
 }
+const materialType = {
+  Raw_Material:"Raw Material",
+  Packaging_Material:"Packaging Material"
+}
 
 module.exports = {
   statusCode,
   roleType,
   formName,
   workStatus,
-  formateNumber
+  formateNumber,
+  materialType
 }

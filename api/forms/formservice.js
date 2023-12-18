@@ -1,5 +1,5 @@
 const materialRequestModel = require("../../model/materialRequest")
-const { formName, workStatus, formateNumber } = require("../../utills/constant")
+const { formName, workStatus, formateNumber, materialType } = require("../../utills/constant")
 const usersModel = require("../../model/user")
 const formModel = require("../../model/form")
 exports.movetonext = async (data) => {
@@ -28,17 +28,18 @@ exports.movetonext = async (data) => {
     }
     if (data.formName == formName.form2) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form3 }, { _id: 1 }).lean()
-      query = {
-        $set: {
-          currentAssigneeId: userId,
-          currentFormName: formName.form3,
-          form2Id: data.form2Id,
-        },
-        $push: {
-          prevAssigneeIds: data.userId
-        }
-      };
-      
+      let obj = {
+        status: data.status,
+        currentAssigneeId: userId,
+        currentFormName: formName.form3,
+        form2Id: data.form2Id,
+        operationid: data.operationid,
+        materialId: data.materialId,
+        prevAssigneeIds: [data.userId],
+        materialType:data.materialType
+      }
+      const saveMaterialRequest = new materialRequestModel(obj)
+      await saveMaterialRequest.save()
       const updateForms = await formModel.updateOne(
         { formname: formName.form3 },
         {
@@ -67,7 +68,7 @@ exports.movetonext = async (data) => {
       //     }
       //   }
       // );
-            
+
     }
     if (data.formName == formName.form4_1) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_1_b }, { _id: 1 }).lean()
@@ -130,11 +131,11 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.workStatus == workStatus.Accepted) {
-      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": { $in: [formName.form4_1, formName.form4_2]} }, { _id: 1 }).lean()
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": { $in: [formName.form4_1, formName.form4_2] } }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
-          currentFormName: [formName.form4_1,formName.form4_2],
+          currentFormName: [formName.form4_1, formName.form4_2],
           status: workStatus.Accepted
         },
         $push: {
@@ -149,7 +150,7 @@ exports.movetonext = async (data) => {
           }
         }
       );
-      
+
     }
     if (data.formName == formName.form6) {
       query = {
@@ -157,21 +158,21 @@ exports.movetonext = async (data) => {
           currentAssigneeId: "",
           currentFormName: "",
           form6Id: data.form6Id,
-          status:workStatus.Rejected
+          status: workStatus.Rejected
         },
         $push: {
           prevAssigneeIds: data.userId
         }
       }
-    //   const updateForms = await formModel.updateOne(
-    //     { formname: formName.form5 },
-    //     {
-    //       $set: {
-    //         status: true
-    //       }
-    //     })
+      //   const updateForms = await formModel.updateOne(
+      //     { formname: formName.form5 },
+      //     {
+      //       $set: {
+      //         status: true
+      //       }
+      //     })
     }
-    if (data.formName == formName.form4_1_b){
+    if (data.formName == formName.form4_1_b) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form5 }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -190,13 +191,13 @@ exports.movetonext = async (data) => {
           }
         })
     }
-    if (data.formName == formName.form4_2_b){
+    if (data.formName == formName.form4_2_b) {
       //Need to implemet next lavel logic in this section
     }
-    if (data.formName == formName.form5){
+    if (data.formName == formName.form5) {
       //Need to implemet next lavel logic in this section
     }
-    if (data.formName == formName.form7){
+    if (data.formName == formName.form7) {
       //Need to implemet next lavel logic in this section
     }
     const updateMaterialRequest = await materialRequestModel.updateOne(

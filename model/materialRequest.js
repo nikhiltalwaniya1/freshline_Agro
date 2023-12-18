@@ -8,6 +8,14 @@ const materialRequestSchema = new Schema(
       type: String,
       default: 'Not Done'
     },
+    materialType:{
+      type: String,
+      default: ''
+    },
+    materialId:{
+      type: String,
+      default: ''
+    },
     currentAssigneeId:{
       type: Array,
       default: []
