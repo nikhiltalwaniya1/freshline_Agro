@@ -43,7 +43,6 @@ exports.productionScheduleForm = async (req, res) => {
     const dates = new Date(req.body.date)
     const duedate = new Date(req.body.duedate)
     const times = dates.toTimeString()
-    const operationid = await generateUniqueNumber()
     const obj = {
       productionitem: req.body.productionitem,
       productiontype: req.body.productiontype,
@@ -60,15 +59,15 @@ exports.productionScheduleForm = async (req, res) => {
 
     const productionScheduleForm = new production_Schedule_Form(obj)
     const formDetails = await productionScheduleForm.save()
-    let obj1 = {
-      form1Id: formDetails._id.toString(),
-      userId: req.body.userid,
-      userName: req.body.userName,
-      status: workStatus.Process,
-      formName: req.body.formName,
-      operationid: operationid
-    }
-    await movetonext(obj1)
+    // let obj1 = {
+    //   form1Id: formDetails._id.toString(),
+    //   userId: req.body.userid,
+    //   userName: req.body.userName,
+    //   status: workStatus.Process,
+    //   formName: req.body.formName,
+    //   operationid: operationid
+    // }
+    // await movetonext(obj1)
     return res.status(statusCode.success).send({
       message: message.SUCCESS
     })
