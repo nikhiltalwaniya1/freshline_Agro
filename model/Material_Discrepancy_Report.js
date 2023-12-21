@@ -95,6 +95,11 @@ const Material_Discrepancy_ReportSchema = new Schema(
     formateNumber: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

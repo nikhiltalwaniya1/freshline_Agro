@@ -60,6 +60,11 @@ const materialRequestSchema = new Schema(
       type: String,
       ref:"RQC01Raw_Material_Rejection_Register"
     },
+    AdminId:{
+      type: String,
+      default: '',
+      ref: "user",
+    }
   },
   {
     timestamps: true,

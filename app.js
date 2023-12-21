@@ -8,7 +8,8 @@ dotEnv.config()
 const router = require("./api/route")
 const cors = require("cors");
 const { checkForms, checkRole } = require("./utills/checkForms")
-var corsOptions = {
+const session = require('express-session')
+const corsOptions = {
   origin: "*",
 };
 app.use(cors(corsOptions));
@@ -20,6 +21,18 @@ app.use(bodyParser.json())
 app.use("/freshAgro", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 //Define router here
 app.use("/api/v1", router)
+//Use session
+// const oneDay = 1000 * 60 * 60 * 24
+const oneDay = 60*1
+app.use(session({
+  secret: 'YLKfkdT59NywN6Zxmt1X',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge:oneDay,
+    secure: true
+  }
+}))
 //create forms name
 checkForms()
 checkRole()

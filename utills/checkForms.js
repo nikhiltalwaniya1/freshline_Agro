@@ -17,20 +17,12 @@ const formNames = [
 
   },
   {
-    formName: "FPRD01Raw_Material_Inspection",
+    formName: "FPRD01Raw_Material_Inspection_And_Packaging_Material_Inspection",
     path: "/Raw-Material-Inspection-List"
   },
   {
-    formName: "FPRD01Verify_Raw_Material_Inspection",
+    formName: "FPRD01Verify_Raw_Material_Inspection_And_Packaging_Material_Inspection",
     path: "/Verify-Raw-Material-Inspection"
-  },
-  {
-    formName: "FPRD01Packaging_Material_Inspection",
-    path: "/Packaging-Material-Inspection-List"
-  },
-  {
-    formName: "FPRD01Verify_Packaging_Material_Inspection",
-    path: "/Verify-Packaging-Material-Inspection"
   },
   {
     formName: "FQC06Raw_Material_Release_record",
@@ -64,7 +56,7 @@ exports.checkForms = async () => {
       const formDetails = await formModel.findOne({ formname: formNameDetails.formName }).lean();
       if (formDetails === null) {
         let query = {}
-        if (formNameDetails.formName == formName.form1) {
+        if ((formNameDetails.formName == formName.form1) || (formNameDetails.formName == formName.form2)) {
           query = {
             formname: formNameDetails.formName,
             path: formNameDetails.path,

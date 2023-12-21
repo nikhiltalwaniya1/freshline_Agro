@@ -47,6 +47,11 @@ const Production_ScheduleSchema = new Schema(
     formateNumber: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

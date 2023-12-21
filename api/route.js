@@ -5,6 +5,8 @@ const menuController = require("./menu/menucontroller")
 const userController = require("./users/usercontroller")
 const formController = require("./forms/formcontroller")
 const db = require("../database/connection")
+const { checkSession, checkToken } = require("../utills/utill")
+
 //Api for user login
 router.post("/login", authController.login)
 //Api for create user
@@ -18,19 +20,19 @@ router.get("/userlist", userController.userlist)
 //Api for user list with id
 router.get("/userlist/:id", userController.userlistwithid)
 //Api for create manu 
-router.post("/createmenu", menuController.createMenu)
+router.post("/createmenu", checkToken, menuController.createMenu)
 //Api for create sub manu 
-router.post("/createsubmenu", menuController.createSubMenu)
+router.post("/createsubmenu", checkToken, menuController.createSubMenu)
 //Api for create user
 router.post("/updateuser", userController.updateuser)
 //Api for create forms 
-router.post("/createforms", formController.createforms)
+router.post("/createforms", checkToken, formController.createforms)
 //Api for submit production shedule form
-router.post("/productionScheduleForm", formController.productionScheduleForm)
+router.post("/productionScheduleForm", checkToken, formController.productionScheduleForm)
 //Api for submit raw material incoming register form 
-router.post("/raw_material_incoming_register", formController.raw_material_incoming_register)
+router.post("/raw_material_incoming_register", checkToken, formController.raw_material_incoming_register)
 //Api for submit inward vehicle checklist form 
-router.post("/inward_vehicle_checklist", formController.inward_vehicle_checklist)
+router.post("/inward_vehicle_checklist",checkToken, formController.inward_vehicle_checklist)
 //Api for role list
 router.get("/rolelist", menuController.rolelist)
 //Api for form list
@@ -74,25 +76,19 @@ router.post("/Raw_Material_Inspection", formController.Raw_Material_Inspection)
 //Api for submit Raw_Material_Rejection_Register form
 router.post("/Raw_Material_Rejection_Register", formController.Raw_Material_Rejection_Register)
 //Api for Add matrial
-router.post("/createMaterial", menuController.createMaterial)
+router.post("/createMaterial", checkToken, menuController.createMaterial)
 //Api for Add matrial
 router.post("/updateMaterial", menuController.updateMaterial)
 //Api for Add matrial
 router.post("/deleteMaterial", menuController.deleteMaterial)
 //Api for Get matrial list
 router.get("/allMaterialList", menuController.allMaterialList)
-//Api for submit Packaging_Material_Inspection form
-router.post("/Packaging_Material_Inspection", formController.Packaging_Material_Inspection)
 //Api for submit Raw_Material_Rejection_Register form
 router.post("/Verify_Raw_Material_Inspection", formController.Verify_Raw_Material_Inspection)
-//Api for submit Packaging_Material_Inspection form
-router.post("/Verify_Packaging_Material_Inspection", formController.Verify_Packaging_Material_Inspection)
 //Api for submit Raw_Material_Release_record form
 router.post("/Raw_Material_Release_record", formController.Raw_Material_Release_record)
 //Api for submit Raw_Material_Release_record form
 router.post("/Material_Discrepancy_Report", formController.Material_Discrepancy_Report)
-//Api for get Packaging_Material_Inspection data by id
-router.get("/Get_Packaging_Material_Inspection_byId/:id", formController.Get_Packaging_Material_Inspection_byId)
 //Api for get Raw_Material_Inspection data by id
 router.get("/Get_Raw_Material_Inspection_byId/:id", formController.Get_Raw_Material_Inspection_byId)
 

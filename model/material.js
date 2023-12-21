@@ -11,6 +11,11 @@ const materialSchema = new Schema(
     materialid: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

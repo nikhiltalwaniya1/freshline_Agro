@@ -7,6 +7,11 @@ const menuSchema = new Schema(
     menuname: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

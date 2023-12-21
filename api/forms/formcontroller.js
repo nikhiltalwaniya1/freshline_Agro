@@ -12,7 +12,6 @@ const usersModel = require("../../model/user")
 const { ObjectId } = require('mongodb');
 const formListModel = require("../../model/formLIstByMenuId")
 const Raw_Material_InspectionModel = require("../../model/Raw_Material_Inspection")
-const Packaging_Material_InspectionModel = require("../../model/Packaging_Material_Inspection")
 const Raw_Material_Release_recordForm = require("../../model/Raw_Material_Release_record")
 const MATERIAL_DISCREPANCY_REPORTForm = require("../../model/Material_Discrepancy_Report")
 const formModel = require("../../model/form")
@@ -24,6 +23,7 @@ exports.createforms = async (req, res) => {
       formname: req.body.formName,
       menuid: req.body.menuId,
       submenuid: req.body.submenuId,
+      createdBy: req.decoded._id
     })
     await saveForm.save()
     return res.status(statusCode.success).send({
@@ -54,20 +54,12 @@ exports.productionScheduleForm = async (req, res) => {
       supervisor: req.body.supervisor,
       operationid,
       status:true,
-      formateNumber:formateNumber.form1
+      formateNumber:formateNumber.form1,
+      createdBy: req.decoded._id
     }
 
     const productionScheduleForm = new production_Schedule_Form(obj)
     const formDetails = await productionScheduleForm.save()
-    // let obj1 = {
-    //   form1Id: formDetails._id.toString(),
-    //   userId: req.body.userid,
-    //   userName: req.body.userName,
-    //   status: workStatus.Process,
-    //   formName: req.body.formName,
-    //   operationid: operationid
-    // }
-    // await movetonext(obj1)
     return res.status(statusCode.success).send({
       message: message.SUCCESS
     })
@@ -109,17 +101,19 @@ exports.raw_material_incoming_register = async (req, res) => {
       userid: req.body.userid,
       operationid: operationid,
       status:true,
-      formateNumber:formateNumber.form2
+      formateNumber:formateNumber.form2,
+      createdBy: req.decoded._id      
     }
     const submitDetails = new Raw_Material_Incoming_RegisterForm(obj)
     const formDetails = await submitDetails.save()
     let obj1 = {
       form2Id: formDetails._id.toString(),
       userId: req.body.userid,
-      operationid: req.body.operationid,
+      operationid: operationid,
       formName: req.body.formName,
       materialType:req.body.materialType,
-      materialId:materialId
+      materialId:materialId,
+      createdBy: req.decoded.createdBy
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({
@@ -425,46 +419,6 @@ exports.Raw_Material_Rejection_Register = async (req, res) => {
   }
 }
 
-//Submit Packaging_Material_Inspection form 
-exports.Packaging_Material_Inspection = async (req, res) => {
-  try {
-    const dates = new Date(req.body.date)
-    let obj = {
-      dates,
-      materialName: req.body.materialName,
-      invoiceNo: req.body.invoiceno,
-      invoiceDate: new Date(req.body.invoiceDate),
-      documentVerification: req.body.documentVerification,
-      preUnloadingOperation: req.body.preUnloadingOperation,
-      unloadingOperation: req.body.unloadingOperation,
-      weighingOperation: req.body.weighingOperation,
-      physicalInspactionCheckListForPackagingMaterial: req.body.physicalInspactionCheckListForPackagingMaterial,      
-      userid: req.body.userid,
-      doneBy: req.body.userid,
-      operationId: req.body.operationid,
-      status:true,
-      formateNumber:formateNumber.form4
-    }
-    const submitDetails = new Packaging_Material_InspectionModel(obj)
-    const formDetails = await submitDetails.save()
-    let obj1 = {
-      form4Id: formDetails._id.toString(),
-      userId: req.body.userid,
-      operationid: req.body.operationid,
-      formName: req.body.formName,
-    }
-    await movetonext(obj1)
-    return res.status(statusCode.success).send({
-      message: message.SUCCESS
-    })
-  } catch (error) {
-    console.log("error in raw_material_incoming_register function ========", error)
-    return res.status(statusCode.error).send({
-      message: message.SOMETHING_WENT_WRONG
-    })
-  }
-}
-
 //Submit Verify_Raw_Material_Inspection form 
 exports.Verify_Raw_Material_Inspection = async (req, res) => {
   try {
@@ -472,32 +426,6 @@ exports.Verify_Raw_Material_Inspection = async (req, res) => {
       checkedBy: req.body.checkedBy,
     }
     const verifyRawMaterial = await Raw_Material_InspectionModel.updateOne(
-      {_id:req.body.id},
-      {$set:obj}
-    )
-    let obj1 = {
-      userId: req.body.userid,
-      formName: req.body.formName,
-    }
-    await movetonext(obj1)
-    return res.status(statusCode.success).send({
-      message: message.SUCCESS
-    })
-  } catch (error) {
-    console.log("error in raw_material_incoming_register function ========", error)
-    return res.status(statusCode.error).send({
-      message: message.SOMETHING_WENT_WRONG
-    })
-  }
-}
-
-//Submit Verify_Packaging_Material_Inspection form 
-exports.Verify_Packaging_Material_Inspection = async (req, res) => {
-  try {
-    let obj = {
-      checkedBy: req.body.checkedBy,
-    }
-    const verifyPackagingMaterial = await Packaging_Material_InspectionModel.updateOne(
       {_id:req.body.id},
       {$set:obj}
     )
@@ -595,32 +523,6 @@ exports.Material_Discrepancy_Report = async (req, res) => {
     return res.status(statusCode.success).send({
       message: message.SUCCESS
     })
-  } catch (error) {
-    console.log("error in raw_material_incoming_register function ========", error)
-    return res.status(statusCode.error).send({
-      message: message.SOMETHING_WENT_WRONG
-    })
-  }
-}
-
-//Get Packaging_Material_Inspection data by id 
-exports.Get_Packaging_Material_Inspection_byId = async (req, res) => {
-  try {
-    const Packaging_Material_Inspection_Data = await Packaging_Material_InspectionModel.findById(
-      {_id:req.params.id}
-    ).lean()
-    if(Packaging_Material_Inspection_Data){
-      return res.status(statusCode.success).send({
-        message: message.SUCCESS,
-        data:Packaging_Material_Inspection_Data
-      })
-    }else{
-      return res.status(statusCode.success).send({
-        message: message.SUCCESS,
-        data:null
-      })
-    }
-    
   } catch (error) {
     console.log("error in raw_material_incoming_register function ========", error)
     return res.status(statusCode.error).send({

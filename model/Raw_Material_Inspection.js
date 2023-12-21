@@ -65,6 +65,15 @@ const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
     formateNumber: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
+    },
+    physicalInspactionCheckListForPackagingMaterial: {
+      type: Object,
+      default: {}
     }
   },
   {

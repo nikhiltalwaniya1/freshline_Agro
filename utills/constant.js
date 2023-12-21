@@ -12,10 +12,8 @@ const roleType = {
 
 const formName = {
   form1:"FPRD04Production_Schedule", form2:"RST01Raw_Material_Incoming_Register", 
-  form3:"FQC01Inward_Vehicle_Checklist", form4_1:"FPRD01Raw_Material_Inspection", 
-  form4_1_a:"FPRD01_Physical_Checklist_Specifications_for_vegetables", 
-  form4_1_b:"FPRD01Verify_Raw_Material_Inspection",form4_2:"FPRD01Packaging_Material_Inspection",form4_2_a:"FPRD01_Physical_Checklist_Specifications_for_Packing material",
-  form4_2_b:"FPRD01Verify_Packaging_Material_Inspection",
+  form3:"FQC01Inward_Vehicle_Checklist", form4_1:"FPRD01Raw_Material_Inspection_And_Packaging_Material_Inspection",
+  form4_2:"FPRD01Verify_Raw_Material_Inspection_And_Packaging_Material_Inspection",
   form5:"FQC06Raw_Material_Release_record", form6:"RQC01Raw_Material_Rejection_Register", 
   form7:"FPRD03MATERIAL_DISCREPANCY_REPORT", form8:"RST02Raw_Material_Stock_and_Issue_Register", 
   form9:"RST03Packing_Material_incoming_Stock_and_Issue_Register",
