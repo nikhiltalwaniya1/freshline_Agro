@@ -2350,34 +2350,24 @@
                   },
                   "documentVerification": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "preUnloadingOperation": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "unloadingOperation": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "weighingOperation": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "physicalInspactionCheckListForVeg": {
                     "type": "object",
-                    "default": {
-                      
-                    }
-                  },                  
+                    "default": {}
+                  },
                   "userid": {
                     "type": "string",
                     "default": "Enter your userid"
@@ -2459,7 +2449,7 @@
                   "checkedBy": {
                     "type": "string",
                     "default": "Enter your checkedBy"
-                  },                 
+                  },
                   "userid": {
                     "type": "string",
                     "default": "Enter your userid"
@@ -2537,7 +2527,7 @@
                   "natureOfDiscrepancy": {
                     "type": "string",
                     "default": "Enter your checkedBy"
-                  },                 
+                  },
                   "details": {
                     "type": "Array",
                     "default": "It's array field"
@@ -2674,6 +2664,240 @@
         "responses": {
           "200": {
             "description": "Sub List with id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createSupplier": {
+      "post": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "Create Supplier",
+        "description": "Create Supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "suppliername": {
+                    "type": "string",
+                    "default": "Enter your supplier name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Supplier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateSupplier": {
+      "post": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "update Supplier",
+        "description": "update Supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "suppliername": {
+                    "type": "string",
+                    "default": "Enter your supplier name"
+                  },
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your  Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "update Supplier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteSupplier": {
+      "post": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "delete Supplier",
+        "description": "delete Supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your  Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "delete Supplier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/allSupplierList": {
+      "get": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "all Supplier List",
+        "description": "all Supplier List",
+        "responses": {
+          "200": {
+            "description": "all Supplier List",
             "content": {
               "application/json": {
                 "schema": {

@@ -7,9 +7,10 @@ const forms = require("../../model/form")
 const usersModel = require("../../model/user")
 const formListModel = require("../../model/formLIstByMenuId")
 const materialModel = require("../../model/material")
+const supplierModel = require("../../model/supplier")
 exports.menulist = async (req, res) => {
   try {
-    const menudetails = await menu.find({}).lean()
+    const menudetails = await menu.find({createdBy: req.decoded._id}).lean()
     if (menudetails && menudetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
@@ -31,7 +32,7 @@ exports.menulist = async (req, res) => {
 
 exports.submenulist = async (req, res) => {
   try {
-    const submenudetails = await submenu.find({}).populate('menuid').lean()
+    const submenudetails = await submenu.find({createdBy: req.decoded._id}).populate('menuid').lean()
     if (submenudetails && submenudetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
@@ -245,7 +246,7 @@ exports.submenulistByMenuId = async (req, res) => {
         data: []
       });
     }
-    const submenudetails = await submenu.find({ menuid: { $in: menuIds } }).lean()
+    const submenudetails = await submenu.find({ menuid: { $in: menuIds }, createdBy: req.decoded._id }).lean()
     if (submenudetails && submenudetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
@@ -386,10 +387,79 @@ exports.deleteMaterial = async (req, res) => {
 
 exports.allMaterialList = async (req, res) => {
   try {
-    const deleteMaterial = await materialModel.find({}).lean()
+    const deleteMaterial = await materialModel.find({ createdBy: req.decoded._id }).lean()
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
       data: deleteMaterial
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createSupplier = async (req, res) => {
+  try {
+    const saveSupplier = new supplierModel({
+      suppliername: req.body.suppliername,
+      createdBy: req.decoded._id
+    })
+    await saveSupplier.save()
+    return res.status(statusCode.success).send({
+      message: message.SupplierCreatedSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.updateSupplier = async (req, res) => {
+  try {
+    let obj = {
+      suppliername: req.body.suppliername,
+    }
+    const updateSuppliers = await supplierModel.updateOne(
+      { _id: req.body.id },
+      { $set: obj }
+    )
+    return res.status(statusCode.success).send({
+      message: message.updateSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.deleteSupplier = async (req, res) => {
+  try {
+    const deleteSuppliers = await supplierModel.deleteOne(
+      { _id: req.body.id }
+    )
+    return res.status(statusCode.success).send({
+      message: message.deleteSuccessfully,
+    })
+  } catch (error) {
+    console.log("error in createMenu function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.allSupplierList = async (req, res) => {
+  try {
+    const deleteSupplier = await supplierModel.find({ createdBy: req.decoded._id }).lean()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS,
+      data: deleteSupplier
     })
   } catch (error) {
     console.log("error in createMenu function ========", error)

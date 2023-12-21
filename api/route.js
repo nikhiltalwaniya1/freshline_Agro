@@ -12,9 +12,9 @@ router.post("/login", authController.login)
 //Api for create user
 router.post("/createuser", userController.createuser)
 //Api for menu list
-router.get("/menulist", menuController.menulist)
+router.get("/menulist", checkToken, menuController.menulist)
 //Api for sub menu list
-router.get("/submenulist", menuController.submenulist)
+router.get("/submenulist", checkToken, menuController.submenulist)
 //Api for user list
 router.get("/userlist", userController.userlist)
 //Api for user list with id
@@ -32,7 +32,7 @@ router.post("/productionScheduleForm", checkToken, formController.productionSche
 //Api for submit raw material incoming register form 
 router.post("/raw_material_incoming_register", checkToken, formController.raw_material_incoming_register)
 //Api for submit inward vehicle checklist form 
-router.post("/inward_vehicle_checklist",checkToken, formController.inward_vehicle_checklist)
+router.post("/inward_vehicle_checklist", checkToken, formController.inward_vehicle_checklist)
 //Api for role list
 router.get("/rolelist", menuController.rolelist)
 //Api for form list
@@ -40,7 +40,7 @@ router.get("/formlist", menuController.formlist)
 //Api for form list with id
 router.get("/formlist/:menuid/:submenuid", menuController.formlistwithid)
 //Api for submenu list with id
-router.get("/submenulist/:menuid", menuController.submenulistwithid)
+router.get("/submenulist/:menuid", checkToken, menuController.submenulistwithid)
 //Api for production Schedule list
 router.get("/getProductionScheduleFormList", formController.getProductionScheduleFormList)
 //Api for get raw material incoming registerList list
@@ -82,7 +82,7 @@ router.post("/updateMaterial", menuController.updateMaterial)
 //Api for Add matrial
 router.post("/deleteMaterial", menuController.deleteMaterial)
 //Api for Get matrial list
-router.get("/allMaterialList", menuController.allMaterialList)
+router.get("/allMaterialList", checkToken, menuController.allMaterialList)
 //Api for submit Raw_Material_Rejection_Register form
 router.post("/Verify_Raw_Material_Inspection", formController.Verify_Raw_Material_Inspection)
 //Api for submit Raw_Material_Release_record form
@@ -91,6 +91,12 @@ router.post("/Raw_Material_Release_record", formController.Raw_Material_Release_
 router.post("/Material_Discrepancy_Report", formController.Material_Discrepancy_Report)
 //Api for get Raw_Material_Inspection data by id
 router.get("/Get_Raw_Material_Inspection_byId/:id", formController.Get_Raw_Material_Inspection_byId)
-
-
+//Api for Add supplier
+router.post("/createSupplier", checkToken, menuController.createSupplier)
+//Api for Add supplier
+router.post("/updateSupplier", menuController.updateSupplier)
+//Api for Add supplier
+router.post("/deleteSupplier", menuController.deleteSupplier)
+//Api for Get supplier list
+router.get("/allSupplierList", checkToken, menuController.allSupplierList)
 module.exports = router

@@ -360,7 +360,8 @@ exports.Raw_Material_Inspection = async (req, res) => {
       doneBy: req.body.userid,
       operationId: req.body.operationid,
       status:true,
-      formateNumber:formateNumber.form4
+      formateNumber:formateNumber.form4,
+      physicalInspactionCheckListForPackagingMaterial:req.body.physicalInspactionCheckListForPackagingMaterial
     }
     const submitDetails = new Raw_Material_InspectionModel(obj)
     const formDetails = await submitDetails.save()
