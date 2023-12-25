@@ -116,7 +116,7 @@ exports.raw_material_incoming_register = async (req, res) => {
     let obj1 = {
       form2Id: formDetails._id.toString(),
       userId: req.body.userid,
-      operationid: req.body.operationid,
+      operationid: operationid,
       formName: req.body.formName,
       materialType:req.body.materialType,
       materialId:materialId
@@ -156,6 +156,7 @@ exports.inward_vehicle_checklist = async (req, res) => {
     }
     const submitDetails = new Inward_Vehicle_ChecklistForm(obj)
     const formDetails = await submitDetails.save()
+    console.log("formDetails====", formDetails);
     let obj1 = {
       form3Id: formDetails._id.toString(),
       userId: req.body.userid,
