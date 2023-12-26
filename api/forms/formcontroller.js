@@ -326,7 +326,6 @@ exports.materialRequestListById = async (req, res) => {
       .populate('form2Id')
       .populate('form3Id')
       .populate('form4_1Id')
-      .populate('form4_2Id')
       .populate('form5Id')
       .populate('form6Id')
       .lean();
@@ -468,7 +467,7 @@ exports.Raw_Material_Release_record = async (req, res) => {
     const submitDetails = new Raw_Material_Release_recordForm(obj)
     const formDetails = await submitDetails.save()
     let obj1 = {
-      form7Id: formDetails._id.toString(),
+      form5Id: formDetails._id.toString(),
       userId: req.body.userid,
       operationid: req.body.operationid,
       formName: req.body.formName,

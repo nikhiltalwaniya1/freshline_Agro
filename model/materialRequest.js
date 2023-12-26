@@ -48,10 +48,6 @@ const materialRequestSchema = new Schema(
       type: String,
       ref:"FPRD01Raw_Material_Inspection"
     },
-    form4_2Id:{
-      type: String,
-      ref:"FPRD01Packaging_Material_Inspection"
-    },
     form5Id:{
       type: String,
       ref:"FQC06Raw_Material_Release_record"
@@ -59,6 +55,14 @@ const materialRequestSchema = new Schema(
     form6Id:{
       type: String,
       ref:"RQC01Raw_Material_Rejection_Register"
+    },
+    form7Id:{
+      type: String,
+      ref:"FPRD03MATERIAL_DISCREPANCY_REPORT"
+    },
+    form8Id:{
+      type: String,
+      ref:"FPRD03MATERIAL_DISCREPANCY_REPORT"
     },
     AdminId:{
       type: String,
