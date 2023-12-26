@@ -15,7 +15,7 @@ const Raw_Material_InspectionModel = require("../../model/Raw_Material_Inspectio
 const Raw_Material_Release_recordForm = require("../../model/Raw_Material_Release_record")
 const MATERIAL_DISCREPANCY_REPORTForm = require("../../model/Material_Discrepancy_Report")
 const formModel = require("../../model/form")
-
+const MaterialStockAndIssueRegistredModels = require("../../model/Raw_Material_Stock_and_Issue_Register")
 
 exports.createforms = async (req, res) => {
   try {
@@ -514,7 +514,7 @@ exports.Material_Discrepancy_Report = async (req, res) => {
     const submitDetails = new MATERIAL_DISCREPANCY_REPORTForm(obj)
     const formDetails = await submitDetails.save()
     let obj1 = {
-      form5Id: formDetails._id.toString(),
+      form7Id: formDetails._id.toString(),
       userId: req.body.userid,
       operationid: req.body.operationid,
       formName: req.body.formName,
@@ -551,6 +551,44 @@ exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
     
   } catch (error) {
     console.log("error in raw_material_incoming_register function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.MaterialStockAndIssueRegistred = async(req, res)=>{
+  try{
+    const dates = new Date(req.body.date)
+    let obj = {
+      materialName: req.body.materialName,
+      date: dates,
+      materialType: req.body.materialType,
+      materialId: req.body.materialId,
+      recivedStock: req.body.recivedStock,
+      issueStock: req.body.issueStock,
+      balanceStock: req.body.balanceStock,
+      remark: req.body.remark,
+      userId: req.body.userId,
+      operationId: req.body.operationId,
+      status: true,
+      formateNumber: formateNumber.form8,
+      createdBy:req.decoded.createdBy
+    }
+    const submitDetails = new MaterialStockAndIssueRegistredModels(obj)
+    const formDetails = await submitDetails.save()
+    let obj1 = {
+      form8Id: formDetails._id.toString(),
+      userId: req.body.userid,
+      operationid: req.body.operationid,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in Material Stock And Issue Registred function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
     })

@@ -387,7 +387,7 @@ exports.deleteMaterial = async (req, res) => {
 
 exports.allMaterialList = async (req, res) => {
   try {
-    const deleteMaterial = await materialModel.find({ createdBy: req.decoded._id }).lean()
+    const deleteMaterial = await materialModel.find({ createdBy: req.decoded.createdBy }).lean()
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
       data: deleteMaterial

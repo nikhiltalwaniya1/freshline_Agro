@@ -18,7 +18,7 @@ router.get("/submenulist", checkToken, menuController.submenulist)
 //Api for user list
 router.get("/userlist", checkToken, userController.userlist)
 //Api for user list with id
-router.get("/userlist/:id", userController.userlistwithid)
+router.get("/userlist/:id",checkToken, userController.userlistwithid)
 //Api for create manu 
 router.post("/createmenu", checkToken, menuController.createMenu)
 //Api for create sub manu 
@@ -82,7 +82,7 @@ router.post("/updateMaterial", checkToken, menuController.updateMaterial)
 //Api for Add matrial
 router.post("/deleteMaterial", checkToken, menuController.deleteMaterial)
 //Api for Get matrial list
-router.get("/allMaterialList", checkToken, checkToken, menuController.allMaterialList)
+router.get("/allMaterialList", checkToken, menuController.allMaterialList)
 //Api for submit Raw_Material_Rejection_Register form
 router.post("/Verify_Raw_Material_Inspection", checkToken, formController.Verify_Raw_Material_Inspection)
 //Api for submit Raw_Material_Release_record form
@@ -99,4 +99,6 @@ router.post("/updateSupplier", checkToken, menuController.updateSupplier)
 router.post("/deleteSupplier", checkToken, menuController.deleteSupplier)
 //Api for Get supplier list
 router.get("/allSupplierList", checkToken, menuController.allSupplierList)
+//Api for Add supplier
+router.post("/MaterialStockAndIssueRegistred", checkToken, formController.MaterialStockAndIssueRegistred)
 module.exports = router

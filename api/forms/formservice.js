@@ -155,7 +155,31 @@ exports.movetonext = async (data) => {
         })
     }
     if (data.formName == formName.form7) {
-      //Need to implemet next lavel logic in this section
+      query = {
+        $set: {
+          form7Id: data.form7Id,
+        }
+      }
+    }
+    if (data.formName == formName.form8) {
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form9 }, { _id: 1 }).lean()
+      query = {
+        $set: {
+          currentAssigneeId: userId,
+          currentFormName: formName.form9,
+          form8Id: data.form8Id,
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
+      const updateForms = await formModel.updateOne(
+        { formname: formName.form9 },
+        {
+          $set: {
+            status: true
+          }
+        })
     }
     const updateMaterialRequest = await materialRequestModel.updateOne(
       { operationid: data.operationid },

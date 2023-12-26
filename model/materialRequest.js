@@ -62,7 +62,7 @@ const materialRequestSchema = new Schema(
     },
     form8Id:{
       type: String,
-      ref:"FPRD03MATERIAL_DISCREPANCY_REPORT"
+      ref:"RST02Raw_Material_Stock_and_Issue_Register"
     },
     AdminId:{
       type: String,
