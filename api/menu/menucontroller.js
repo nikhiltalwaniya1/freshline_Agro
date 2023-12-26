@@ -1,4 +1,4 @@
-const { statusCode } = require("../../utills/constant")
+const { statusCode, roleType } = require("../../utills/constant")
 const message = require("../../utills/message")
 const role = require("../../model/role")
 const menu = require("../../model/menu")
@@ -10,7 +10,7 @@ const materialModel = require("../../model/material")
 const supplierModel = require("../../model/supplier")
 exports.menulist = async (req, res) => {
   try {
-    const menudetails = await menu.find({createdBy: req.decoded._id}).lean()
+    const menudetails = await menu.find({ createdBy: req.decoded._id }).lean()
     if (menudetails && menudetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
@@ -32,7 +32,7 @@ exports.menulist = async (req, res) => {
 
 exports.submenulist = async (req, res) => {
   try {
-    const submenudetails = await submenu.find({createdBy: req.decoded._id}).populate('menuid').lean()
+    const submenudetails = await submenu.find({ createdBy: req.decoded._id }).populate('menuid').lean()
     if (submenudetails && submenudetails.length > 0) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
@@ -387,11 +387,24 @@ exports.deleteMaterial = async (req, res) => {
 
 exports.allMaterialList = async (req, res) => {
   try {
-    const deleteMaterial = await materialModel.find({ createdBy: req.decoded.createdBy }).lean()
-    return res.status(statusCode.success).send({
-      message: message.SUCCESS,
-      data: deleteMaterial
-    })
+    let Query = {}
+    if (req.decoded.roletype === roleType.admin){
+      Query = { createdBy: req.decoded._id }
+    }else if(req.decoded.roletype === roleType.user){
+      Query = { createdBy: req.decoded.createdBy }
+    }
+    const deleteMaterial = await materialModel.find(Query).lean()
+    if (deleteMaterial && deleteMaterial.length > 0) {
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data: deleteMaterial
+      })
+    } else {
+      return res.status(statusCode.success).send({
+        message: message.Data_not_found,
+        data: deleteMaterial
+      })
+    }
   } catch (error) {
     console.log("error in createMenu function ========", error)
     return res.status(statusCode.error).send({

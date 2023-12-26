@@ -7,8 +7,6 @@ const users = require("../../model/user")
 exports.userlist = async (req, res) => {
   try {
     let userDetails = []
-    console.log("req.query.roleType", req.query);
-    console.log("req.query.id", req.query.id);
     if (req.query.roleType == roleType.super_admin) {
       userDetails = await users.find({}).lean()
     } else if(req.query.roleType == roleType.admin || req.query.roleType == roleType.user){

@@ -469,7 +469,7 @@ exports.Raw_Material_Release_record = async (req, res) => {
     let obj1 = {
       form5Id: formDetails._id.toString(),
       userId: req.body.userid,
-      operationid: req.body.operationid,
+      operationid: req.body.operationId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -487,10 +487,14 @@ exports.Raw_Material_Release_record = async (req, res) => {
 //Submit Material_Discrepancy_Report form 
 exports.Material_Discrepancy_Report = async (req, res) => {
   try {
+
     let obj = {
       materialName: req.body.materialName,
       natureOfDiscrepancy: req.body.natureOfDiscrepancy,
-      details: req.body.details,
+      materialRemarks: req.body.materialRemarks,
+      materialQty: req.body.materialQty,
+      materialReceivedDate: new Date(req.body.materialReceivedDate),
+      materialId: req.body.materialId,
       supplierName: req.body.supplierName,
       invoiceNo: req.body.invoiceNo,
       invoiceDate: new Date(req.body.invoiceDate),
@@ -515,8 +519,8 @@ exports.Material_Discrepancy_Report = async (req, res) => {
     const formDetails = await submitDetails.save()
     let obj1 = {
       form7Id: formDetails._id.toString(),
-      userId: req.body.userid,
-      operationid: req.body.operationid,
+      userId: req.body.userId,
+      operationid: req.body.operationId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -579,8 +583,8 @@ exports.MaterialStockAndIssueRegistred = async(req, res)=>{
     const formDetails = await submitDetails.save()
     let obj1 = {
       form8Id: formDetails._id.toString(),
-      userId: req.body.userid,
-      operationid: req.body.operationid,
+      userId: req.body.userId,
+      operationid: req.body.operationId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
