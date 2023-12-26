@@ -469,7 +469,13 @@ exports.deleteSupplier = async (req, res) => {
 
 exports.allSupplierList = async (req, res) => {
   try {
-    const deleteSupplier = await supplierModel.find({ createdBy: req.decoded._id }).lean()
+    let Query = {}
+    if (req.decoded.roletype === roleType.admin){
+      Query = { createdBy: req.decoded._id }
+    }else if(req.decoded.roletype === roleType.user){
+      Query = { createdBy: req.decoded.createdBy }
+    }
+    const deleteSupplier = await supplierModel.find(Query).lean()
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
       data: deleteSupplier

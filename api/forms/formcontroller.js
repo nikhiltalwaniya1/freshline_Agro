@@ -328,6 +328,8 @@ exports.materialRequestListById = async (req, res) => {
       .populate('form4_1Id')
       .populate('form5Id')
       .populate('form6Id')
+      .populate('form7Id')
+      .populate('form8Id')
       .lean();
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
