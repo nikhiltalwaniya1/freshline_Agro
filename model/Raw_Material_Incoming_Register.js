@@ -63,6 +63,11 @@ const Raw_Material_Incoming_RegisterSchema = new Schema(
     formateNumber: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

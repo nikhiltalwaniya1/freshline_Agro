@@ -5,96 +5,100 @@ const menuController = require("./menu/menucontroller")
 const userController = require("./users/usercontroller")
 const formController = require("./forms/formcontroller")
 const db = require("../database/connection")
+const { checkSession, checkToken } = require("../utills/utill")
+
 //Api for user login
 router.post("/login", authController.login)
 //Api for create user
-router.post("/createuser", userController.createuser)
+router.post("/createuser", checkToken, userController.createuser)
 //Api for menu list
-router.get("/menulist", menuController.menulist)
+router.get("/menulist", checkToken, menuController.menulist)
 //Api for sub menu list
-router.get("/submenulist", menuController.submenulist)
+router.get("/submenulist", checkToken, menuController.submenulist)
 //Api for user list
-router.get("/userlist", userController.userlist)
+router.get("/userlist", checkToken, userController.userlist)
 //Api for user list with id
-router.get("/userlist/:id", userController.userlistwithid)
+router.get("/userlist/:id",checkToken, userController.userlistwithid)
 //Api for create manu 
-router.post("/createmenu", menuController.createMenu)
+router.post("/createmenu", checkToken, menuController.createMenu)
 //Api for create sub manu 
-router.post("/createsubmenu", menuController.createSubMenu)
+router.post("/createsubmenu", checkToken, menuController.createSubMenu)
 //Api for create user
-router.post("/updateuser", userController.updateuser)
+router.post("/updateuser", checkToken, userController.updateuser)
 //Api for create forms 
-router.post("/createforms", formController.createforms)
+router.post("/createforms", checkToken, formController.createforms)
 //Api for submit production shedule form
-router.post("/productionScheduleForm", formController.productionScheduleForm)
+router.post("/productionScheduleForm", checkToken, formController.productionScheduleForm)
 //Api for submit raw material incoming register form 
-router.post("/raw_material_incoming_register", formController.raw_material_incoming_register)
+router.post("/raw_material_incoming_register", checkToken, formController.raw_material_incoming_register)
 //Api for submit inward vehicle checklist form 
-router.post("/inward_vehicle_checklist", formController.inward_vehicle_checklist)
+router.post("/inward_vehicle_checklist", checkToken, formController.inward_vehicle_checklist)
 //Api for role list
-router.get("/rolelist", menuController.rolelist)
+router.get("/rolelist", checkToken, menuController.rolelist)
 //Api for form list
-router.get("/formlist", menuController.formlist)
+router.get("/formlist", checkToken, menuController.formlist)
 //Api for form list with id
-router.get("/formlist/:menuid/:submenuid", menuController.formlistwithid)
+router.get("/formlist/:menuid/:submenuid", checkToken, menuController.formlistwithid)
 //Api for submenu list with id
-router.get("/submenulist/:menuid", menuController.submenulistwithid)
+router.get("/submenulist/:menuid", checkToken, menuController.submenulistwithid)
 //Api for production Schedule list
-router.get("/getProductionScheduleFormList", formController.getProductionScheduleFormList)
+router.get("/getProductionScheduleFormList", checkToken, formController.getProductionScheduleFormList)
 //Api for get raw material incoming registerList list
-router.get("/getraw_material_incoming_registerList", formController.getraw_material_incoming_registerList)
+router.get("/getraw_material_incoming_registerList", checkToken, formController.getraw_material_incoming_registerList)
 //Api for get raw material incoming registerList list
-router.get("/getInward_vehicle_checklist", formController.getInward_vehicle_checklist)
+router.get("/getInward_vehicle_checklist", checkToken, formController.getInward_vehicle_checklist)
 //Api for create role
-router.post("/createRole", menuController.createRole)
+router.post("/createRole", checkToken, menuController.createRole)
 //Api for form list with id
-router.post("/formlistIds", menuController.formlistIds)
+router.post("/formlistIds", checkToken, menuController.formlistIds)
 //Api for submenu list with id
-router.post("/submenulistByMenuId", menuController.submenulistByMenuId)
+router.post("/submenulistByMenuId", checkToken, menuController.submenulistByMenuId)
 //Api for reject materials
-router.post("/rejectMaterialRequest", formController.rejectMaterialRequest)
+router.post("/rejectMaterialRequest", checkToken, formController.rejectMaterialRequest)
 //Api for reject materials
-router.post("/acceptedMaterialRequest", formController.acceptedMaterialRequest)
+router.post("/acceptedMaterialRequest", checkToken, formController.acceptedMaterialRequest)
 //Api for reject materials
-router.post("/formDetailsByIds", formController.formDetailsByIds)
+router.post("/formDetailsByIds", checkToken, formController.formDetailsByIds)
 //Api for reject materials
-router.post("/materialRequestListById", formController.materialRequestListById)
+router.post("/materialRequestListById", checkToken, formController.materialRequestListById)
 //Api for form list
-router.get("/formlistById", menuController.formlistById)
+router.get("/formlistById", checkToken, menuController.formlistById)
 //Api for delete menu
-router.post("/deleteMenu", menuController.deleteMenu)
+router.post("/deleteMenu", checkToken, menuController.deleteMenu)
 //Api for delete Sub menu
-router.post("/deleteSubMenu", menuController.deleteSubMenu)
+router.post("/deleteSubMenu", checkToken, menuController.deleteSubMenu)
 //Api for delete Forms
-router.post("/deleteForm", menuController.deleteForm)
+router.post("/deleteForm", checkToken, menuController.deleteForm)
 //Api for delete User
-router.post("/deleteUser", userController.deleteUser)
+router.post("/deleteUser", checkToken, userController.deleteUser)
 //Api for submit Raw_Material_Inspection form
-router.post("/Raw_Material_Inspection", formController.Raw_Material_Inspection)
+router.post("/Raw_Material_Inspection", checkToken, formController.Raw_Material_Inspection)
 //Api for submit Raw_Material_Rejection_Register form
-router.post("/Raw_Material_Rejection_Register", formController.Raw_Material_Rejection_Register)
+router.post("/Raw_Material_Rejection_Register", checkToken, formController.Raw_Material_Rejection_Register)
 //Api for Add matrial
-router.post("/createMaterial", menuController.createMaterial)
+router.post("/createMaterial", checkToken, menuController.createMaterial)
 //Api for Add matrial
-router.post("/updateMaterial", menuController.updateMaterial)
+router.post("/updateMaterial", checkToken, menuController.updateMaterial)
 //Api for Add matrial
-router.post("/deleteMaterial", menuController.deleteMaterial)
+router.post("/deleteMaterial", checkToken, menuController.deleteMaterial)
 //Api for Get matrial list
-router.get("/allMaterialList", menuController.allMaterialList)
-//Api for submit Packaging_Material_Inspection form
-router.post("/Packaging_Material_Inspection", formController.Packaging_Material_Inspection)
+router.get("/allMaterialList", checkToken, menuController.allMaterialList)
 //Api for submit Raw_Material_Rejection_Register form
-router.post("/Verify_Raw_Material_Inspection", formController.Verify_Raw_Material_Inspection)
-//Api for submit Packaging_Material_Inspection form
-router.post("/Verify_Packaging_Material_Inspection", formController.Verify_Packaging_Material_Inspection)
+router.post("/Verify_Raw_Material_Inspection", checkToken, formController.Verify_Raw_Material_Inspection)
 //Api for submit Raw_Material_Release_record form
-router.post("/Raw_Material_Release_record", formController.Raw_Material_Release_record)
+router.post("/Raw_Material_Release_record", checkToken, formController.Raw_Material_Release_record)
 //Api for submit Raw_Material_Release_record form
-router.post("/Material_Discrepancy_Report", formController.Material_Discrepancy_Report)
-//Api for get Packaging_Material_Inspection data by id
-router.get("/Get_Packaging_Material_Inspection_byId/:id", formController.Get_Packaging_Material_Inspection_byId)
+router.post("/Material_Discrepancy_Report", checkToken, formController.Material_Discrepancy_Report)
 //Api for get Raw_Material_Inspection data by id
-router.get("/Get_Raw_Material_Inspection_byId/:id", formController.Get_Raw_Material_Inspection_byId)
-
-
+router.get("/Get_Raw_Material_Inspection_byId/:id", checkToken, formController.Get_Raw_Material_Inspection_byId)
+//Api for Add supplier
+router.post("/createSupplier", checkToken, menuController.createSupplier)
+//Api for Add supplier
+router.post("/updateSupplier", checkToken, menuController.updateSupplier)
+//Api for Add supplier
+router.post("/deleteSupplier", checkToken, menuController.deleteSupplier)
+//Api for Get supplier list
+router.get("/allSupplierList", checkToken, menuController.allSupplierList)
+//Api for Add supplier
+router.post("/MaterialStockAndIssueRegistred", checkToken, formController.MaterialStockAndIssueRegistred)
 module.exports = router

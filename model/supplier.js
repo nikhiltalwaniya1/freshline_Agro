@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 var mongoosePaginate = require('mongoose-paginate');
 
-const menuSchema = new Schema(
+const supplierSchema = new Schema(
   {
-    menuname: {
+    suppliername: {
       type: String,
       default: ''
     },
@@ -20,6 +20,6 @@ const menuSchema = new Schema(
   }
 )
 
-menuSchema.plugin(mongoosePaginate);
-var menuModel = mongoose.model('menu', menuSchema);
-module.exports = menuModel
+supplierSchema.plugin(mongoosePaginate);
+var supplierModel = mongoose.model('supplier', supplierSchema);
+module.exports = supplierModel

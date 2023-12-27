@@ -43,6 +43,11 @@ const Raw_Material_Rejection_RegisterSchema = new Schema(
     operationid: {
       type: Number,
       default: 0
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

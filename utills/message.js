@@ -16,6 +16,7 @@ const message = {
   SubMenuDeleteSuccessfully:"Sub Menu deleted successfully...",
   FormDeleteSuccessfully:"Form deleted successfully...",
   MaterialCreatedSuccessfully:"Material created successfully...",
+  SupplierCreatedSuccessfully:"Supplier created successfully...",
   updateSuccessfully:"Updated successfully...",
   deleteSuccessfully:"Deleted successfully...",
 

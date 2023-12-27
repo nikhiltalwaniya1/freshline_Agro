@@ -12,7 +12,12 @@ const subMenuSchema = new Schema(
       type: String,
       default: '',
       ref:"menu"
-    }
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
+    },
   },
   {
     timestamps: true,

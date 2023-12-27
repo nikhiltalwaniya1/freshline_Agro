@@ -2,42 +2,45 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 var mongoosePaginate = require('mongoose-paginate');
 
-const Production_ScheduleSchema = new Schema(
+const MaterialStockAndIssueSchema = new Schema(
   {
-    productionitem: {
+    materialName: {
       type: String,
       default: ''
     },
-    productiontype: {
-      type: String,
-      default: ''
-    },
-    machineinprocess: {
-      type: String,
-      default: ''
-    },
-    quantity: {
-      type: String,
-      default: ''
-    },
-    duedate: {
+    date: {
       type: Date,
-      default: ''
     },
-    dates: {
-      type: Date,
-      default: ''
-    },
-    times: {
-      type: Date,
-      default: ''
-    },
-    supervisor: {
+    materialType: {
       type: String,
       default: ''
     },
-    operationid: {
+    materialId: {
+      type: String,
+      default: ''
+    },
+    recivedStock: {
       type: Number,
+      default: ''
+    },
+    issueStock: {
+      type: Number,
+      default: ''
+    },
+    balanceStock: {
+      type: Number,
+      default: ''
+    },
+    remark: {
+      type: String,
+      default: ''
+    },
+    userId: {
+      type: String,
+      default: ''
+    },
+    operationId: {
+      type: String,
       default: ''
     },
     status:{
@@ -60,6 +63,6 @@ const Production_ScheduleSchema = new Schema(
   }
 )
 
-Production_ScheduleSchema.plugin(mongoosePaginate);
-var Production_ScheduleModel = mongoose.model('FPRD04Production_Schedule', Production_ScheduleSchema);
-module.exports = Production_ScheduleModel
+MaterialStockAndIssueSchema.plugin(mongoosePaginate);
+var MaterialStockAndIssueModel = mongoose.model('RST02Raw_Material_Stock_and_Issue_Register', MaterialStockAndIssueSchema);
+module.exports = MaterialStockAndIssueModel

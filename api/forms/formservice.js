@@ -2,30 +2,9 @@ const materialRequestModel = require("../../model/materialRequest")
 const { formName, workStatus, formateNumber, materialType } = require("../../utills/constant")
 const usersModel = require("../../model/user")
 const formModel = require("../../model/form")
+
 exports.movetonext = async (data) => {
   try {
-    let query = {}
-    if (data.formName == formName.form1) {
-      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form2 }, { _id: 1 }).lean()
-      let obj = {
-        status: data.status,
-        currentAssigneeId: userId,
-        currentFormName: formName.form2,
-        form1Id: data.form1Id,
-        operationid: data.operationid,
-        prevAssigneeIds: [data.userId]
-      }
-      const saveMaterialRequest = new materialRequestModel(obj)
-      await saveMaterialRequest.save()
-      const updateForms = await formModel.updateOne(
-        { formname: formName.form2 },
-        {
-          $set: {
-            status: true
-          }
-        })
-      return Promise.resolve()
-    }
     if (data.formName == formName.form2) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form3 }, { _id: 1 }).lean()
       let obj = {
@@ -36,7 +15,8 @@ exports.movetonext = async (data) => {
         operationid: data.operationid,
         materialId: data.materialId,
         prevAssigneeIds: [data.userId],
-        materialType:data.materialType
+        materialType: data.materialType,
+        AdminId: data.createdBy
       }
       const saveMaterialRequest = new materialRequestModel(obj)
       await saveMaterialRequest.save()
@@ -47,9 +27,9 @@ exports.movetonext = async (data) => {
             status: true
           }
         })
+      return
     }
     if (data.formName == formName.form3) {
-      // const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": { $in: [formName.form4_1, formName.form4_2]} }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: [],
@@ -60,55 +40,27 @@ exports.movetonext = async (data) => {
           prevAssigneeIds: data.userId
         }
       }
-      // const updateForms = await formModel.updateMany(
-      //   { formname: { $in: [formName.form4_1, formName.form4_2] } },
-      //   {
-      //     $set: {
-      //       status: true
-      //     }
-      //   }
-      // );
-
     }
-    if (data.formName == formName.form4_1) {
-      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_1_b }, { _id: 1 }).lean()
+    if (data.workStatus == workStatus.Accepted) {
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_1 }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
-          currentFormName: formName.form4_1_b,
-          form4_1Id: data.form4Id,
+          currentFormName: [formName.form4_1],
+          status: workStatus.Accepted
         },
         $push: {
           prevAssigneeIds: data.userId
         }
       }
-      const updateForms = await formModel.updateOne(
-        { formname: formName.form4_1_b },
+      const updateForms = await formModel.updateMany(
+        { formname: { $in: [formName.form4_1] } },
         {
           $set: {
             status: true
           }
-        })
-    }
-    if (data.formName == formName.form4_2) {
-      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_2_b }, { _id: 1 }).lean()
-      query = {
-        $set: {
-          currentAssigneeId: userId,
-          currentFormName: formName.form4_2_b,
-          form4_2Id: data.form4Id,
-        },
-        $push: {
-          prevAssigneeIds: data.userId
         }
-      }
-      const updateForms = await formModel.updateOne(
-        { formname: formName.form4_2_b },
-        {
-          $set: {
-            status: true
-          }
-        })
+      );
     }
     if (data.workStatus == workStatus.Rejected) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form6 }, { _id: 1 }).lean()
@@ -130,49 +82,27 @@ exports.movetonext = async (data) => {
           }
         })
     }
-    if (data.workStatus == workStatus.Accepted) {
-      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": { $in: [formName.form4_1, formName.form4_2] } }, { _id: 1 }).lean()
+    if (data.formName == formName.form4_1) {
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_2 }, { _id: 1 }).lean()
       query = {
         $set: {
           currentAssigneeId: userId,
-          currentFormName: [formName.form4_1, formName.form4_2],
-          status: workStatus.Accepted
+          currentFormName: formName.form4_2,
+          form4_1Id: data.form4Id,
         },
         $push: {
           prevAssigneeIds: data.userId
         }
       }
-      const updateForms = await formModel.updateMany(
-        { formname: { $in: [formName.form4_1, formName.form4_2] } },
+      const updateForms = await formModel.updateOne(
+        { formname: formName.form4_2 },
         {
           $set: {
             status: true
           }
-        }
-      );
-
+        })
     }
-    if (data.formName == formName.form6) {
-      query = {
-        $set: {
-          currentAssigneeId: "",
-          currentFormName: "",
-          form6Id: data.form6Id,
-          status: workStatus.Rejected
-        },
-        $push: {
-          prevAssigneeIds: data.userId
-        }
-      }
-      //   const updateForms = await formModel.updateOne(
-      //     { formname: formName.form5 },
-      //     {
-      //       $set: {
-      //         status: true
-      //       }
-      //     })
-    }
-    if (data.formName == formName.form4_1_b) {
+    if (data.formName == formName.form4_2) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form5 }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -191,15 +121,68 @@ exports.movetonext = async (data) => {
           }
         })
     }
-    if (data.formName == formName.form4_2_b) {
-      //Need to implemet next lavel logic in this section
+    if (data.formName == formName.form6) {
+      query = {
+        $set: {
+          currentAssigneeId: "",
+          currentFormName: "",
+          form6Id: data.form6Id,
+          status: workStatus.Rejected
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
     }
     if (data.formName == formName.form5) {
-      //Need to implemet next lavel logic in this section
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form8 }, { _id: 1 }).lean()
+      query = {
+        $set: {
+          currentAssigneeId: userId,
+          currentFormName: formName.form8,
+          form5Id: data.form5Id,
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
+      const updateForms = await formModel.updateOne(
+        { formname: formName.form8 },
+        {
+          $set: {
+            status: true
+          }
+        })
     }
     if (data.formName == formName.form7) {
-      //Need to implemet next lavel logic in this section
+      query = {
+        $set: {
+          form7Id: data.form7Id,
+        }
+      }
     }
+    if (data.formName == formName.form8) {
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form9 }, { _id: 1 }).lean()
+      query = {
+        $set: {
+          currentAssigneeId: userId,
+          currentFormName: formName.form9,
+          form8Id: data.form8Id,
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
+      const updateForms = await formModel.updateOne(
+        { formname: formName.form9 },
+        {
+          $set: {
+            status: true
+          }
+        })
+    }
+    console.log("query", query);
+    console.log("data.operationid", data.operationid);
     const updateMaterialRequest = await materialRequestModel.updateOne(
       { operationid: data.operationid },
       query

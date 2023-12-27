@@ -12,9 +12,21 @@ const Material_Discrepancy_ReportSchema = new Schema(
       type: String,
       default: ''
     },
-    details: {
-      type: Array,
-      default: []
+    materialId: {
+      type: String,
+      default: ''
+    },
+    materialReceivedDate: {
+      type: String,
+      default: ''
+    },
+    materialQty: {
+      type: String,
+      default: ''
+    },
+    materialRemarks: {
+      type: String,
+      default: ''
     },
     supplierName: {
       type: String,
@@ -95,6 +107,11 @@ const Material_Discrepancy_ReportSchema = new Schema(
     formateNumber: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

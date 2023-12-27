@@ -59,6 +59,11 @@ const Inward_Vehicle_ChecklistSchema = new Schema(
     formateNumber: {
       type: String,
       default: ''
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
     }
   },
   {

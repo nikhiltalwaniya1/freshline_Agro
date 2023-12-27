@@ -17,7 +17,12 @@ const formSchema = new Schema(
       type: String,
       default: false,
       ref:"subMenu"
-    }
+    },
+    createdBy:{
+      type: String,
+      default: '',
+      ref: "user",
+    },
   },
   {
     timestamps: true,

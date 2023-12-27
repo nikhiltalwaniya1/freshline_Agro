@@ -1976,122 +1976,6 @@
         }
       }
     },
-    "/Packaging_Material_Inspection": {
-      "post": {
-        "tags": [
-          "Forms"
-        ],
-        "summary": "Save Packaging_Material_Inspection form",
-        "description": "Save Packaging_Material_Inspection form",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "required": [
-                  "contentType"
-                ],
-                "properties": {
-                  "date": {
-                    "type": "string",
-                    "default": "Enter your date"
-                  },
-                  "invoiceno": {
-                    "type": "string",
-                    "default": "Enter your invoiceno"
-                  },
-                  "invoicedate": {
-                    "type": "string",
-                    "default": "Enter your invoicedate"
-                  },
-                  "documentVerification": {
-                    "type": "object",
-                    "default": {
-                      
-                    }
-                  },
-                  "preUnloadingOperation": {
-                    "type": "object",
-                    "default": {
-                      
-                    }
-                  },
-                  "unloadingOperation": {
-                    "type": "object",
-                    "default": {
-                      
-                    }
-                  },
-                  "weighingOperation": {
-                    "type": "object",
-                    "default": {
-                      
-                    }
-                  },
-                  "physicalInspactionCheckListForPackagingMaterial": {
-                    "type": "object",
-                    "default": {
-                      
-                    }
-                  },                  
-                  "userid": {
-                    "type": "string",
-                    "default": "Enter your userid"
-                  },
-                  "doneBy": {
-                    "type": "string",
-                    "default": "Enter your userid"
-                  },
-                  "operationid": {
-                    "type": "string",
-                    "default": "Enter your operationid"
-                  },
-                  "formName": {
-                    "type": "string",
-                    "default": "Enter your formName"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Save Packaging_Material_Inspection form",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "1 for success 0 for failure"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "message to be displayed in alert"
-                    },
-                    "data": {
-                      "type": "object"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/Raw_Material_Rejection_Register": {
       "post": {
         "tags": [
@@ -2466,34 +2350,24 @@
                   },
                   "documentVerification": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "preUnloadingOperation": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "unloadingOperation": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "weighingOperation": {
                     "type": "object",
-                    "default": {
-                      
-                    }
+                    "default": {}
                   },
                   "physicalInspactionCheckListForVeg": {
                     "type": "object",
-                    "default": {
-                      
-                    }
-                  },                  
+                    "default": {}
+                  },
                   "userid": {
                     "type": "string",
                     "default": "Enter your userid"
@@ -2575,7 +2449,7 @@
                   "checkedBy": {
                     "type": "string",
                     "default": "Enter your checkedBy"
-                  },                 
+                  },
                   "userid": {
                     "type": "string",
                     "default": "Enter your userid"
@@ -2630,85 +2504,6 @@
         }
       }
     },
-    "/Verify_Packaging_Material_Inspection": {
-      "post": {
-        "tags": [
-          "Forms"
-        ],
-        "summary": "Save Raw_Material_Inspection form",
-        "description": "Save Raw_Material_Inspection form",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "required": [
-                  "contentType"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "default": "Enter your date"
-                  },
-                  "checkedBy": {
-                    "type": "string",
-                    "default": "Enter your checkedBy"
-                  },                 
-                  "userid": {
-                    "type": "string",
-                    "default": "Enter your userid"
-                  },
-                  "operationid": {
-                    "type": "string",
-                    "default": "Enter your operationid"
-                  },
-                  "formName": {
-                    "type": "string",
-                    "default": "Enter your formName"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Save Raw_Material_Inspection form",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "1 for success 0 for failure"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "message to be displayed in alert"
-                    },
-                    "data": {
-                      "type": "object"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    ,
     "/Material_Discrepancy_Report": {
       "post": {
         "tags": [
@@ -2732,7 +2527,7 @@
                   "natureOfDiscrepancy": {
                     "type": "string",
                     "default": "Enter your checkedBy"
-                  },                 
+                  },
                   "details": {
                     "type": "Array",
                     "default": "It's array field"
@@ -2851,7 +2646,7 @@
         }
       }
     },
-    "/Get_Packaging_Material_Inspection_byId/{id}": {
+    "/Get_Raw_Material_Inspection_byId/{id}": {
       "get": {
         "tags": [
           "Forms"
@@ -2903,24 +2698,308 @@
         }
       }
     },
-    "/Get_Raw_Material_Inspection_byId/{id}": {
+    "/createSupplier": {
+      "post": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "Create Supplier",
+        "description": "Create Supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "suppliername": {
+                    "type": "string",
+                    "default": "Enter your supplier name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Supplier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateSupplier": {
+      "post": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "update Supplier",
+        "description": "update Supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "suppliername": {
+                    "type": "string",
+                    "default": "Enter your supplier name"
+                  },
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your  Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "update Supplier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteSupplier": {
+      "post": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "delete Supplier",
+        "description": "delete Supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "default": "Enter your  Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "delete Supplier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/allSupplierList": {
       "get": {
+        "tags": [
+          "Supplier"
+        ],
+        "summary": "all Supplier List",
+        "description": "all Supplier List",
+        "responses": {
+          "200": {
+            "description": "all Supplier List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Raw_Material_Release_record": {
+      "post": {
         "tags": [
           "Forms"
         ],
-        "summary": "Sub List with id",
-        "description": "Sub List with id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer"
+        "summary": "Save Raw_Material_Release_record form",
+        "description": "Save Raw_Material_Release_record form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "materialName": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your checkedBy"
+                  },
+                  "materialId": {
+                    "type": "String",
+                    "default": "It's array field"
+                  },
+                  "qualityAcceptance": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "analytical": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "microBiological": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "sensory": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "Other": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "operationId": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "Sub List with id",
+            "description": "Save Raw_Material_Release_record form",
             "content": {
               "application/json": {
                 "schema": {
