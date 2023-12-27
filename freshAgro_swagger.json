@@ -2931,6 +2931,108 @@
           }
         }
       }
+    },
+    "/Raw_Material_Release_record": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Save Raw_Material_Release_record form",
+        "description": "Save Raw_Material_Release_record form",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "materialName": {
+                    "type": "string",
+                    "default": "Enter your date"
+                  },
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your checkedBy"
+                  },
+                  "materialId": {
+                    "type": "String",
+                    "default": "It's array field"
+                  },
+                  "qualityAcceptance": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "analytical": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "microBiological": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "sensory": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "Other": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "operationId": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Save Raw_Material_Release_record form",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
