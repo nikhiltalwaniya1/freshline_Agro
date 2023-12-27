@@ -64,6 +64,10 @@ const materialRequestSchema = new Schema(
       type: String,
       ref:"RST02Raw_Material_Stock_and_Issue_Register"
     },
+    form9Id:{
+      type: String,
+      ref:"FST03Material_Issue_Slip"
+    },
     AdminId:{
       type: String,
       default: '',

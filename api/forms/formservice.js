@@ -181,6 +181,8 @@ exports.movetonext = async (data) => {
           }
         })
     }
+    console.log("query", query);
+    console.log("data.operationid", data.operationid);
     const updateMaterialRequest = await materialRequestModel.updateOne(
       { operationid: data.operationid },
       query

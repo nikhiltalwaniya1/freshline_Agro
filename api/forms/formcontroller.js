@@ -53,8 +53,8 @@ exports.productionScheduleForm = async (req, res) => {
       dates,
       supervisor: req.body.supervisor,
       operationid,
-      status:true,
-      formateNumber:formateNumber.form1,
+      status: true,
+      formateNumber: formateNumber.form1,
       createdBy: req.decoded._id
     }
 
@@ -78,10 +78,10 @@ exports.raw_material_incoming_register = async (req, res) => {
     let str = ''
     const firstThreeDigitOfmaterialType = req.body.itemname.substring(0, 3)
 
-    if(req.body.materialType == materialType.Raw_Material){
+    if (req.body.materialType == materialType.Raw_Material) {
       str = `R/${firstThreeDigitOfmaterialType}`
     }
-    if(req.body.materialType == materialType.Packaging_Material){
+    if (req.body.materialType == materialType.Packaging_Material) {
       str = `P/${firstThreeDigitOfmaterialType}`
     }
     const materialId = await createRendomId(str)
@@ -100,9 +100,9 @@ exports.raw_material_incoming_register = async (req, res) => {
       remarks: req.body.remarks,
       userid: req.body.userid,
       operationid: operationid,
-      status:true,
-      formateNumber:formateNumber.form2,
-      createdBy: req.decoded._id      
+      status: true,
+      formateNumber: formateNumber.form2,
+      createdBy: req.decoded._id
     }
     const submitDetails = new Raw_Material_Incoming_RegisterForm(obj)
     const formDetails = await submitDetails.save()
@@ -111,8 +111,8 @@ exports.raw_material_incoming_register = async (req, res) => {
       userId: req.body.userid,
       operationid: operationid,
       formName: req.body.formName,
-      materialType:req.body.materialType,
-      materialId:materialId,
+      materialType: req.body.materialType,
+      materialId: materialId,
       createdBy: req.decoded.createdBy
     }
     await movetonext(obj1)
@@ -145,8 +145,8 @@ exports.inward_vehicle_checklist = async (req, res) => {
       tarapulinCondition: req.body.tarapulincondition,
       breaksAndSteering: req.body.breaksandsteering,
       operationid,
-      status:true,
-      formateNumber:formateNumber.form3
+      status: true,
+      formateNumber: formateNumber.form3
     }
     const submitDetails = new Inward_Vehicle_ChecklistForm(obj)
     const formDetails = await submitDetails.save()
@@ -239,7 +239,7 @@ exports.getInward_vehicle_checklist = async (req, res) => {
 
 exports.rejectMaterialRequest = async (req, res) => {
   try {
-    
+
     let obj1 = {
       userId: req.body.userid,
       operationid: req.body.operationid,
@@ -317,8 +317,8 @@ exports.materialRequestListById = async (req, res) => {
     let query = {
       $or: [
         { "currentAssigneeId._id": userIdObject },
-        { "prevAssigneeIds": {$in:userId} },
-        {"currentFormName": {$in:formName}}
+        { "prevAssigneeIds": { $in: userId } },
+        { "currentFormName": { $in: formName } }
       ],
     };
     const requestDetails = await materialRequestModel.find(query)
@@ -360,9 +360,9 @@ exports.Raw_Material_Inspection = async (req, res) => {
       userid: req.body.userid,
       doneBy: req.body.userid,
       operationId: req.body.operationid,
-      status:true,
-      formateNumber:formateNumber.form4,
-      physicalInspactionCheckListForPackagingMaterial:req.body.physicalInspactionCheckListForPackagingMaterial
+      status: true,
+      formateNumber: formateNumber.form4,
+      physicalInspactionCheckListForPackagingMaterial: req.body.physicalInspactionCheckListForPackagingMaterial
     }
     const submitDetails = new Raw_Material_InspectionModel(obj)
     const formDetails = await submitDetails.save()
@@ -395,18 +395,17 @@ exports.Raw_Material_Rejection_Register = async (req, res) => {
       pono: req.body.pono,
       valueOfProduct: req.body.valueOfProduct,
       quantityAndWeight: req.body.quantityAndWeight,
-      accepted: req.body.accepted,
-      rejected: req.body.rejected,
+      status: req.body.status,
       reasonOfRejection: req.body.reasonOfRejection,
-      operationid: req.body.operationid,
-      status:true
+      operationid: req.body.operationId,
+      status: true
     }
     const submitDetails = new Raw_Material_Rejection_RegisterForm(obj)
     const formDetails = await submitDetails.save()
     let obj1 = {
-      form5Id: formDetails._id.toString(),
-      userId: req.body.userid,
-      operationid: req.body.operationid,
+      form6Id: formDetails._id.toString(),
+      userId: req.body.userId,
+      operationid: req.body.operationId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -428,12 +427,13 @@ exports.Verify_Raw_Material_Inspection = async (req, res) => {
       checkedBy: req.body.checkedBy,
     }
     const verifyRawMaterial = await Raw_Material_InspectionModel.updateOne(
-      {_id:req.body.id},
-      {$set:obj}
+      { _id: req.body.id },
+      { $set: obj }
     )
     let obj1 = {
-      userId: req.body.userid,
       formName: req.body.formName,
+      userId: req.body.userId,
+      operationid: req.body.operationId,
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({
@@ -470,7 +470,7 @@ exports.Raw_Material_Release_record = async (req, res) => {
     const formDetails = await submitDetails.save()
     let obj1 = {
       form5Id: formDetails._id.toString(),
-      userId: req.body.userid,
+      userId: req.body.userId,
       operationid: req.body.operationId,
       formName: req.body.formName,
     }
@@ -541,20 +541,20 @@ exports.Material_Discrepancy_Report = async (req, res) => {
 exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
   try {
     const Raw_Material_Inspection_Data = await Raw_Material_InspectionModel.findById(
-      {_id:req.params.id}
+      { _id: req.params.id }
     ).lean()
-    if(Raw_Material_Inspection_Data){
+    if (Raw_Material_Inspection_Data) {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
-        data:Raw_Material_Inspection_Data
+        data: Raw_Material_Inspection_Data
       })
-    }else{
+    } else {
       return res.status(statusCode.success).send({
         message: message.SUCCESS,
-        data:null
+        data: null
       })
     }
-    
+
   } catch (error) {
     console.log("error in raw_material_incoming_register function ========", error)
     return res.status(statusCode.error).send({
@@ -563,8 +563,8 @@ exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
   }
 }
 
-exports.MaterialStockAndIssueRegistred = async(req, res)=>{
-  try{
+exports.MaterialStockAndIssueRegistred = async (req, res) => {
+  try {
     const dates = new Date(req.body.date)
     let obj = {
       materialName: req.body.materialName,
@@ -579,7 +579,7 @@ exports.MaterialStockAndIssueRegistred = async(req, res)=>{
       operationId: req.body.operationId,
       status: true,
       formateNumber: formateNumber.form8,
-      createdBy:req.decoded.createdBy
+      createdBy: req.decoded.createdBy
     }
     const submitDetails = new MaterialStockAndIssueRegistredModels(obj)
     const formDetails = await submitDetails.save()
@@ -593,7 +593,7 @@ exports.MaterialStockAndIssueRegistred = async(req, res)=>{
     return res.status(statusCode.success).send({
       message: message.SUCCESS
     })
-  }catch(error){
+  } catch (error) {
     console.log("error in Material Stock And Issue Registred function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
