@@ -432,8 +432,8 @@ exports.Verify_Raw_Material_Inspection = async (req, res) => {
     )
     let obj1 = {
       formName: req.body.formName,
-      userId: req.body.userId,
-      operationid: req.body.operationId,
+      userId: req.body.userid,
+      operationid: req.body.operationid,
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({
