@@ -29,7 +29,7 @@ exports.movetonext = async (data) => {
         materialRequeryId: materialDetails._id.toString(),
         createdBy:data.createdBy
       }
-      saveMaterialStock = new materialStockModel(objOfMaterialDetails)
+      const saveMaterialStock = new materialStockModel(objOfMaterialDetails)
       await saveMaterialStock.save()
       const updateForms = await formModel.updateOne(
         { formname: formName.form3 },
