@@ -25,6 +25,7 @@ exports.movetonext = async (data) => {
         materialId: data.materialId,
         materialType: data.materialType,
         recivedStock: data.materialQuantity,
+        balanceStock: data.materialQuantity,
         operationId: data.operationid,
         materialRequeryId: materialDetails._id.toString(),
         createdBy:data.createdBy
