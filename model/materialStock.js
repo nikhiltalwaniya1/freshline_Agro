@@ -2,16 +2,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 var mongoosePaginate = require('mongoose-paginate');
 
-const MaterialStockAndIssueSchema = new Schema(
+const materialStockSchema = new Schema(
   {
     materialName: {
-      type: String,
-      default: ''
-    },
-    date: {
-      type: Date,
-    },
-    issueNumber: {
       type: String,
       default: ''
     },
@@ -25,35 +18,28 @@ const MaterialStockAndIssueSchema = new Schema(
     },
     recivedStock: {
       type: Number,
-      default: ''
+      default: 0
     },
     issueStock: {
       type: Number,
-      default: ''
+      default: 0
     },
     balanceStock: {
       type: Number,
-      default: ''
-    },
-    remark: {
-      type: String,
-      default: ''
-    },
-    userId: {
-      type: String,
-      default: ''
+      default: 0
     },
     operationId: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     status:{
       type:Boolean,
-      default:false
+      default:true
     },
-    formateNumber: {
+    materialRequeryId:{
       type: String,
-      default: ''
+      default: '',
+      ref: "materialrequest",
     },
     createdBy:{
       type: String,
@@ -67,6 +53,6 @@ const MaterialStockAndIssueSchema = new Schema(
   }
 )
 
-MaterialStockAndIssueSchema.plugin(mongoosePaginate);
-var MaterialStockAndIssueModel = mongoose.model('RST02Raw_Material_Stock_and_Issue_Register', MaterialStockAndIssueSchema);
-module.exports = MaterialStockAndIssueModel
+materialStockSchema.plugin(mongoosePaginate);
+var MaterialStockModel = mongoose.model('materialStock', materialStockSchema);
+module.exports = MaterialStockModel

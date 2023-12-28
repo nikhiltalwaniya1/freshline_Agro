@@ -16,6 +16,7 @@ const Raw_Material_Release_recordForm = require("../../model/Raw_Material_Releas
 const MATERIAL_DISCREPANCY_REPORTForm = require("../../model/Material_Discrepancy_Report")
 const formModel = require("../../model/form")
 const MaterialStockAndIssueRegistredModels = require("../../model/Raw_Material_Stock_and_Issue_Register")
+const MaterialStockModel = require("../../model/materialStock")
 
 exports.createforms = async (req, res) => {
   try {
@@ -113,7 +114,10 @@ exports.raw_material_incoming_register = async (req, res) => {
       formName: req.body.formName,
       materialType: req.body.materialType,
       materialId: materialId,
-      createdBy: req.decoded.createdBy
+      createdBy: req.decoded.createdBy,
+      materialQuantity: req.body.quantity,
+      materialName: req.body.itemname,
+      balanceStock: req.body.quantity
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({
@@ -239,7 +243,6 @@ exports.getInward_vehicle_checklist = async (req, res) => {
 
 exports.rejectMaterialRequest = async (req, res) => {
   try {
-
     let obj1 = {
       userId: req.body.userid,
       operationid: req.body.operationid,
@@ -565,10 +568,14 @@ exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
 
 exports.MaterialStockAndIssueRegistred = async (req, res) => {
   try {
+    const firstThreeDigitOfmaterialType = req.body.materialName.substring(0, 3)
+    let str = `I/${firstThreeDigitOfmaterialType}`
+    const issueNumber = await createRendomId(str)
     const dates = new Date(req.body.date)
     let obj = {
       materialName: req.body.materialName,
       date: dates,
+      issueNumber: issueNumber,
       materialType: req.body.materialType,
       materialId: req.body.materialId,
       recivedStock: req.body.recivedStock,
@@ -592,6 +599,51 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
     await movetonext(obj1)
     return res.status(statusCode.success).send({
       message: message.SUCCESS
+    })
+  } catch (error) {
+    console.log("error in Material Stock And Issue Registred function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.materialSearchByName = async (req, res) => {
+  try {
+    const createdBy = req.decoded.createdBy
+    const materialDetails = await MaterialStockModel.find({
+      materialName: req.body.materialName,
+      status: true,
+      balanceStock:{$gt:0},
+      createdBy:createdBy
+    })
+    .populate('materialRequeryId')
+    .lean()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS,
+      data: materialDetails
+    })
+  } catch (error) {
+    console.log("error in Material Stock And Issue Registred function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.materialStockList = async (req, res) => {
+  try {
+    const createdBy = req.decoded.createdBy
+    const materialDetails = await MaterialStockModel.find({
+      status: true,
+      balanceStock:{$gt:0},
+      createdBy:createdBy
+    })
+    .populate('materialRequeryId')
+    .lean()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS,
+      data: materialDetails
     })
   } catch (error) {
     console.log("error in Material Stock And Issue Registred function ========", error)

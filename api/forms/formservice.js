@@ -2,7 +2,7 @@ const materialRequestModel = require("../../model/materialRequest")
 const { formName, workStatus, formateNumber, materialType } = require("../../utills/constant")
 const usersModel = require("../../model/user")
 const formModel = require("../../model/form")
-
+const materialStockModel = require("../../model/materialStock")
 exports.movetonext = async (data) => {
   try {
     if (data.formName == formName.form2) {
@@ -19,7 +19,18 @@ exports.movetonext = async (data) => {
         AdminId: data.createdBy
       }
       const saveMaterialRequest = new materialRequestModel(obj)
-      await saveMaterialRequest.save()
+      const materialDetails = await saveMaterialRequest.save()
+      let objOfMaterialDetails = {
+        materialName: data.materialName,
+        materialId: data.materialId,
+        materialType: data.materialType,
+        recivedStock: data.materialQuantity,
+        operationId: data.operationid,
+        materialRequeryId: materialDetails._id.toString(),
+        createdBy:data.createdBy
+      }
+      saveMaterialStock = new materialStockModel(objOfMaterialDetails)
+      await saveMaterialStock.save()
       const updateForms = await formModel.updateOne(
         { formname: formName.form3 },
         {
@@ -74,6 +85,14 @@ exports.movetonext = async (data) => {
           prevAssigneeIds: data.userId
         }
       }
+      const updateStockStatus = await materialStockModel.updateOne(
+        { operationid: data.operationid },
+        {
+          $set: {
+            stautus: false
+          }
+        }
+      )
       const updateForms = await formModel.updateOne(
         { formname: formName.form6 },
         {
