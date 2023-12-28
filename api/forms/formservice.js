@@ -5,6 +5,7 @@ const formModel = require("../../model/form")
 
 exports.movetonext = async (data) => {
   try {
+    let query = {} 
     if (data.formName == formName.form2) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form3 }, { _id: 1 }).lean()
       let obj = {
@@ -136,6 +137,7 @@ exports.movetonext = async (data) => {
     }
     if (data.formName == formName.form5) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form8 }, { _id: 1 }).lean()
+      console.log("userId", userId);
       query = {
         $set: {
           currentAssigneeId: userId,

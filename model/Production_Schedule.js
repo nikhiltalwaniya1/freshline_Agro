@@ -36,10 +36,6 @@ const Production_ScheduleSchema = new Schema(
       type: String,
       default: ''
     },
-    operationid: {
-      type: Number,
-      default: ''
-    },
     status:{
       type:Boolean,
       default:false

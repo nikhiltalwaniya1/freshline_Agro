@@ -52,7 +52,6 @@ exports.productionScheduleForm = async (req, res) => {
       dates,
       dates,
       supervisor: req.body.supervisor,
-      operationid,
       status: true,
       formateNumber: formateNumber.form1,
       createdBy: req.decoded._id
@@ -331,6 +330,7 @@ exports.materialRequestListById = async (req, res) => {
       .populate('form6Id')
       .populate('form7Id')
       .populate('form8Id')
+      .sort({createdAt:-1})
       .lean();
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
