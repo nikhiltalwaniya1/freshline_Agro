@@ -262,8 +262,9 @@ exports.rejectMaterialRequest = async (req, res) => {
 
 exports.acceptedMaterialRequest = async (req, res) => {
   try {
+    console.log("req.body", req.body);
     let obj1 = {
-      userId: req.body.userid,
+      userId: req.body.userId,
       operationid: req.body.operationid,
       workStatus: workStatus.Accepted
     }

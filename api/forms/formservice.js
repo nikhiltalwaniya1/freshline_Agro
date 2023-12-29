@@ -54,6 +54,7 @@ exports.movetonext = async (data) => {
       }
     }
     if (data.workStatus == workStatus.Accepted) {
+      console.log("data", data);
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form4_1 }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -66,13 +67,14 @@ exports.movetonext = async (data) => {
         }
       }
       const updateStockStatus = await materialStockModel.updateOne(
-        { operationid: data.operationid },
+        { operationId: data.operationid },
         {
           $set: {
-            stautus: true
+            status: true
           }
         }
       )
+      console.log("updateStockStatus", updateStockStatus);
       const updateForms = await formModel.updateMany(
         { formname: { $in: [formName.form4_1] } },
         {
