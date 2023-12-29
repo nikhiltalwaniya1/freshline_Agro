@@ -18,7 +18,7 @@ router.get("/submenulist", checkToken, menuController.submenulist)
 //Api for user list
 router.get("/userlist", checkToken, userController.userlist)
 //Api for user list with id
-router.get("/userlist/:id",checkToken, userController.userlistwithid)
+router.get("/userlist/:id", checkToken, userController.userlistwithid)
 //Api for create manu 
 router.post("/createmenu", checkToken, menuController.createMenu)
 //Api for create sub manu 
@@ -101,4 +101,8 @@ router.post("/deleteSupplier", checkToken, menuController.deleteSupplier)
 router.get("/allSupplierList", checkToken, menuController.allSupplierList)
 //Api for Add supplier
 router.post("/MaterialStockAndIssueRegistred", checkToken, formController.MaterialStockAndIssueRegistred)
+//Api for search material stock by material name
+router.post("/materialSearchByName", checkToken, formController.materialSearchByName)
+//Api for search material stock by material name
+router.get("/materialStockList", checkToken, formController.materialStockList)
 module.exports = router

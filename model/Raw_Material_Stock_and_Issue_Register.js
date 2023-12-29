@@ -11,23 +11,19 @@ const MaterialStockAndIssueSchema = new Schema(
     date: {
       type: Date,
     },
+    issueNumber: {
+      type: String,
+      default: ''
+    },
     materialType: {
       type: String,
       default: ''
     },
     materialId: {
-      type: String,
-      default: ''
-    },
-    recivedStock: {
-      type: Number,
-      default: ''
+      type: Array,
+      default: []
     },
     issueStock: {
-      type: Number,
-      default: ''
-    },
-    balanceStock: {
       type: Number,
       default: ''
     },
@@ -40,12 +36,8 @@ const MaterialStockAndIssueSchema = new Schema(
       default: ''
     },
     operationId: {
-      type: String,
-      default: ''
-    },
-    status:{
-      type:Boolean,
-      default:false
+      type: Array,
+      default: []
     },
     formateNumber: {
       type: String,
