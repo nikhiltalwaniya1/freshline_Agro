@@ -19,7 +19,7 @@ const message = {
   SupplierCreatedSuccessfully:"Supplier created successfully...",
   updateSuccessfully:"Updated successfully...",
   deleteSuccessfully:"Deleted successfully...",
-
+  StockNotAvailable:"Stock is not available"
 }
 
 module.exports = message

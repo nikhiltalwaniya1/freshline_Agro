@@ -333,6 +333,7 @@ exports.materialRequestListById = async (req, res) => {
       .populate('form6Id')
       .populate('form7Id')
       .populate('form8Id')
+      .sort({ createdAt: -1 })
       .lean();
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
@@ -568,45 +569,97 @@ exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
 
 exports.MaterialStockAndIssueRegistred = async (req, res) => {
   try {
-    const firstThreeDigitOfmaterialType = req.body.materialName.substring(0, 3)
-    let str = `I/${firstThreeDigitOfmaterialType}`
-    const issueNumber = await createRendomId(str)
-    const dates = new Date(req.body.date)
+    const date = new Date(req.body.date);
+    const createdBy = req.decoded.createdBy;
+    const firstThreeDigitOfmaterialType = req.body.materialName.substring(0, 3);
+    let str = `I/${firstThreeDigitOfmaterialType}`;
+    const issueNumber = await createRendomId(str);
+    const materialStockDetails = await MaterialStockModel.find({
+      materialType: req.body.materialType,
+      materialName: req.body.materialName,
+      status: true,
+      balanceStock: { $gt: 0 },
+      createdBy: createdBy
+    })
+      .populate('materialRequeryId')
+      .lean();
+    let remainingIssueQuantity = req.body.issueQuantity;
+    let materialId = [];
+    let operationId = [];
+    let availableStock = 0;
+
+    if (materialStockDetails && materialStockDetails.length > 0) {
+      for (let index = 0; index < materialStockDetails.length; index++) {
+        const stockDetails = materialStockDetails[index];
+        availableStock += stockDetails.balanceStock;
+      }
+    }
+
+    if (remainingIssueQuantity > availableStock) {
+      return res.status(statusCode.success).send({
+        message: 'Insufficient stock to fulfill the request.'
+      });
+    }
+
+    if (materialStockDetails && materialStockDetails.length > 0) {
+      for (let index = 0; index < materialStockDetails.length; index++) {
+        const stockDetails = materialStockDetails[index];
+        const deductionQuantity = Math.min(stockDetails.balanceStock, remainingIssueQuantity);
+
+        stockDetails.balanceStock -= deductionQuantity;
+
+        materialId.push(stockDetails.materialId);
+        operationId.push(stockDetails.materialRequeryId.operationid);
+
+        const updateStock = await MaterialStockModel.updateOne(
+          { _id: stockDetails._id },
+          {
+            $inc: {
+              issueStock: deductionQuantity,
+              balanceStock: -deductionQuantity
+            }
+          }
+        );
+
+        remainingIssueQuantity -= deductionQuantity;
+
+        if (remainingIssueQuantity <= 0) {
+          break; // Issue quantity deducted completely
+        }
+      }
+    }
+
     let obj = {
       materialName: req.body.materialName,
-      date: dates,
-      issueNumber: issueNumber,
       materialType: req.body.materialType,
-      materialId: req.body.materialId,
-      recivedStock: req.body.recivedStock,
-      issueStock: req.body.issueStock,
-      balanceStock: req.body.balanceStock,
-      remark: req.body.remark,
-      userId: req.body.userId,
-      operationId: req.body.operationId,
-      status: true,
+      issueNumber: issueNumber,
+      materialId: materialId,
+      issueStock: req.body.issueQuantity,
+      operationId: operationId,
       formateNumber: formateNumber.form8,
-      createdBy: req.decoded.createdBy
+      createdBy: createdBy,
+      userId: req.decoded._id,
+      date: date
     }
-    const submitDetails = new MaterialStockAndIssueRegistredModels(obj)
-    const formDetails = await submitDetails.save()
-    let obj1 = {
-      form8Id: formDetails._id.toString(),
-      userId: req.body.userId,
-      operationid: req.body.operationId,
-      formName: req.body.formName,
-    }
-    await movetonext(obj1)
+
+    const saveMaterialStockAndIssueRegistered = new MaterialStockAndIssueRegistredModels(obj)
+    await saveMaterialStockAndIssueRegistered.save()
+
+    // Respond with success message or data
     return res.status(statusCode.success).send({
-      message: message.SUCCESS
-    })
+      message: 'Material Issue successfully.'
+      // Any additional data you want to send
+    });
+
   } catch (error) {
-    console.log("error in Material Stock And Issue Registred function ========", error)
+    console.log("error in Material Stock And Issue Registred function ========", error);
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
-    })
+    });
   }
-}
+};
+
+
 
 exports.materialSearchByName = async (req, res) => {
   try {
@@ -614,11 +667,11 @@ exports.materialSearchByName = async (req, res) => {
     const materialDetails = await MaterialStockModel.find({
       materialName: req.body.materialName,
       status: true,
-      balanceStock:{$gt:0},
-      createdBy:createdBy
+      balanceStock: { $gt: 0 },
+      createdBy: createdBy
     })
-    .populate('materialRequeryId')
-    .lean()
+      .populate('materialRequeryId')
+      .lean()
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
       data: materialDetails
@@ -636,11 +689,11 @@ exports.materialStockList = async (req, res) => {
     const createdBy = req.decoded.createdBy
     const materialDetails = await MaterialStockModel.find({
       status: true,
-      balanceStock:{$gt:0},
-      createdBy:createdBy
+      balanceStock: { $gt: 0 },
+      createdBy: createdBy
     })
-    .populate('materialRequeryId')
-    .lean()
+      .populate('materialRequeryId')
+      .lean()
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
       data: materialDetails

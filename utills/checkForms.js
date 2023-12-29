@@ -41,12 +41,8 @@ const formNames = [
   },
   {
     formName: "RST02Raw_Material_Stock_and_Issue_Register",
-    path: "/rawMaterialIssueRegister"
+    path: "/materialStockandIssueRegister"
 
-  },
-  {
-    formName: "RST03Packing_Material_incoming_Stock_and_Issue_Register",
-    path: "/packingMaterialIssueRegister"
   }
 ]
 exports.checkForms = async () => {

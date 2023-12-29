@@ -65,6 +65,14 @@ exports.movetonext = async (data) => {
           prevAssigneeIds: data.userId
         }
       }
+      const updateStockStatus = await materialStockModel.updateOne(
+        { operationid: data.operationid },
+        {
+          $set: {
+            stautus: true
+          }
+        }
+      )
       const updateForms = await formModel.updateMany(
         { formname: { $in: [formName.form4_1] } },
         {
