@@ -102,7 +102,9 @@ exports.raw_material_incoming_register = async (req, res) => {
       operationid: operationid,
       status: true,
       formateNumber: formateNumber.form2,
-      createdBy: req.decoded._id
+      createdBy: req.decoded._id,
+      supplierName:req.body.supplierName,
+      supplierId:req.body.supplierId
     }
     const submitDetails = new Raw_Material_Incoming_RegisterForm(obj)
     const formDetails = await submitDetails.save()
@@ -116,7 +118,7 @@ exports.raw_material_incoming_register = async (req, res) => {
       createdBy: req.decoded.createdBy,
       materialQuantity: req.body.quantity,
       materialName: req.body.itemname,
-      balanceStock: req.body.quantity
+      balanceStock: req.body.quantity,      
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({

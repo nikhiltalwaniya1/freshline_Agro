@@ -68,7 +68,17 @@ const Raw_Material_Incoming_RegisterSchema = new Schema(
       type: String,
       default: '',
       ref: "user",
+    },
+    supplierId:{
+      type: String,
+      default: '',
+      ref: "supplier",
+    },
+    supplierName: {
+      type: String,
+      default: ''
     }
+
   },
   {
     timestamps: true,
