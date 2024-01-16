@@ -308,7 +308,7 @@ exports.formDetailsByIds = async (req, res) => {
 exports.materialRequestListById = async (req, res) => {
   try {
     const userId = req.body.userid;
-    const formName = req.body.formName;
+    const formNames = req.body.formName;
 
     let userIdObject;
     try {
@@ -319,14 +319,25 @@ exports.materialRequestListById = async (req, res) => {
         message: "Invalid userId format"
       });
     }
-
-    let query = {
-      $or: [
-        { "currentAssigneeId._id": userIdObject },
-        { "prevAssigneeIds": { $in: userId } },
-        { "currentFormName": { $in: formName } }
-      ],
-    };
+    let query = {}
+    if(formNames == formName.form6){
+      query = {
+        $or: [
+          { "currentAssigneeId._id": userIdObject },
+          { "prevAssigneeIds": { $in: userId } },
+          { "currentFormName": { $in: formName } }
+        ],
+        status:workStatus.Rejected
+      };
+    }else{
+      query = {
+        $or: [
+          { "currentAssigneeId._id": userIdObject },
+          { "prevAssigneeIds": { $in: userId } },
+          { "currentFormName": { $in: formName } }
+        ],
+      };
+    }
     const requestDetails = await materialRequestModel.find(query)
       .populate('form1Id')
       .populate('form2Id')
