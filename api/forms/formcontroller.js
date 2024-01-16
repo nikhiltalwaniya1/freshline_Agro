@@ -17,6 +17,7 @@ const MATERIAL_DISCREPANCY_REPORTForm = require("../../model/Material_Discrepanc
 const formModel = require("../../model/form")
 const MaterialStockAndIssueRegistredModels = require("../../model/Raw_Material_Stock_and_Issue_Register")
 const MaterialStockModel = require("../../model/materialStock")
+const materialissueslip = require("../../model/materialIssueSlip")
 
 exports.createforms = async (req, res) => {
   try {
@@ -319,7 +320,6 @@ exports.materialRequestListById = async (req, res) => {
         message: "Invalid userId format"
       });
     }
-
     let query = {
       $or: [
         { "currentAssigneeId._id": userIdObject },
@@ -662,8 +662,6 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
   }
 };
 
-
-
 exports.materialSearchByName = async (req, res) => {
   try {
     const createdBy = req.decoded.createdBy
@@ -703,6 +701,41 @@ exports.materialStockList = async (req, res) => {
     })
   } catch (error) {
     console.log("error in Material Stock And Issue Registred function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.materialissueslip = async(req, res)=>{
+  try{
+    const dates = new Date(req.body.date)
+    let obj = {
+      dates,
+      materialissueto:req.body.materialissueto,
+      materialdescription:req.body.materialdescription,
+      quantity:req.body.quantity,
+      remark:req.body.remark,
+      operationid:req.body.operationid,
+      userId:req.body.userId,
+      approvedBy:req.body.approvedBy,
+      issuedBy:req.body.issuedBy,
+      formateNumber:formateNumber.form10,
+    }
+    const submitDetails = new materialissueslip(obj)
+    const formDetails = await submitDetails.save()
+    let obj1 = {
+      form9Id: formDetails._id.toString(),
+      userId: req.body.userId,
+      operationid: req.body.operationId,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in material issue slip function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
     })

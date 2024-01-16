@@ -3033,8 +3033,7 @@
           }
         }
       }
-    }
-    ,
+    },
     "/materialSearchByName": {
       "post": {
         "tags": [
@@ -3107,6 +3106,100 @@
         "responses": {
           "200": {
             "description": "all Material Stock List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/materialissueslip": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Create material issue slip",
+        "description": "Create material issue slip",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "materialissueto": {
+                    "type": "string",
+                    "default": "Enter your material issue to name"
+                  },
+                  "materialdescription": {
+                    "type": "string",
+                    "default": "Enter your material description"
+                  },
+                  "quantity": {
+                    "type": "string",
+                    "default": "Enter your material quantity"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "default": "Enter your remark"
+                  },
+                  "operationid": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "approvedBy": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "issuedBy": {
+                    "type": "string",
+                    "default": "Enter your material issued By"
+                  },
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
             "content": {
               "application/json": {
                 "schema": {

@@ -213,6 +213,26 @@ exports.movetonext = async (data) => {
           }
         })
     }
+    if(data.formName == formName.form9){
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form10 }, { _id: 1 }).lean()
+      query = {
+        $set: {
+          currentAssigneeId: userId,
+          currentFormName: formName.form10,
+          form9Id: data.form9Id,
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
+      const updateForms = await formModel.updateOne(
+        { formname: formName.form10 },
+        {
+          $set: {
+            status: true
+          }
+        })
+    }
     console.log("query", query);
     console.log("data.operationid", data.operationid);
     const updateMaterialRequest = await materialRequestModel.updateOne(

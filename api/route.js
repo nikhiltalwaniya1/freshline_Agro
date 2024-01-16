@@ -105,4 +105,7 @@ router.post("/MaterialStockAndIssueRegistred", checkToken, formController.Materi
 router.post("/materialSearchByName", checkToken, formController.materialSearchByName)
 //Api for search material stock by material name
 router.get("/materialStockList", checkToken, formController.materialStockList)
+//Api for create material issue slip
+router.post("/materialissueslip", formController.materialissueslip)
+
 module.exports = router
