@@ -325,7 +325,7 @@ exports.materialRequestListById = async (req, res) => {
         $or: [
           { "currentAssigneeId._id": userIdObject },
           { "prevAssigneeIds": { $in: userId } },
-          { "currentFormName": { $in: formName } }
+          { "currentFormName": { $in: formNames } }
         ],
         status:workStatus.Rejected
       };
@@ -334,7 +334,7 @@ exports.materialRequestListById = async (req, res) => {
         $or: [
           { "currentAssigneeId._id": userIdObject },
           { "prevAssigneeIds": { $in: userId } },
-          { "currentFormName": { $in: formName } }
+          { "currentFormName": { $in: formNames } }
         ],
       };
     }
