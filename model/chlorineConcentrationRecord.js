@@ -8,19 +8,15 @@ const chlorineConcentrationSchema = new Schema(
       type: Date,
       default: ''
     },
-    materialissueto: {
+    issueId: {
       type: String,
       default: ''
     },
-    materialdescription: {
+    concentrationPPM: {
       type: String,
       default: ''
     },
-    quantity: {
-      type: Number,
-      default: 0
-    },
-    remark: {
+    chlorineStripTest: {
       type: String,
       default: ''
     },
@@ -45,15 +41,23 @@ const chlorineConcentrationSchema = new Schema(
       default: '',
       ref: "user",
     },
-    approvedBy: {
+    NC: {
       type: String,
       default: ''
     },
-    issuedBy: {
+    correctiveAction: {
       type: String,
       default: ''
     },
     formName: {
+      type: String,
+      default: ''
+    },
+    remark: {
+      type: String,
+      default: ''
+    },
+    approvedBy: {
       type: String,
       default: ''
     }

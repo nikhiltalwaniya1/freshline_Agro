@@ -18,6 +18,7 @@ const formModel = require("../../model/form")
 const MaterialStockAndIssueRegistredModels = require("../../model/Raw_Material_Stock_and_Issue_Register")
 const MaterialStockModel = require("../../model/materialStock")
 const materialissueslip = require("../../model/materialIssueSlip")
+const chlorineConcentrationModel = require("../../model/chlorineConcentrationRecord")
 
 exports.createforms = async (req, res) => {
   try {
@@ -738,6 +739,43 @@ exports.materialissueslip = async(req, res)=>{
     const formDetails = await submitDetails.save()
     let obj1 = {
       form9Id: formDetails._id.toString(),
+      userId: req.body.userId,
+      operationid: req.body.operationId,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in material issue slip function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createChlorineConcentration = async(req, res)=>{
+  try{
+    const dates = new Date(req.body.date)
+    let obj = {
+      dates,
+      issueId:req.body.issueId,
+      concentrationPPM:req.body.concentrationPPM,
+      chlorineStripTest:req.body.chlorineStripTest,
+      remark:req.body.remark,
+      operationid:req.body.operationid,
+      userId:req.body.userId,
+      approvedBy:req.body.approvedBy,
+      NC:req.body.NC,
+      correctiveAction:req.body.correctiveAction,
+      formateNumber:formateNumber.form11,
+      status:true
+    }
+    const submitDetails = new chlorineConcentrationModel(obj)
+    const formDetails = await submitDetails.save()
+    let obj1 = {
+      form10Id: formDetails._id.toString(),
       userId: req.body.userId,
       operationid: req.body.operationId,
       formName: req.body.formName,
