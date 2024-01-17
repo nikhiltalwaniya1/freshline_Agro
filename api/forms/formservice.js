@@ -259,7 +259,7 @@ exports.movetonext = async (data) => {
         $set: {
           currentAssigneeId: userId,
           currentFormName: formName.form12,
-          form10Id: data.form10Id,
+          form11Id: data.form11Id,
         },
         $push: {
           prevAssigneeIds: data.userId
@@ -267,6 +267,26 @@ exports.movetonext = async (data) => {
       }
       const updateForms = await formModel.updateOne(
         { formname: formName.form12 },
+        {
+          $set: {
+            status: true
+          }
+        })
+    }
+    if(data.formName == formName.form12){
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form13 }, { _id: 1 }).lean()
+      query = {
+        $set: {
+          currentAssigneeId: userId,
+          currentFormName: formName.form13,
+          form12Id: data.form12Id,
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
+      const updateForms = await formModel.updateOne(
+        { formname: formName.form13 },
         {
           $set: {
             status: true

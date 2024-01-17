@@ -68,6 +68,14 @@ const materialRequestSchema = new Schema(
       type: String,
       ref:"FST03Material_Issue_Slip"
     },
+    form10Id:{
+      type: String,
+      ref:"FPRD07Chlorine_Concentration_Record"
+    },
+    form11Id:{
+      type: String,
+      ref:"FPRD02_Work_in_Process_Report_for_Belt_Dryer"
+    },
     AdminId:{
       type: String,
       default: '',

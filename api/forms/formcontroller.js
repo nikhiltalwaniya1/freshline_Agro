@@ -19,6 +19,8 @@ const MaterialStockAndIssueRegistredModels = require("../../model/Raw_Material_S
 const MaterialStockModel = require("../../model/materialStock")
 const materialissueslip = require("../../model/materialIssueSlip")
 const chlorineConcentrationModel = require("../../model/chlorineConcentrationRecord")
+const boilerTempRecordModel = require("../../model/boilertemprecord")
+const beltTempRecordModel = require("../../model/beltTempRecord")
 
 exports.createforms = async (req, res) => {
   try {
@@ -105,8 +107,8 @@ exports.raw_material_incoming_register = async (req, res) => {
       status: true,
       formateNumber: formateNumber.form2,
       createdBy: req.decoded._id,
-      supplierName:req.body.supplierName,
-      supplierId:req.body.supplierId
+      supplierName: req.body.supplierName,
+      supplierId: req.body.supplierId
     }
     const submitDetails = new Raw_Material_Incoming_RegisterForm(obj)
     const formDetails = await submitDetails.save()
@@ -120,7 +122,7 @@ exports.raw_material_incoming_register = async (req, res) => {
       createdBy: req.decoded.createdBy,
       materialQuantity: req.body.quantity,
       materialName: req.body.itemname,
-      balanceStock: req.body.quantity,      
+      balanceStock: req.body.quantity,
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({
@@ -322,16 +324,16 @@ exports.materialRequestListById = async (req, res) => {
       });
     }
     let query = {}
-    if(formNames == formName.form6){
+    if (formNames == formName.form6) {
       query = {
         $or: [
           { "currentAssigneeId._id": userIdObject },
           { "prevAssigneeIds": { $in: userId } },
           { "currentFormName": { $in: formNames } }
         ],
-        status:workStatus.Rejected
+        status: workStatus.Rejected
       };
-    }else{
+    } else {
       query = {
         $or: [
           { "currentAssigneeId._id": userIdObject },
@@ -720,20 +722,20 @@ exports.materialStockList = async (req, res) => {
   }
 }
 
-exports.materialissueslip = async(req, res)=>{
-  try{
+exports.materialissueslip = async (req, res) => {
+  try {
     const dates = new Date(req.body.date)
     let obj = {
       dates,
-      materialissueto:req.body.materialissueto,
-      materialdescription:req.body.materialdescription,
-      quantity:req.body.quantity,
-      remark:req.body.remark,
-      operationid:req.body.operationid,
-      userId:req.body.userId,
-      approvedBy:req.body.approvedBy,
-      issuedBy:req.body.issuedBy,
-      formateNumber:formateNumber.form10,
+      materialissueto: req.body.materialissueto,
+      materialdescription: req.body.materialdescription,
+      quantity: req.body.quantity,
+      remark: req.body.remark,
+      operationid: req.body.operationid,
+      userId: req.body.userId,
+      approvedBy: req.body.approvedBy,
+      issuedBy: req.body.issuedBy,
+      formateNumber: formateNumber.form10,
     }
     const submitDetails = new materialissueslip(obj)
     const formDetails = await submitDetails.save()
@@ -747,7 +749,7 @@ exports.materialissueslip = async(req, res)=>{
     return res.status(statusCode.success).send({
       message: message.SUCCESS
     })
-  }catch(error){
+  } catch (error) {
     console.log("error in material issue slip function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
@@ -755,22 +757,22 @@ exports.materialissueslip = async(req, res)=>{
   }
 }
 
-exports.createChlorineConcentration = async(req, res)=>{
-  try{
+exports.createChlorineConcentration = async (req, res) => {
+  try {
     const dates = new Date(req.body.date)
     let obj = {
       dates,
-      issueId:req.body.issueId,
-      concentrationPPM:req.body.concentrationPPM,
-      chlorineStripTest:req.body.chlorineStripTest,
-      remark:req.body.remark,
-      operationid:req.body.operationid,
-      userId:req.body.userId,
-      approvedBy:req.body.approvedBy,
-      NC:req.body.NC,
-      correctiveAction:req.body.correctiveAction,
-      formateNumber:formateNumber.form11,
-      status:true
+      issueId: req.body.issueId,
+      concentrationPPM: req.body.concentrationPPM,
+      chlorineStripTest: req.body.chlorineStripTest,
+      remark: req.body.remark,
+      operationid: req.body.operationid,
+      userId: req.body.userId,
+      approvedBy: req.body.approvedBy,
+      NC: req.body.NC,
+      correctiveAction: req.body.correctiveAction,
+      formateNumber: formateNumber.form11,
+      status: true
     }
     const submitDetails = new chlorineConcentrationModel(obj)
     const formDetails = await submitDetails.save()
@@ -784,7 +786,90 @@ exports.createChlorineConcentration = async(req, res)=>{
     return res.status(statusCode.success).send({
       message: message.SUCCESS
     })
-  }catch(error){
+  } catch (error) {
+    console.log("error in material issue slip function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createBoilerTemperatureRecord = async (req, res) => {
+  try {
+    const dates = new Date(req.body.date)
+    let obj = {
+      dates,
+      time: new Date(req.body.time),
+      inTemp: req.body.inTemp,
+      outTemp: req.body.outTemp,
+      storeTemp: req.body.storeTemp,
+      bdInletTemp: req.body.bdInletTemp,
+      boilerMeterReading: req.body.boilerMeterReading,
+      tempSetting: req.body.tempSetting,
+      gasReading: req.body.gasReading,
+      Action: req.body.Action,
+      remark: req.body.remark,
+      operationid: req.body.operationid,
+      userId: req.body.userId,
+      approvedBy: req.body.approvedBy,
+      NC: req.body.NC,
+      formateNumber: formateNumber.form11,
+      status: true
+    }
+    const submitDetails = new boilerTempRecordModel(obj)
+    const formDetails = await submitDetails.save()
+    let obj1 = {
+      form11Id: formDetails._id.toString(),
+      userId: req.body.userId,
+      operationid: req.body.operationId,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  } catch (error) {
+    console.log("error in material issue slip function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createBeltDryerTempRecord = async (req, res) => {
+  try {
+    const dates = new Date(req.body.date)
+    let obj = {
+      dates,
+      time: new Date(req.body.time),
+      inletTemp: req.body.inletTemp,
+      belt1: req.body.belt1,
+      belt2: req.body.belt2,
+      belt3: req.body.belt3,
+      belt4: req.body.belt4,
+      belt5: req.body.belt5,
+      Action: req.body.Action,
+      remark: req.body.remark,
+      operationid: req.body.operationid,
+      userId: req.body.userId,
+      approvedBy: req.body.approvedBy,
+      NC: req.body.NC,
+      formateNumber: formateNumber.form12,
+      status: true
+    }
+    const submitDetails = new beltTempRecordModel(obj)
+    const formDetails = await submitDetails.save()
+    let obj1 = {
+      form12Id: formDetails._id.toString(),
+      userId: req.body.userId,
+      operationid: req.body.operationId,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  } catch (error) {
     console.log("error in material issue slip function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
