@@ -661,8 +661,14 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
     }
 
     const saveMaterialStockAndIssueRegistered = new MaterialStockAndIssueRegistredModels(obj)
-    await saveMaterialStockAndIssueRegistered.save()
-
+    const formDetails = await saveMaterialStockAndIssueRegistered.save()
+    let obj1 = {
+      form8Id: formDetails._id.toString(),
+      userId: req.body.userId,
+      operationid: req.body.operationId,
+      formName: req.body.formName,
+    }
+    await movetonext(obj1)
     // Respond with success message or data
     return res.status(statusCode.success).send({
       message: 'Material Issue successfully.'
