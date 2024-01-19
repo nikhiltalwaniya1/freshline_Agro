@@ -123,6 +123,7 @@ exports.raw_material_incoming_register = async (req, res) => {
       materialQuantity: req.body.quantity,
       materialName: req.body.itemname,
       balanceStock: req.body.quantity,
+      dates
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({

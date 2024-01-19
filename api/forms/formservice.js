@@ -29,7 +29,8 @@ exports.movetonext = async (data) => {
         balanceStock: data.materialQuantity,
         operationId: data.operationid,
         materialRequeryId: materialDetails._id.toString(),
-        createdBy:data.createdBy
+        createdBy:data.createdBy,
+        dates:data.dates
       }
       const saveMaterialStock = new materialStockModel(objOfMaterialDetails)
       await saveMaterialStock.save()

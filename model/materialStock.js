@@ -45,7 +45,11 @@ const materialStockSchema = new Schema(
       type: String,
       default: '',
       ref: "user",
-    }
+    },
+    dates: {
+      type: Date,
+      default: ''
+    },
   },
   {
     timestamps: true,
