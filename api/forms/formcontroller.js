@@ -668,6 +668,7 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
       userId: req.body.userId,
       operationid: req.body.operationId,
       formName: req.body.formName,
+      materialId:req.body.materialId
     }
     await movetonext(obj1)
     // Respond with success message or data

@@ -5,7 +5,7 @@ const formModel = require("../../model/form")
 const materialStockModel = require("../../model/materialStock")
 exports.movetonext = async (data) => {
   try {
-    let query = {} 
+    let query = {}
     if (data.formName == formName.form2) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form3 }, { _id: 1 }).lean()
       let obj = {
@@ -29,8 +29,8 @@ exports.movetonext = async (data) => {
         balanceStock: data.materialQuantity,
         operationId: data.operationid,
         materialRequeryId: materialDetails._id.toString(),
-        createdBy:data.createdBy,
-        dates:data.dates
+        createdBy: data.createdBy,
+        dates: data.dates
       }
       const saveMaterialStock = new materialStockModel(objOfMaterialDetails)
       await saveMaterialStock.save()
@@ -206,6 +206,10 @@ exports.movetonext = async (data) => {
           prevAssigneeIds: data.userId
         }
       }
+      const updateMaterialRequest = await materialRequestModel.updateOne(
+        { materialId: data.materialId },
+        query
+      )
       const updateForms = await formModel.updateOne(
         { formname: formName.form9 },
         {
@@ -213,8 +217,10 @@ exports.movetonext = async (data) => {
             status: true
           }
         })
+      return Promise.resolve()
+
     }
-    if(data.formName == formName.form9){
+    if (data.formName == formName.form9) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form10 }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -234,7 +240,7 @@ exports.movetonext = async (data) => {
           }
         })
     }
-    if(data.formName == formName.form10){
+    if (data.formName == formName.form10) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form11 }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -254,7 +260,7 @@ exports.movetonext = async (data) => {
           }
         })
     }
-    if(data.formName == formName.form11){
+    if (data.formName == formName.form11) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form12 }, { _id: 1 }).lean()
       query = {
         $set: {
@@ -274,7 +280,7 @@ exports.movetonext = async (data) => {
           }
         })
     }
-    if(data.formName == formName.form12){
+    if (data.formName == formName.form12) {
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form13 }, { _id: 1 }).lean()
       query = {
         $set: {
