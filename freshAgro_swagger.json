@@ -3191,6 +3191,10 @@
                   "date": {
                     "type": "string",
                     "default": "Enter your Date"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
                   }
                 }
               }
@@ -3289,6 +3293,250 @@
                   "correctiveAction": {
                     "type": "string",
                     "default": "Enter your corrective Action"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createBoilerTemperatureRecord": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Create create Boiler Temperature Record slip",
+        "description": "Create create Boiler Temperature Record slip",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "time": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "inTemp": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "outTemp": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "approvedBy": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "NC": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "storeTemp": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "bdInletTemp": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "boilerMeterReading": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "tempSetting": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "gasReading": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "Action": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "default": "Enter your remark"
+                  },
+                  "operationid": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createBeltDryerTempRecord": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Create create Boiler Temperature Record slip",
+        "description": "Create create Boiler Temperature Record slip",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "time": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "inletTemp": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "belt1": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "approvedBy": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "NC": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "belt2": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "belt3": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "belt4": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "belt5": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "Action": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "default": "Enter your remark"
+                  },
+                  "operationid": {
+                    "type": "string",
+                    "default": "Enter your operationid"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
                   }
                 }
               }
