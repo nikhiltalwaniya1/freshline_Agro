@@ -21,6 +21,7 @@ const materialissueslip = require("../../model/materialIssueSlip")
 const chlorineConcentrationModel = require("../../model/chlorineConcentrationRecord")
 const boilerTempRecordModel = require("../../model/boilertemprecord")
 const beltTempRecordModel = require("../../model/beltTempRecord")
+const materialIssueRequestModel = require("../../model/materialIssueRequest")
 
 exports.createforms = async (req, res) => {
   try {
@@ -160,11 +161,10 @@ exports.inward_vehicle_checklist = async (req, res) => {
     }
     const submitDetails = new Inward_Vehicle_ChecklistForm(obj)
     const formDetails = await submitDetails.save()
-    console.log("formDetails====", formDetails);
     let obj1 = {
       form3Id: formDetails._id.toString(),
       userId: req.body.userid,
-      operationid: req.body.operationid,
+      materialId: req.body.materialId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -269,7 +269,6 @@ exports.rejectMaterialRequest = async (req, res) => {
 
 exports.acceptedMaterialRequest = async (req, res) => {
   try {
-    console.log("req.body", req.body);
     let obj1 = {
       userId: req.body.userId,
       operationid: req.body.operationid,
@@ -314,7 +313,6 @@ exports.materialRequestListById = async (req, res) => {
   try {
     const userId = req.body.userid;
     const formNames = req.body.formName;
-
     let userIdObject;
     try {
       userIdObject = new ObjectId(userId);
@@ -351,7 +349,6 @@ exports.materialRequestListById = async (req, res) => {
       .populate('form5Id')
       .populate('form6Id')
       .populate('form7Id')
-      .populate('form8Id')
       .sort({ createdAt: -1 })
       .lean();
     return res.status(statusCode.success).send({
@@ -392,7 +389,7 @@ exports.Raw_Material_Inspection = async (req, res) => {
     let obj1 = {
       form4Id: formDetails._id.toString(),
       userId: req.body.userid,
-      operationid: req.body.operationid,
+      materialId: req.body.materialId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -428,7 +425,7 @@ exports.Raw_Material_Rejection_Register = async (req, res) => {
     let obj1 = {
       form6Id: formDetails._id.toString(),
       userId: req.body.userId,
-      operationid: req.body.operationId,
+      materialId: req.body.materialId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -456,7 +453,7 @@ exports.Verify_Raw_Material_Inspection = async (req, res) => {
     let obj1 = {
       formName: req.body.formName,
       userId: req.body.userid,
-      operationid: req.body.operationid,
+      materialId: req.body.materialId,
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({
@@ -494,7 +491,7 @@ exports.Raw_Material_Release_record = async (req, res) => {
     let obj1 = {
       form5Id: formDetails._id.toString(),
       userId: req.body.userId,
-      operationid: req.body.operationId,
+      materialId: req.body.materialId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -512,7 +509,6 @@ exports.Raw_Material_Release_record = async (req, res) => {
 //Submit Material_Discrepancy_Report form 
 exports.Material_Discrepancy_Report = async (req, res) => {
   try {
-
     let obj = {
       materialName: req.body.materialName,
       natureOfDiscrepancy: req.body.natureOfDiscrepancy,
@@ -545,7 +541,7 @@ exports.Material_Discrepancy_Report = async (req, res) => {
     let obj1 = {
       form7Id: formDetails._id.toString(),
       userId: req.body.userId,
-      operationid: req.body.operationId,
+      materialId: req.body.materialId,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -588,6 +584,7 @@ exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
 
 exports.MaterialStockAndIssueRegistred = async (req, res) => {
   try {
+    console.log("req.body", req.body);
     const date = new Date(req.body.date);
     const createdBy = req.decoded.createdBy;
     const firstThreeDigitOfmaterialType = req.body.materialName.substring(0, 3);
@@ -615,7 +612,7 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
     }
 
     if (remainingIssueQuantity > availableStock) {
-      return res.status(statusCode.success).send({
+      return res.status(statusCode.error).send({
         message: 'Insufficient stock to fulfill the request.'
       });
     }
@@ -668,8 +665,12 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
       userId: req.body.userId,
       operationid: req.body.operationId,
       formName: req.body.formName,
-      materialId:req.body.materialId
+      materialId: materialId,
+      issueId: issueNumber,
+      materialType: req.body.materialType,
+      createdBy: createdBy,
     }
+    console.log("obj1", obj1);
     await movetonext(obj1)
     // Respond with success message or data
     return res.status(statusCode.success).send({
@@ -884,3 +885,51 @@ exports.createBeltDryerTempRecord = async (req, res) => {
     })
   }
 }
+
+exports.materialIssueRequestListById = async (req, res) => {
+  try {
+    const userId = req.body.userid;
+    const formNames = req.body.formName;
+    let userIdObject;
+    try {
+      userIdObject = new ObjectId(userId);
+    } catch (error) {
+      console.error("Invalid userId format:", error);
+      return res.status(statusCode.error).send({
+        message: "Invalid userId format"
+      });
+    }
+    let query = {}
+    if (formNames == formName.form6) {
+      query = {
+        $or: [
+          { "currentAssigneeId._id": userIdObject },
+          { "prevAssigneeIds": { $in: userId } },
+          { "currentFormName": { $in: formNames } }
+        ],
+        status: workStatus.Rejected
+      };
+    } else {
+      query = {
+        $or: [
+          { "currentAssigneeId._id": userIdObject },
+          { "prevAssigneeIds": { $in: userId } },
+          { "currentFormName": { $in: formNames } }
+        ],
+      };
+    }
+    const requestDetails = await materialIssueRequestModel.find(query)
+      .populate('form8Id')
+      .sort({ createdAt: -1 })
+      .lean();
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS,
+      data: requestDetails
+    });
+  } catch (error) {
+    console.log("Error in materialRequestListById function:", error);
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    });
+  }
+};

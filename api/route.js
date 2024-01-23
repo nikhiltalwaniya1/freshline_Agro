@@ -59,7 +59,7 @@ router.post("/rejectMaterialRequest", checkToken, formController.rejectMaterialR
 router.post("/acceptedMaterialRequest", checkToken, formController.acceptedMaterialRequest)
 //Api for reject materials
 router.post("/formDetailsByIds", checkToken, formController.formDetailsByIds)
-//Api for reject materials
+//Api for materials request list
 router.post("/materialRequestListById", checkToken, formController.materialRequestListById)
 //Api for form list
 router.get("/formlistById", checkToken, menuController.formlistById)
@@ -113,5 +113,7 @@ router.post("/createChlorineConcentration", formController.createChlorineConcent
 router.post("/createBoilerTemperatureRecord", formController.createBoilerTemperatureRecord)
 //Api for create Belt Dryer Report
 router.post("/createBeltDryerTempRecord", formController.createBeltDryerTempRecord)
+//Api for materials request list
+router.post("/materialIssueRequestListById", checkToken, formController.materialIssueRequestListById)
 
 module.exports = router

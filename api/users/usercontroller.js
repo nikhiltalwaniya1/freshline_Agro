@@ -1,3 +1,12 @@
+/* 
+Function Name     Created By        Date        Description
+userlist          Nikhil Talwaniya  23-01-2023  IN this we send the user list according to user and it's role.
+userlistwithid    Nikhil Talwaniya  23-01-2023  IN this we send the user list according to user id.
+createuser        Nikhil Talwaniya  23-01-2023  IN this we create the user check the further details.
+updateuser        Nikhil Talwaniya  23-01-2023  IN this we update the user details accordint to it's id.
+deleteUser        Nikhil Talwaniya  23-01-2023  IN this we delete the user according to it's id.
+*/
+
 const { statusCode, roleType } = require("../../utills/constant")
 const message = require("../../utills/message")
 const { encryptPassword, comparePassword, createToken } = require("../../utills/utill")
