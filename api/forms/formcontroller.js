@@ -252,7 +252,7 @@ exports.rejectMaterialRequest = async (req, res) => {
   try {
     let obj1 = {
       userId: req.body.userid,
-      operationid: req.body.operationid,
+      materialId: req.body.materialId,
       workStatus: workStatus.Rejected
     }
     await movetonext(obj1)
@@ -269,9 +269,10 @@ exports.rejectMaterialRequest = async (req, res) => {
 
 exports.acceptedMaterialRequest = async (req, res) => {
   try {
+    console.log("req.body", req.body);
     let obj1 = {
       userId: req.body.userId,
-      operationid: req.body.operationid,
+      materialId: req.body.materialId,
       workStatus: workStatus.Accepted
     }
     await movetonext(obj1)
