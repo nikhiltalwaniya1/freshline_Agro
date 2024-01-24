@@ -140,7 +140,8 @@ exports.checkForms = async () => {
         } else {
           query = {
             formname: formNameDetails.formName,
-            path: formNameDetails.path
+            path: formNameDetails.path,
+            status: formNameDetails.status
           }
         }
         const saveForm = new formModel(query)

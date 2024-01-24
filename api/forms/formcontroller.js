@@ -893,42 +893,26 @@ exports.materialIssueRequestListById = async (req, res) => {
   try {
     const userId = req.body.userid;
     const formNames = req.body.formName;
-    let userIdObject;
-    try {
-      userIdObject = new ObjectId(userId);
-    } catch (error) {
-      console.error("Invalid userId format:", error);
-      return res.status(statusCode.error).send({
-        message: "Invalid userId format"
-      });
+    let query = {
+      $or: [
+        { "currentAssigneeId": { $in: userId } },
+        { "prevAssigneeIds": { $in: userId } }
+      ]
     }
-    let query = {}
-    if (formNames == formName.form6) {
-      query = {
-        $or: [
-          { "currentAssigneeId._id": userIdObject },
-          { "prevAssigneeIds": { $in: userId } },
-          { "currentFormName": { $in: formNames } }
-        ],
-        status: workStatus.Rejected
-      };
-    } else {
-      query = {
-        $or: [
-          { "currentAssigneeId._id": userIdObject },
-          { "prevAssigneeIds": { $in: userId } },
-          { "currentFormName": { $in: formNames } }
-        ],
-      };
-    }
-    const requestDetails = await materialIssueRequestModel.find(query)
+    const issueList = await materialIssueRequestModel.find(query)
       .populate('form8Id')
-      .populate('form9Id')
+      .populate({
+        path:'form9Id',
+        populate:{
+          path:'materialissueto',
+          select:'name'
+        }
+      })
       .sort({ createdAt: -1 })
       .lean();
     return res.status(statusCode.success).send({
       message: message.SUCCESS,
-      data: requestDetails
+      data: issueList
     });
   } catch (error) {
     console.log("Error in materialRequestListById function:", error);

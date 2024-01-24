@@ -10,7 +10,7 @@ const materialIssueSchema = new Schema(
     },
     materialissueto: {
       type: String,
-      default: ''
+      ref:'user'
     },
     materialdescription: {
       type: String,
