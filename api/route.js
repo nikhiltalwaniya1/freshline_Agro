@@ -106,13 +106,13 @@ router.post("/materialSearchByName", checkToken, formController.materialSearchBy
 //Api for search material stock by material name
 router.get("/materialStockList", checkToken, formController.materialStockList)
 //Api for create material issue slip
-router.post("/materialissueslip", formController.materialissueslip)
+router.post("/materialissueslip", checkToken,formController.materialissueslip)
 //Api for create Chlorine Concentration
-router.post("/createChlorineConcentration", formController.createChlorineConcentration)
+router.post("/createChlorineConcentration",checkToken, formController.createChlorineConcentration)
 //Api for create Belt Dryer Report
-router.post("/createBoilerTemperatureRecord", formController.createBoilerTemperatureRecord)
+router.post("/createBoilerTemperatureRecord",checkToken, formController.createBoilerTemperatureRecord)
 //Api for create Belt Dryer Report
-router.post("/createBeltDryerTempRecord", formController.createBeltDryerTempRecord)
+router.post("/createBeltDryerTempRecord",checkToken, formController.createBeltDryerTempRecord)
 //Api for materials request list
 router.post("/materialIssueRequestListById", checkToken, formController.materialIssueRequestListById)
 

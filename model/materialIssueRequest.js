@@ -36,6 +36,14 @@ const issueRequestSchema = new Schema(
       type: String,
       ref:"RST02Raw_Material_Stock_and_Issue_Register"
     },
+    form9Id:{
+      type: String,
+      ref:"FST03Material_Issue_Slip"
+    },
+    form10Id:{
+      type: String,
+      ref:"FPRD07Chlorine_Concentration_Record"
+    },
   },
   {
     timestamps: true,

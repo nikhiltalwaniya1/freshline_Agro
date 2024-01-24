@@ -24,9 +24,9 @@ const materialIssueSchema = new Schema(
       type: String,
       default: ''
     },
-    operationid: {
-      type: Number,
-      default: 0
+    issueNumber: {
+      type: String,
+      default: ''
     },
     userId: {
       type: String,
@@ -56,7 +56,11 @@ const materialIssueSchema = new Schema(
     formName: {
       type: String,
       default: ''
-    }
+    },
+    status: {
+      type: Boolean,
+      default: true
+    },
   },
   {
     timestamps: true,

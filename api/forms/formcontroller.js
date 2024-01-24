@@ -269,7 +269,6 @@ exports.rejectMaterialRequest = async (req, res) => {
 
 exports.acceptedMaterialRequest = async (req, res) => {
   try {
-    console.log("req.body", req.body);
     let obj1 = {
       userId: req.body.userId,
       materialId: req.body.materialId,
@@ -585,7 +584,6 @@ exports.Get_Raw_Material_Inspection_byId = async (req, res) => {
 
 exports.MaterialStockAndIssueRegistred = async (req, res) => {
   try {
-    console.log("req.body", req.body);
     const date = new Date(req.body.date);
     const createdBy = req.decoded.createdBy;
     const firstThreeDigitOfmaterialType = req.body.materialName.substring(0, 3);
@@ -656,7 +654,8 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
       formateNumber: formateNumber.form8,
       createdBy: createdBy,
       userId: req.decoded._id,
-      date: date
+      date: date,
+      status: true
     }
 
     const saveMaterialStockAndIssueRegistered = new MaterialStockAndIssueRegistredModels(obj)
@@ -671,7 +670,6 @@ exports.MaterialStockAndIssueRegistred = async (req, res) => {
       materialType: req.body.materialType,
       createdBy: createdBy,
     }
-    console.log("obj1", obj1);
     await movetonext(obj1)
     // Respond with success message or data
     return res.status(statusCode.success).send({
@@ -734,25 +732,29 @@ exports.materialStockList = async (req, res) => {
 
 exports.materialissueslip = async (req, res) => {
   try {
+    console.log("req.body", req.body);
+    const createdBy = req.decoded.createdBy;
     const dates = new Date(req.body.date)
     let obj = {
       dates,
-      materialissueto: req.body.materialissueto,
+      materialissueto: req.body.materialIssueTo,
       materialdescription: req.body.materialdescription,
       quantity: req.body.quantity,
       remark: req.body.remark,
-      operationid: req.body.operationid,
+      issueNumber: req.body.issueNumber,
       userId: req.body.userId,
       approvedBy: req.body.approvedBy,
       issuedBy: req.body.issuedBy,
       formateNumber: formateNumber.form10,
+      status: true,
+      createdBy: createdBy
     }
     const submitDetails = new materialissueslip(obj)
     const formDetails = await submitDetails.save()
     let obj1 = {
       form9Id: formDetails._id.toString(),
       userId: req.body.userId,
-      operationid: req.body.operationId,
+      issueNumber: req.body.issueNumber,
       formName: req.body.formName,
     }
     await movetonext(obj1)
@@ -921,6 +923,7 @@ exports.materialIssueRequestListById = async (req, res) => {
     }
     const requestDetails = await materialIssueRequestModel.find(query)
       .populate('form8Id')
+      .populate('form9Id')
       .sort({ createdAt: -1 })
       .lean();
     return res.status(statusCode.success).send({

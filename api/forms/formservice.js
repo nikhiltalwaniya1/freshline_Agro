@@ -236,15 +236,41 @@ exports.movetonext = async (data) => {
         currentAssigneeId: userId,
         currentFormName: formName.form9,
         form8Id: data.form8Id,
-        issueNumber:data.issueId,
-        materialType:data.materialType,
-        createdBy:data.createdBy,
-        prevAssigneeIds:data.userId
+        issueNumber: data.issueId,
+        materialType: data.materialType,
+        createdBy: data.createdBy,
+        prevAssigneeIds: data.userId
       }
       const saveIssueMaterialList = new materialIssueRequestModel(obj)
       await saveIssueMaterialList.save()
       const updateForms = await formModel.updateOne(
         { formname: formName.form9 },
+        {
+          $set: {
+            status: true
+          }
+        })
+      return Promise.resolve()
+    }
+    if (data.formName == formName.form9) {
+      console.log("data", data);
+      const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form10 }, { _id: 1 }).lean()
+      let query = {
+        $set: {
+          currentAssigneeId: userId,
+          currentFormName: formName.form10,
+          form9Id: data.form9Id,
+        },
+        $push: {
+          prevAssigneeIds: data.userId
+        }
+      }
+      const updateMaterialRequest = await materialIssueRequestModel.updateOne(
+        { issueNumber: data.issueNumber },
+        query
+      )
+      const updateForms = await formModel.updateOne(
+        { formname: formName.form10 },
         {
           $set: {
             status: true
