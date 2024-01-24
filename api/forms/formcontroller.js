@@ -732,7 +732,6 @@ exports.materialStockList = async (req, res) => {
 
 exports.materialissueslip = async (req, res) => {
   try {
-    console.log("req.body", req.body);
     const createdBy = req.decoded.createdBy;
     const dates = new Date(req.body.date)
     let obj = {
@@ -756,6 +755,7 @@ exports.materialissueslip = async (req, res) => {
       userId: req.body.userId,
       issueNumber: req.body.issueNumber,
       formName: req.body.formName,
+      materialissueto: req.body.materialIssueTo
     }
     await movetonext(obj1)
     return res.status(statusCode.success).send({

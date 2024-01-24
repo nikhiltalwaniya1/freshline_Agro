@@ -253,16 +253,15 @@ exports.movetonext = async (data) => {
       return Promise.resolve()
     }
     if (data.formName == formName.form9) {
-      console.log("data", data);
       const userId = await usersModel.find({ "details.submenuDetails.formDetails.formname": formName.form10 }, { _id: 1 }).lean()
       let query = {
         $set: {
-          currentAssigneeId: userId,
           currentFormName: formName.form10,
           form9Id: data.form9Id,
         },
         $push: {
-          prevAssigneeIds: data.userId
+          prevAssigneeIds: data.userId,
+          currentAssigneeId: data.materialissueto,
         }
       }
       const updateMaterialRequest = await materialIssueRequestModel.updateOne(
