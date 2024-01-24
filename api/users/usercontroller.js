@@ -139,3 +139,26 @@ exports.deleteUser = async (req, res) => {
     })
   }
 }
+
+exports.userlistbyformname = async (req, res) => {
+  try {
+    const formNames = req.body.formName
+    const userDetails = await users.find({ "details.submenuDetails.formDetails.formname": formNames }, { _id: 1, name:1 }).lean()
+    if (userDetails) {
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data: userDetails
+      });
+    } else {
+      return res.status(statusCode.success).send({
+        message: message.Data_not_found,
+        data:0
+      });
+    }
+  } catch (error) {
+    console.error("Error in userlistwithid function:", error);
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    });
+  }
+};
