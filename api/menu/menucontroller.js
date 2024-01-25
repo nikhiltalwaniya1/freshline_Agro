@@ -1,3 +1,18 @@
+/**
+ * Fuction Name       Created By        Date        Desription
+ * menulist           Nikhil Talwaniya  23-01-2023  In this function will send the all the menu list.
+ * submenulist        Nikhil Talwaniya  23-01-2023  In this function will send the all the sub menu list.
+ * createMenu         Nikhil Talwaniya  23-01-2023  In this function we create the menus.
+ * createSubMenu      Nikhil Talwaniya  23-01-2023  In this function we create sub menu according to menu ids.
+ * rolelist           Nikhil Talwaniya  23-01-2023  In this function will send the all the role list.
+ * formlist           Nikhil Talwaniya  23-01-2023  In this function will send the all the forms list.
+ * formlistwithid     Nikhil Talwaniya  23-01-2023  In this function will send the all the forms list with id.
+ * submenulistwithid  Nikhil Talwaniya  23-01-2023  In this function will send the all the sub menu list with it's id.
+ * formlistIds        Nikhil Talwaniya  23-01-2023  In this function will send the all the Forms list with menu's id and submenu id's.
+ * 
+ * 
+ */
+
 const { statusCode, roleType } = require("../../utills/constant")
 const message = require("../../utills/message")
 const role = require("../../model/role")
@@ -8,6 +23,7 @@ const usersModel = require("../../model/user")
 const formListModel = require("../../model/formLIstByMenuId")
 const materialModel = require("../../model/material")
 const supplierModel = require("../../model/supplier")
+
 exports.menulist = async (req, res) => {
   try {
     const menudetails = await menu.find({ createdBy: req.decoded._id }).lean()

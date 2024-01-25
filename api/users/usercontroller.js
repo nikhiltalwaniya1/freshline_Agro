@@ -1,3 +1,12 @@
+/* 
+Function Name     Created By        Date        Description
+userlist          Nikhil Talwaniya  23-01-2023  IN this we send the user list according to user and it's role.
+userlistwithid    Nikhil Talwaniya  23-01-2023  IN this we send the user list according to user id.
+createuser        Nikhil Talwaniya  23-01-2023  IN this we create the user check the further details.
+updateuser        Nikhil Talwaniya  23-01-2023  IN this we update the user details accordint to it's id.
+deleteUser        Nikhil Talwaniya  23-01-2023  IN this we delete the user according to it's id.
+*/
+
 const { statusCode, roleType } = require("../../utills/constant")
 const message = require("../../utills/message")
 const { encryptPassword, comparePassword, createToken } = require("../../utills/utill")
@@ -130,3 +139,26 @@ exports.deleteUser = async (req, res) => {
     })
   }
 }
+
+exports.userlistbyformname = async (req, res) => {
+  try {
+    const formNames = req.body.formName
+    const userDetails = await users.find({ "details.submenuDetails.formDetails.formname": formNames }, { _id: 1, name:1 }).lean()
+    if (userDetails) {
+      return res.status(statusCode.success).send({
+        message: message.SUCCESS,
+        data: userDetails
+      });
+    } else {
+      return res.status(statusCode.success).send({
+        message: message.Data_not_found,
+        data:0
+      });
+    }
+  } catch (error) {
+    console.error("Error in userlistwithid function:", error);
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    });
+  }
+};

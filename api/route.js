@@ -59,7 +59,7 @@ router.post("/rejectMaterialRequest", checkToken, formController.rejectMaterialR
 router.post("/acceptedMaterialRequest", checkToken, formController.acceptedMaterialRequest)
 //Api for reject materials
 router.post("/formDetailsByIds", checkToken, formController.formDetailsByIds)
-//Api for reject materials
+//Api for materials request list
 router.post("/materialRequestListById", checkToken, formController.materialRequestListById)
 //Api for form list
 router.get("/formlistById", checkToken, menuController.formlistById)
@@ -105,4 +105,18 @@ router.post("/MaterialStockAndIssueRegistred", checkToken, formController.Materi
 router.post("/materialSearchByName", checkToken, formController.materialSearchByName)
 //Api for search material stock by material name
 router.get("/materialStockList", checkToken, formController.materialStockList)
+//Api for create material issue slip
+router.post("/materialissueslip", checkToken,formController.materialissueslip)
+//Api for create Chlorine Concentration
+router.post("/createChlorineConcentration",checkToken, formController.createChlorineConcentration)
+//Api for create Belt Dryer Report
+router.post("/createBoilerTemperatureRecord",checkToken, formController.createBoilerTemperatureRecord)
+//Api for create Belt Dryer Report
+router.post("/createBeltDryerTempRecord",checkToken, formController.createBeltDryerTempRecord)
+//Api for materials request list
+router.post("/materialIssueRequestListById", checkToken, formController.materialIssueRequestListById)
+//API for user list by form name
+router.post("/userlistbyformname",  userController.userlistbyformname)
+
+
 module.exports = router

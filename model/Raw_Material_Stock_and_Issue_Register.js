@@ -43,6 +43,10 @@ const MaterialStockAndIssueSchema = new Schema(
       type: String,
       default: ''
     },
+    status: {
+      type: Boolean,
+      default: true
+    },
     createdBy:{
       type: String,
       default: '',

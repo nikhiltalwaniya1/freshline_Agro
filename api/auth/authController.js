@@ -1,3 +1,10 @@
+/*
+Function Name   Created By  Date          Description
+login           Nikhil      23-01-2023    In this function created for login we check the details and loto login
+
+*/
+
+
 const { statusCode } = require("../../utills/constant")
 const message = require("../../utills/message")
 const authService = require("./authService")
