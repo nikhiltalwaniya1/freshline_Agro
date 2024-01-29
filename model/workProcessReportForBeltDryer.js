@@ -69,39 +69,6 @@ const workProcessReportForBeltDryerSchema = new Schema(
         },
       }
     },
-    capMaskGloves: {
-      type: Object,
-      default: {
-        speed:{
-          type:String,
-          default:''
-        },
-        yesOrNo:{
-          type:Boolean,
-          default:false
-        },
-        ifNoReason:{
-          type:String,
-          default:''
-        },
-        sortedMaterailUsedInProcess:{
-          type:String,
-          default:''
-        },
-        wastage:{
-          type:String,
-          default:''
-        },
-        loss:{
-          type:String,
-          default:''
-        },
-        NC:{
-          type:String,
-          default:''
-        },
-      }
-    },
     rmPreWashing: {
       type: Object,
       default: {
@@ -268,39 +235,6 @@ const workProcessReportForBeltDryerSchema = new Schema(
       }
     },
     vibrator: {
-      type: Object,
-      default: {
-        speed:{
-          type:String,
-          default:''
-        },
-        yesOrNo:{
-          type:Boolean,
-          default:false
-        },
-        ifNoReason:{
-          type:String,
-          default:''
-        },
-        sortedMaterailUsedInProcess:{
-          type:String,
-          default:''
-        },
-        wastage:{
-          type:String,
-          default:''
-        },
-        loss:{
-          type:String,
-          default:''
-        },
-        NC:{
-          type:String,
-          default:''
-        },
-      }
-    },
-    conveyor1: {
       type: Object,
       default: {
         speed:{
@@ -795,10 +729,6 @@ const workProcessReportForBeltDryerSchema = new Schema(
         },
       }
     },
-    operationid: {
-      type: Number,
-      default: 0
-    },
     userId: {
       type: String,
       default: ''
@@ -816,14 +746,14 @@ const workProcessReportForBeltDryerSchema = new Schema(
       default: '',
       ref: "user",
     },
-    formName: {
-      type: String,
-      default: ''
-    },
     remark: {
       type: String,
       default: ''
-    },    
+    }, 
+    issueNumber: {
+      type: String,
+      default: ''
+    }   
   },
   {
     timestamps: true,

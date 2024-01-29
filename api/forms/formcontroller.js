@@ -22,6 +22,7 @@ const chlorineConcentrationModel = require("../../model/chlorineConcentrationRec
 const boilerTempRecordModel = require("../../model/boilertemprecord")
 const beltTempRecordModel = require("../../model/beltTempRecord")
 const materialIssueRequestModel = require("../../model/materialIssueRequest")
+const workProcessReportForBeltDryerModel = require("../../model/workProcessReportForBeltDryer")
 
 exports.createforms = async (req, res) => {
   try {
@@ -921,3 +922,56 @@ exports.materialIssueRequestListById = async (req, res) => {
     });
   }
 };
+
+exports.createWorkProcessForBeltDryer = async(req, res)=>{
+  try{
+    const dates = new Date(req.body.date)
+    const obj = {
+      dates:dates,
+      shift:req.body.shift,
+      materialQuantity:req.body.materialQuantity,
+      supervisorName:req.body.supervisorName,
+      machineName:req.body.machineName,
+      materialId:req.body.materialId,
+      productionName:req.body.productionName,
+      batchNo:req.body.batchNo,
+      capMaskGloves:req.body.capMaskGloves,
+      rmPreWashing:req.body.rmPreWashing,
+      gradingOrShorting:req.body.gradingOrShorting,
+      washingWithnaocl:req.body.washingWithnaocl,
+      washerconveyor:req.body.washerconveyor,
+      dicer:req.body.dicer,
+      vibrator:req.body.vibrator,
+      conveyor1:req.body.conveyor1,
+      preDryer:req.body.preDryer,
+      conveyor2_3:req.body.conveyor2_3,
+      feederBelt:req.body.feederBelt,
+      beltDryer1_3_5:req.body.beltDryer1_3_5,
+      beltDryer2_4:req.body.beltDryer2_4,
+      finalBelt1:req.body.finalBelt1,
+      inalBelt2:req.body.inalBelt2,
+      Moisture:req.body.Moisture,
+      electricityConsumptionBeltDryer:req.body.electricityConsumptionBeltDryer,
+      Electricity_GasConsumptionBoiler:req.body.Electricity_GasConsumptionBoiler,
+      loddedInBinDryer:req.body.loddedInBinDryer,
+      weight:req.body.weight,
+      finishedGoodsMoistureCheck:req.body.finishedGoodsMoistureCheck,
+      userId:req.body.userId,
+      status:req.body.status,
+      formateNumber:req.body.formateNumber,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      remark:req.body.remark,
+    }
+    const submitDetails = new workProcessReportForBeltDryerModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Work Process FOr Belt Dryer function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}

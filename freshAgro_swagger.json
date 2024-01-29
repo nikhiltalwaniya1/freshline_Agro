@@ -3345,7 +3345,7 @@
         "tags": [
           "Forms"
         ],
-        "summary": "Create create Boiler Temperature Record slip",
+        "summary": "create Work Process For Belt Dryer",
         "description": "Create create Boiler Temperature Record slip",
         "requestBody": {
           "required": true,
@@ -3674,6 +3674,768 @@
         "responses": {
           "200": {
             "description": "User List by form name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createWorkProcessForBeltDryer": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create Work Process For Belt Dryer",
+        "description": "create Work Process For Belt Dryer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "shift": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "materialQuantity": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "supervisorName": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "machineName": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "materialId": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "productionName": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "batchNo": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "capMaskGloves": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "rmPreWashing": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "gradingOrShorting": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "washingWithnaocl": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "washerconveyor": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "dicer": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "vibrator": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "conveyor1": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "preDryer": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "conveyor2_3": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "feederBelt": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "beltDryer1_3_5": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "beltDryer2_4": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "finalBelt1": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "inalBelt2": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "Moisture": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "electricityConsumptionBeltDryer": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "loddedInBinDryer": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "weight": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "finishedGoodsMoistureCheck": {
+                    "type": "string",
+                    "default": {
+                      "speed":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "sortedMaterailUsedInProcess":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
             "content": {
               "application/json": {
                 "schema": {

@@ -117,6 +117,7 @@ router.post("/createBeltDryerTempRecord",checkToken, formController.createBeltDr
 router.post("/materialIssueRequestListById", checkToken, formController.materialIssueRequestListById)
 //API for user list by form name
 router.post("/userlistbyformname",  userController.userlistbyformname)
-
+//Api for materials request list
+router.post("/createWorkProcessForBeltDryer", checkToken, formController.createWorkProcessForBeltDryer)
 
 module.exports = router
