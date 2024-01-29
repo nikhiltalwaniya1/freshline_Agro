@@ -2,59 +2,31 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 var mongoosePaginate = require('mongoose-paginate');
 
-const beltDryerReportSchema = new Schema(
+const nonConformingProductSchema = new Schema(
   {
     dates: {
       type: Date,
       default: ''
     },
-    time: {
-      type: Date,
-      default: ''
-    },
-    inTemp: {
+    materialName: {
       type: String,
       default: ''
     },
-    outTemp: {
+    locationWhereNCFound: {
       type: String,
       default: ''
     },
-    storeTemp: {
+    descriptionForNC: {
       type: String,
       default: ''
     },
-    bdInletTemp: {
+    risk: {
       type: String,
       default: ''
     },
-    boilerMeterReading: {
+    CAPA: {
       type: String,
       default: ''
-    },
-    tempSetting: {
-      type: String,
-      default: ''
-    },
-    gasReading: {
-      type: String,
-      default: ''
-    },
-    Action: {
-      type: String,
-      default: ''
-    },
-    NC: {
-      type: String,
-      default: ''
-    },
-    approvedBy: {
-      type: String,
-      default: ''
-    },
-    operationid: {
-      type: Number,
-      default: 0
     },
     userId: {
       type: String,
@@ -74,20 +46,21 @@ const beltDryerReportSchema = new Schema(
       default: '',
       ref: "user",
     },
-    formName: {
-      type: String,
-      default: ''
-    },
     remark: {
       type: String,
       default: ''
-    },    
+    }, 
+    issueNumber: {
+      type: String,
+      default: ''
+    }
   },
   {
     timestamps: true,
     typecast: true,
   }
 )
-beltDryerReportSchema.plugin(mongoosePaginate);
-var beltDryerReportModel = mongoose.model('RPRD05Boiler_Temp_Record', beltDryerReportSchema);
-module.exports = beltDryerReportModel
+
+nonConformingProductSchema.plugin(mongoosePaginate);
+var nonConformingProductModel = mongoose.model('RPRD04Control_of_Nonconforming_Product_Register', nonConformingProductSchema);
+module.exports = nonConformingProductModel

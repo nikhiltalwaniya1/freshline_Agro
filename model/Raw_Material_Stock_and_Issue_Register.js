@@ -33,7 +33,8 @@ const MaterialStockAndIssueSchema = new Schema(
     },
     userId: {
       type: String,
-      default: ''
+      default: '',
+      ref: "user",
     },
     operationId: {
       type: Array,

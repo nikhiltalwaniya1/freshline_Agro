@@ -94,7 +94,8 @@ const Material_Discrepancy_ReportSchema = new Schema(
     },
     userId: {
       type: String,
-      default: ''
+      default: '',
+      ref: "user",
     },
     operationId: {
       type: String,

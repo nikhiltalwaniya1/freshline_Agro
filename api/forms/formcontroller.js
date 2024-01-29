@@ -23,6 +23,8 @@ const boilerTempRecordModel = require("../../model/boilertemprecord")
 const beltTempRecordModel = require("../../model/beltTempRecord")
 const materialIssueRequestModel = require("../../model/materialIssueRequest")
 const workProcessReportForBeltDryerModel = require("../../model/workProcessReportForBeltDryer")
+const reWorkReportForBinDryerModel = require("../../model/reworkreportforbindryer")
+const nonConformingProductModel = require("../../model/controlNonconformingProductRegisterModel")
 
 exports.createforms = async (req, res) => {
   try {
@@ -822,9 +824,7 @@ exports.createBoilerTemperatureRecord = async (req, res) => {
       gasReading: req.body.gasReading,
       Action: req.body.Action,
       remark: req.body.remark,
-      operationid: req.body.operationid,
       userId: req.body.userId,
-      approvedBy: req.body.approvedBy,
       NC: req.body.NC,
       formateNumber: formateNumber.form11,
       status: true
@@ -958,10 +958,11 @@ exports.createWorkProcessForBeltDryer = async(req, res)=>{
       finishedGoodsMoistureCheck:req.body.finishedGoodsMoistureCheck,
       userId:req.body.userId,
       status:req.body.status,
-      formateNumber:req.body.formateNumber,
+      formateNumber:formateNumber.form13,
       createdBy:req.body.createdBy,
       issueNumber:req.body.issueNumber,
       remark:req.body.remark,
+      status:true,
     }
     const submitDetails = new workProcessReportForBeltDryerModel(obj)
     const formDetails = await submitDetails.save()
@@ -970,6 +971,79 @@ exports.createWorkProcessForBeltDryer = async(req, res)=>{
     })
   }catch(error){
     console.log("error in create Work Process FOr Belt Dryer function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createReWorkforBinDryer = async(req, res)=>{
+  try{
+    const dates = new Date(req.body.date)
+    const obj = {
+      dates:dates,
+      shift:req.body.shift,
+      materialQuantity:req.body.materialQuantity,
+      supervisorName:req.body.supervisorName,
+      machineName:req.body.machineName,
+      materialId:req.body.materialId,
+      productionName:req.body.productionName,
+      batchNo:req.body.batchNo,
+      PPE:req.body.PPE,
+      inputWeight:req.body.inputWeight,
+      loadedinBinDryer:req.body.loadedinBinDryer,
+      temp:req.body.temp,
+      processTime:req.body.processTime,
+      weigthAfterProcess:req.body.weigthAfterProcess,
+      moistureCheck:req.body.moistureCheck,
+      electricityConsumption:req.body.electricityConsumption,
+      userId:req.body.userId,
+      status:req.body.status,
+      formateNumber:formateNumber.form14,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      remark:req.body.remark,
+      status:true
+    }
+    const submitDetails = new reWorkReportForBinDryerModel (obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Re Work for Bin Dryer function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createNonConformingProductRegisterd = async(req, res)=>{
+  try{
+    const dates = new Date(req.body.date)
+    const obj = {
+      dates:dates,
+      materialName:req.body.materialName,
+      locationWhereNCFound:req.body.locationWhereNCFound,
+      descriptionForNC:req.body.descriptionForNC,
+      risk:req.body.risk,
+      CAPA:req.body.CAPA,
+      userId:req.body.userId,
+      status:req.body.status,
+      formateNumber:formateNumber.form14,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      remark:req.body.remark,
+      status:true
+    }
+    
+    const submitDetails = new nonConformingProductModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
     })

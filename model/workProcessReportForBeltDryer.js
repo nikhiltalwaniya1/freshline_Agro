@@ -9,7 +9,7 @@ const workProcessReportForBeltDryerSchema = new Schema(
       default: ''
     },
     shift: {
-      type: Date,
+      type: String,
       default: ''
     },
     materialQuantity: {
@@ -731,7 +731,8 @@ const workProcessReportForBeltDryerSchema = new Schema(
     },
     userId: {
       type: String,
-      default: ''
+      default: '',
+      ref: "user",
     },
     status:{
       type:Boolean,

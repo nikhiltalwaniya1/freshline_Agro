@@ -54,7 +54,8 @@ const Raw_Material_Incoming_RegisterSchema = new Schema(
     },
     userId: {
       type: String,
-      default: ''
+      default: '',
+      ref: "user",
     },
     status:{
       type:Boolean,

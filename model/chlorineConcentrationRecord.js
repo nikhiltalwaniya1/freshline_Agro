@@ -26,7 +26,8 @@ const chlorineConcentrationSchema = new Schema(
     },
     userId: {
       type: String,
-      default: ''
+      default: '',
+      ref: "user",
     },
     status:{
       type:Boolean,

@@ -4469,6 +4469,466 @@
           }
         }
       }
+    },
+    "/createReWorkforBinDryer": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create Work Process For Belt Dryer",
+        "description": "create Work Process For Belt Dryer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "shift": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "materialQuantity": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "supervisorName": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "machineName": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "materialId": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "productionName": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "batchNo": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "PPE": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your corrective Action"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "inputWeight": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "loadedinBinDryer": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "temp": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "processTime": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "weigthAfterProcess": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "moistureCheck": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "electricityConsumption": {
+                    "type": "string",
+                    "default": {
+                      "lossPercent":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "yesOrNo":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "ifNoReason":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "inPut":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "wastage":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "loss":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "NC":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createNonConformingProductRegisterd": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "Create create Boiler Temperature Record slip",
+        "description": "Create create Boiler Temperature Record slip",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "materialName": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "locationWhereNCFound": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "descriptionForNC": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "risk": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "CAPA": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

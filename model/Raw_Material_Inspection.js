@@ -52,7 +52,8 @@ const Raw_Material_and_Packaging_Material_InspectionSchema = new Schema(
     },
     userId: {
       type: String,
-      default: ''
+      default: '',
+      ref: "user",
     },
     operationId: {
       type: String,

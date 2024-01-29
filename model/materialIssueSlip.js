@@ -30,7 +30,8 @@ const materialIssueSchema = new Schema(
     },
     userId: {
       type: String,
-      default: ''
+      default: '',
+      ref: "user",
     },
     status:{
       type:Boolean,
