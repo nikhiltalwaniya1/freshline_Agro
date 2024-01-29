@@ -25,6 +25,8 @@ const materialIssueRequestModel = require("../../model/materialIssueRequest")
 const workProcessReportForBeltDryerModel = require("../../model/workProcessReportForBeltDryer")
 const reWorkReportForBinDryerModel = require("../../model/reworkreportforbindryer")
 const nonConformingProductModel = require("../../model/controlNonconformingProductRegisterModel")
+const uvLightMonitorModel = require("../../model/uvLightMonitorRecord")
+const certificateOfAnalysisModel = require("../../model/certificateOfAnalysisCOA")
 
 exports.createforms = async (req, res) => {
   try {
@@ -1029,8 +1031,7 @@ exports.createNonConformingProductRegisterd = async(req, res)=>{
       risk:req.body.risk,
       CAPA:req.body.CAPA,
       userId:req.body.userId,
-      status:req.body.status,
-      formateNumber:formateNumber.form14,
+      formateNumber:formateNumber.form15,
       createdBy:req.body.createdBy,
       issueNumber:req.body.issueNumber,
       remark:req.body.remark,
@@ -1038,6 +1039,73 @@ exports.createNonConformingProductRegisterd = async(req, res)=>{
     }
     
     const submitDetails = new nonConformingProductModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createUVLightRecord = async(req, res)=>{
+  try{
+    const dates = new Date(req.body.date)
+    const obj = {
+      dates:dates,
+      time:req.body.time,
+      cleaningFunctionChecked:req.body.cleaningFunctionChecked,
+      anyProblemFound:req.body.anyProblemFound,
+      correctiveActionTaken:req.body.correctiveActionTaken,
+      remark:req.body.remark,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form16,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      remark:req.body.remark,
+      status:true
+    }
+    
+    const submitDetails = new uvLightMonitorModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createCertificateOfAnalysisCOA = async(req, res)=>{
+  try{
+    const obj = {
+      dateOfMenuFecture:new Date(req.body.dateOfMenuFecture),
+      dateOfRelease:new Date(req.body.dateOfRelease),
+      expiryDate:new Date(req.body.expiryDate),
+      productName:req.body.productName,
+      customerName:req.body.customerName,
+      batchNo:req.body.batchNo,
+      appearanceOfColor:req.body.appearanceOfColor,
+      odor:req.body.odor,
+      test:req.body.test,
+      texture:req.body.texture,
+      moisture:req.body.moisture,
+      labIncharge:req.body.labIncharge,
+      remark:req.body.remark,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form17,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }
+    
+    const submitDetails = new certificateOfAnalysisModel(obj)
     const formDetails = await submitDetails.save()
     return res.status(statusCode.success).send({
       message: message.SUCCESS

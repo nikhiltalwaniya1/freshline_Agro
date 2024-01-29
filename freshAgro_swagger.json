@@ -3346,7 +3346,7 @@
           "Forms"
         ],
         "summary": "create Work Process For Belt Dryer",
-        "description": "Create create Boiler Temperature Record slip",
+        "description": "create UV Light Record",
         "requestBody": {
           "required": true,
           "content": {
@@ -4873,6 +4873,218 @@
                     "default": "Enter your material approved By"
                   },
                   "CAPA": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createUVLightRecord": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create UV Light Record",
+        "description": "create UV Light Record",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "time": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "cleaningFunctionChecked": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "anyProblemFound": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "correctiveActionTaken": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createCertificateOfAnalysisCOA": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create Certificate Of Analysis COA",
+        "description": "create Certificate Of Analysis COA",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "dateOfMenuFecture": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "dateOfRelease": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "expiryDate": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "productName": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "customerName": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "batchNo": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "appearanceOfColor": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "odor": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "test": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "texture": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "moisture": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "labIncharge": {
                     "type": "string",
                     "default": "Enter your material NC"
                   },

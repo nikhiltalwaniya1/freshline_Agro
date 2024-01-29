@@ -123,5 +123,9 @@ router.post("/createWorkProcessForBeltDryer", checkToken, formController.createW
 router.post("/createNonConformingProductRegisterd", checkToken, formController.createNonConformingProductRegisterd)
 //Api for create Re-Work for Bin Dryer
 router.post("/createReWorkforBinDryer", checkToken, formController.createReWorkforBinDryer)
+//Api for create UV Light Record
+router.post("/createUVLightRecord", checkToken, formController.createUVLightRecord)
+//Api for create Certificate Of Analysis COA
+router.post("/createCertificateOfAnalysisCOA", checkToken, formController.createCertificateOfAnalysisCOA)
 
 module.exports = router
