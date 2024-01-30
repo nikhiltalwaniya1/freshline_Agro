@@ -1,4 +1,4 @@
-const { statusCode, workStatus, formName, formateNumber, materialType } = require("../../utills/constant")
+const { statusCode, workStatus, formName, formateNumber, materialType,uvType } = require("../../utills/constant")
 const message = require("../../utills/message")
 const { generateUniqueNumber, createRendomId } = require("../../utills/utill")
 const forms = require("../../model/form")
@@ -27,6 +27,10 @@ const reWorkReportForBinDryerModel = require("../../model/reworkreportforbindrye
 const nonConformingProductModel = require("../../model/controlNonconformingProductRegisterModel")
 const uvLightMonitorModel = require("../../model/uvLightMonitorRecord")
 const certificateOfAnalysisModel = require("../../model/certificateOfAnalysisCOA")
+const lineClearanceModel = require("../../model/LineClearanceRecordafterManufacturing")
+const metalDetectorTestModel = require("../../model/dailyMetalDetectorTest")
+const metaldetectingLogModel = require("../../model/metaldetectinglogsheet")
+const finshingGoodsModel = require("../../model/finishedGoodsPackingReport")
 
 exports.createforms = async (req, res) => {
   try {
@@ -1066,7 +1070,8 @@ exports.createUVLightRecord = async(req, res)=>{
       createdBy:req.body.createdBy,
       issueNumber:req.body.issueNumber,
       remark:req.body.remark,
-      status:true
+      status:true,
+      uvType:req.body.uvType
     }
     
     const submitDetails = new uvLightMonitorModel(obj)
@@ -1106,6 +1111,144 @@ exports.createCertificateOfAnalysisCOA = async(req, res)=>{
     }
     
     const submitDetails = new certificateOfAnalysisModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createlineclearancereport = async(req, res)=>{
+  try{
+    const obj = {
+      currentDate:new Date(req.body.currentDate),
+      previousDate:new Date(req.body.previousDate),
+      currentProductName:req.body.currentProductName,
+      previousProductName:req.body.previousProductName,
+      currentBatchNo:req.body.currentBatchNo,
+      previousBatchNo:req.body.previousBatchNo,
+      appearanceOfColor:req.body.appearanceOfColor,
+      checkProperClothing:req.body.checkProperClothing,
+      remark:req.body.remark,
+      cleanProperly:req.body.cleanProperly,
+      checkUnwantedMaterial:req.body.checkUnwantedMaterial,
+      isSanitize:req.body.isSanitize,
+      bladesareclean:req.body.bladesareclean,
+      verifiedBy:req.body.verifiedBy,
+      checkedBy:req.body.checkedBy,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form18,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }
+    
+    const submitDetails = new lineClearanceModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createmetaldetectortest = async(req, res)=>{
+  try{
+    const obj = {
+      date:new Date(req.body.date),
+      time:new Date(req.body.time),
+      shift:req.body.shift,
+      defected:req.body.defected,
+      correctiveAction:req.body.correctiveAction,
+      checkedBy:req.body.checkedBy,
+      verifiedBy:req.body.verifiedBy,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form19,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }
+    
+    const submitDetails = new metalDetectorTestModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createmetaldetectinglogsheet = async(req, res)=>{
+  try{
+    const obj = {
+      date:new Date(req.body.date),
+      location:req.body.location,
+      batchNo:req.body.batchNo,
+      gearUsed:req.body.gearUsed,
+      targetFound:req.body.targetFound,
+      CAPA:req.body.CAPA,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form20,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }
+    
+    const submitDetails = new metaldetectingLogModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createFinshedGoodSPackingReport = async(req, res)=>{
+  try{
+    const obj = {
+      packingDate:new Date(req.body.packingDate),
+      productName:req.body.productName,
+      shift:req.body.shift,
+      totalProduction:req.body.totalProduction,
+      batchNo:req.body.batchNo,
+      moisture:req.body.moisture,
+      emptyBagWeight:req.body.emptyBagWeight,
+      netFGWeight:req.body.netFGWeight,
+      grossWeight:req.body.grossWeight,
+      emptyHDPEWeight:req.body.emptyHDPEWeight,
+      noOfBag:req.body.noOfBag,
+      balanceQuantity:req.body.balanceQuantity,
+      noOfHDPEBags:req.body.noOfHDPEBags,
+      fgWastage:req.body.fgWastage,
+      packingMaterialWastage:req.body.packingMaterialWastage,
+      scaningMatelDetector:req.body.scaningMatelDetector,
+      dispatch:req.body.dispatch,
+      balanceNoOfBag:req.body.balanceNoOfBag,
+      supervisorName:req.body.supervisorName,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form21,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }    
+    const submitDetails = new finshingGoodsModel(obj)
     const formDetails = await submitDetails.save()
     return res.status(statusCode.success).send({
       message: message.SUCCESS

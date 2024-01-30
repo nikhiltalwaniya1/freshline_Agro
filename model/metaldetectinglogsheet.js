@@ -2,29 +2,29 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 var mongoosePaginate = require('mongoose-paginate');
 
-const uvLightMonitorSchema = new Schema(
+const metaldetectingschema = new Schema(
   {
-    dates: {
+    date: {
       type: Date,
       default: ''
     },
-    time: {
-      type: Date,
-      default: ''
-    },
-    cleaningFunctionChecked: {
-      type: Boolean,
-      default: false
-    },
-    anyProblemFound: {
+    location: {
       type: String,
       default: ''
     },
-    correctiveActionTaken: {
+    batchNo: {
       type: String,
       default: ''
     },
-    remark: {
+    gearUsed: {
+      type: String,
+      default: ''
+    },
+    targetFound: {
+      type: String,
+      default: ''
+    },
+    CAPA: {
       type: String,
       default: ''
     },
@@ -46,16 +46,9 @@ const uvLightMonitorSchema = new Schema(
       default: '',
       ref: "user",
     },
-    remark: {
-      type: String,
-      default: ''
-    }, 
     issueNumber: {
       type: String,
       default: ''
-    },
-    uvType: {
-      type: Number,
     } 
   },
   {
@@ -64,6 +57,6 @@ const uvLightMonitorSchema = new Schema(
   }
 )
 
-uvLightMonitorSchema.plugin(mongoosePaginate);
-var uvLightMonitorModel = mongoose.model('FPRD14_UV_Light_Monitoring_Record', uvLightMonitorSchema);
-module.exports = uvLightMonitorModel
+metaldetectingschema.plugin(mongoosePaginate);
+var metaldetectingLogModel = mongoose.model('RPRD03Metal_Detecting_Log_Sheet', metaldetectingschema);
+module.exports = metaldetectingLogModel

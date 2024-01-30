@@ -5141,6 +5141,552 @@
           }
         }
       }
+    },
+    "/createlineclearancereport": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create line clearance report",
+        "description": "create line clearance report",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "currentDate": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "previousDate": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "currentProductName": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "previousProductName": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "currentBatchNo": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "previousBatchNo": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "checkProperClothing": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "cleanProperly": {
+                    "type": "string",
+                    "default": {
+                      "washer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dicer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "vibrator":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "conveyorBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "finishedProductRecevingBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "reworkinbindryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetectorSortigConBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetector":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "uvLight":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer1":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer2":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer3":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "palletsandcrates":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "checkUnwantedMaterial": {
+                    "type": "string",
+                    "default": {
+                      "washer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dicer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "vibrator":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "conveyorBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "finishedProductRecevingBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "reworkinbindryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetectorSortigConBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetector":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "uvLight":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer1":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer2":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer3":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "palletsandcrates":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "isSanitize": {
+                    "type": "string",
+                    "default": {
+                      "washer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dicer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "vibrator":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "conveyorBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "finishedProductRecevingBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "reworkinbindryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetectorSortigConBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetector":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "uvLight":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer1":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer2":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer3":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "palletsandcrates":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "bladesareclean": {
+                    "type": "string",
+                    "default": {
+                      "washer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dicer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "vibrator":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "conveyorBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "dryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "finishedProductRecevingBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "reworkinbindryer":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetectorSortigConBelt":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "metalDetector":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "uvLight":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer1":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer2":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "floorandwalldryer3":{
+                        "type":"String",
+                        "default":""
+                      },
+                      "palletsandcrates":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "checkedBy": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createmetaldetectortest": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create metal detector test",
+        "description": "create metal detector test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "time": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "shift": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "defected": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "correctiveAction": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "checkedBy": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createmetaldetectinglogsheet": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create metal detecting log sheet",
+        "description": "create metal detecting log sheet",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "location": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "batchNo": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "gearUsed": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "targetFound": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "CAPA": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

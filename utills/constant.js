@@ -55,11 +55,20 @@ const materialType = {
   Packaging_Material: "Packaging Material"
 }
 
+const uvType = {
+  uv1:1,
+  uv2:2,
+  uv3:3,
+  uv4:4,
+  uv5:5,
+}
+
 module.exports = {
   statusCode,
   roleType,
   formName,
   workStatus,
   formateNumber,
-  materialType
+  materialType,
+  uvType
 }

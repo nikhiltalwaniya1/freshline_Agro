@@ -127,5 +127,12 @@ router.post("/createReWorkforBinDryer", checkToken, formController.createReWorkf
 router.post("/createUVLightRecord", checkToken, formController.createUVLightRecord)
 //Api for create Certificate Of Analysis COA
 router.post("/createCertificateOfAnalysisCOA", checkToken, formController.createCertificateOfAnalysisCOA)
-
+//Api for create line clearance report
+router.post("/createlineclearancereport", checkToken, formController.createlineclearancereport)
+//Api for create metal detector test
+router.post("/createmetaldetectortest", checkToken, formController.createmetaldetectortest)
+//Api for create metal detecting log sheet
+router.post("/createmetaldetectinglogsheet", checkToken, formController.createmetaldetectinglogsheet)
+//Api for create metal detecting log sheet
+router.post("/createFinshedGoodSPackingReport", checkToken, formController.createFinshedGoodSPackingReport)
 module.exports = router
