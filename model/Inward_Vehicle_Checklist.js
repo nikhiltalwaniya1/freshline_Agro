@@ -50,7 +50,7 @@ const Inward_Vehicle_ChecklistSchema = new Schema(
     },
     operationid: {
       type: Number,
-      default: {}
+      default: 0
     },
     status:{
       type:Boolean,

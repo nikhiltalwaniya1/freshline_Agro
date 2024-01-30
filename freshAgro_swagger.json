@@ -5687,6 +5687,665 @@
           }
         }
       }
+    },
+    "/createFinshedGoodSPackingReport": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create Finshed GoodS Packing Report",
+        "description": "create Finshed GoodS Packing Report",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "packingDate": {
+                    "type": "string",
+                    "default": "Enter your Date"
+                  },
+                  "productName": {
+                    "type": "string",
+                    "default": "Enter your create Boiler Temperature Record id"
+                  },
+                  "shift": {
+                    "type": "string",
+                    "default": "Enter your material concentration PPM"
+                  },
+                  "totalProduction": {
+                    "type": "string",
+                    "default": "Enter your material chlorine Strip Test"
+                  },
+                  "batchNo": {
+                    "type": "string",
+                    "default": "Enter your material approved By"
+                  },
+                  "moisture": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "emptyBagWeight": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "netFGWeight": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "grossWeight": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "emptyHDPEWeight": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "noOfBag": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "balanceQuantity": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "noOfHDPEBags": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "fgWastage": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "packingMaterialWastage": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "scaningMatelDetector": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "dispatch": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "balanceNoOfBag": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "supervisorName": {
+                    "type": "string",
+                    "default": "Enter your material NC"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createPackingCheckList": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create Finshed GoodS Packing Report",
+        "description": "create Finshed GoodS Packing Report",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "packingMaterialIssue": {
+                    "type": "object",
+                    "default": {
+                      "materialId":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isFollowFIFO":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isSufficentQuantity":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "qualityOfMaterial":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isDamagePeaceIssue":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isFullFillRequirement":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "midStagePacking": {
+                    "type": "object",
+                    "default": {
+                      "isProtectiveWithCloths":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isPackingMaterialHandling":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isSufficentQuantity":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isWeighingBalance":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isBatchNoinOrder":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isFGReportMaintaing":{
+                        "type":"String",
+                        "default":""
+                      }
+                    }
+                  },
+                  "endStagePacking": {
+                    "type": "object",
+                    "default": {
+                      "isPackedAsPerProcedure":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "batchNoVerified":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "qualityOfPacking":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "isHyginClearance":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createlineclearanceafterPacking": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create line clearance after Packing",
+        "description": "create line clearance after Packing",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "isProtectiveClothingProcedure": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "isLabelAffixed": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "isAreaDevoid": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "isAreaWastedbinEmpty": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "isConveyourCleaned": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "isHouseKeepingOk": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "checkedBy": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createOutWordVehicleCheckList": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create Out Word Vehicle CheckList",
+        "description": "create Out Word Vehicle CheckList",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "previousLoad": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "trapulinCondition": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "packingCondition": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "vehicleCondition": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "breaks": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "isFreeFormInsect": {
+                    "type": "object",
+                    "default": {
+                      "isOk":{
+                        "type":"Boolean",
+                        "default":""
+                      },
+                      "remark":{
+                        "type":"Boolean",
+                        "default":""
+                      }
+                    }
+                  },
+                  "vehicleAccept": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "vehicleReject": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "isRejectReason": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "approvedBy": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "transporterName": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "vehicleName": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "driverName": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "batchNo": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "materialName": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "qualityandCOA": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "despatchTo": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "invoiceNo": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "poDetails": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

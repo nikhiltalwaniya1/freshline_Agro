@@ -31,6 +31,9 @@ const lineClearanceModel = require("../../model/LineClearanceRecordafterManufact
 const metalDetectorTestModel = require("../../model/dailyMetalDetectorTest")
 const metaldetectingLogModel = require("../../model/metaldetectinglogsheet")
 const finshingGoodsModel = require("../../model/finishedGoodsPackingReport")
+const packingChecklistModel = require("../../model/packingChecklist")
+const lineClearanceAfterPackingModel = require("../../model/lineclearancerecordafterpacking")
+const outwordVehicleCheckListModel = require("../../model/outwordvehiclechecklist")
 
 exports.createforms = async (req, res) => {
   try {
@@ -1249,6 +1252,146 @@ exports.createFinshedGoodSPackingReport = async(req, res)=>{
       status:true
     }    
     const submitDetails = new finshingGoodsModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createPackingCheckList = async(req, res)=>{
+  try{
+    const obj = {
+      packingMaterialIssue:req.body.packingMaterialIssue,
+      midStagePacking:req.body.midStagePacking,
+      endStagePacking:req.body.endStagePacking,
+      verifiedBy:req.body.verifiedBy,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form21,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }    
+    const submitDetails = new packingChecklistModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createlineclearanceafterPacking = async(req, res)=>{
+  try{
+    const obj = {
+      isProtectiveClothingProcedure:req.body.isProtectiveClothingProcedure,
+      isLabelAffixed:req.body.isLabelAffixed,
+      isAreaDevoid:req.body.isAreaDevoid,
+      isAreaWastedbinEmpty:req.body.isAreaWastedbinEmpty,
+      isConveyourCleaned:req.body.isConveyourCleaned,
+      isHouseKeepingOk:req.body.isHouseKeepingOk,
+      verifiedBy:req.body.verifiedBy,
+      checkedBy:req.body.checkedBy,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form23,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }    
+    const submitDetails = new lineClearanceAfterPackingModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createOutWordVehicleCheckList = async(req, res)=>{
+  try{
+    const obj = {
+      date:new Date(req.body.date),
+      transporterName:req.body.transporterName,
+      vehicleName:req.body.vehicleName,
+      driverName:req.body.driverName,
+      batchNo:req.body.batchNo,
+      qualityandCOA:req.body.qualityandCOA,
+      materialName:req.body.materialName,
+      despatchTo:req.body.despatchTo,
+      invoiceNo:req.body.invoiceNo,
+      poDetails:req.body.poDetails,
+      previousLoad:req.body.previousLoad,
+      trapulinCondition:req.body.trapulinCondition,
+      packingCondition:req.body.packingCondition,
+      vehicleCondition:req.body.vehicleCondition,
+      breaks:req.body.breaks,
+      isFreeFormInsect:req.body.isFreeFormInsect,
+      vehicleAccept:req.body.vehicleAccept,
+      vehicleReject:req.body.vehicleReject,
+      isRejectReason:req.body.isRejectReason,
+      approvedBy:req.body.approvedBy,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form25,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }    
+    const submitDetails = new outwordVehicleCheckListModel(obj)
+    const formDetails = await submitDetails.save()
+    return res.status(statusCode.success).send({
+      message: message.SUCCESS
+    })
+  }catch(error){
+    console.log("error in create Non Conformin Product Registerd function ========", error)
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.createdespatchRegisterofFinshedGoods = async(req, res)=>{
+  try{
+    const obj = {
+      date:new Date(req.body.date),
+      transporterName:req.body.transporterName,
+      vehicleName:req.body.vehicleName,
+      driverName:req.body.driverName,
+      batchNo:req.body.batchNo,
+      qualityandCOA:req.body.qualityandCOA,
+      materialName:req.body.materialName,
+      despatchTo:req.body.despatchTo,
+      invoiceNo:req.body.invoiceNo,
+      poDetails:req.body.poDetails,
+      previousLoad:req.body.previousLoad,
+      trapulinCondition:req.body.trapulinCondition,
+      packingCondition:req.body.packingCondition,
+      vehicleCondition:req.body.vehicleCondition,
+      breaks:req.body.breaks,
+      isFreeFormInsect:req.body.isFreeFormInsect,
+      vehicleAccept:req.body.vehicleAccept,
+      vehicleReject:req.body.vehicleReject,
+      isRejectReason:req.body.isRejectReason,
+      approvedBy:req.body.approvedBy,
+      userId:req.body.userId,
+      formateNumber:formateNumber.form25,
+      createdBy:req.body.createdBy,
+      issueNumber:req.body.issueNumber,
+      status:true
+    }    
+    const submitDetails = new outwordVehicleCheckListModel(obj)
     const formDetails = await submitDetails.save()
     return res.status(statusCode.success).send({
       message: message.SUCCESS

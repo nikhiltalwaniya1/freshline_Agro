@@ -135,4 +135,8 @@ router.post("/createmetaldetectortest", checkToken, formController.createmetalde
 router.post("/createmetaldetectinglogsheet", checkToken, formController.createmetaldetectinglogsheet)
 //Api for create metal detecting log sheet
 router.post("/createFinshedGoodSPackingReport", checkToken, formController.createFinshedGoodSPackingReport)
+//Api for create Packing CheckList
+router.post("/createPackingCheckList", checkToken, formController.createPackingCheckList)
+//Api for create OutWord Vehicle Check List
+router.post("/createOutWordVehicleCheckList", checkToken, formController.createOutWordVehicleCheckList)
 module.exports = router
