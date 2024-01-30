@@ -6346,6 +6346,120 @@
           }
         }
       }
+    },
+    "/createdespatchRegisterofFinshedGoods": {
+      "post": {
+        "tags": [
+          "Forms"
+        ],
+        "summary": "create despatch Register of Finshed Goods",
+        "description": "create despatch Register of Finshed Goods",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "customerName": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "driverName": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "truckNumber": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "Commodity": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "invoiceNo": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "unitWeight": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "totalWeight": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "totalUnits": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "timeOut": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "destination": {
+                    "type": "string",
+                    "default": "Enter your verified By"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "default": "Enter your userId"
+                  },
+                  "formName": {
+                    "type": "string",
+                    "default": "Enter your formName"
+                  },
+                  "issueNumber": {
+                    "type": "string",
+                    "default": "Enter your issue sNumber"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create material issue slip",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

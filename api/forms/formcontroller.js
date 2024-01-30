@@ -34,6 +34,7 @@ const finshingGoodsModel = require("../../model/finishedGoodsPackingReport")
 const packingChecklistModel = require("../../model/packingChecklist")
 const lineClearanceAfterPackingModel = require("../../model/lineclearancerecordafterpacking")
 const outwordVehicleCheckListModel = require("../../model/outwordvehiclechecklist")
+const despatchFGModel = require("../../model/despatchregisteroffinishedgoods")
 
 exports.createforms = async (req, res) => {
   try {
@@ -1366,32 +1367,23 @@ exports.createdespatchRegisterofFinshedGoods = async(req, res)=>{
   try{
     const obj = {
       date:new Date(req.body.date),
-      transporterName:req.body.transporterName,
-      vehicleName:req.body.vehicleName,
+      customerName:req.body.customerName,
       driverName:req.body.driverName,
-      batchNo:req.body.batchNo,
-      qualityandCOA:req.body.qualityandCOA,
-      materialName:req.body.materialName,
-      despatchTo:req.body.despatchTo,
+      truckNumber:req.body.truckNumber,
+      Commodity:req.body.Commodity,
       invoiceNo:req.body.invoiceNo,
-      poDetails:req.body.poDetails,
-      previousLoad:req.body.previousLoad,
-      trapulinCondition:req.body.trapulinCondition,
-      packingCondition:req.body.packingCondition,
-      vehicleCondition:req.body.vehicleCondition,
-      breaks:req.body.breaks,
-      isFreeFormInsect:req.body.isFreeFormInsect,
-      vehicleAccept:req.body.vehicleAccept,
-      vehicleReject:req.body.vehicleReject,
-      isRejectReason:req.body.isRejectReason,
-      approvedBy:req.body.approvedBy,
+      unitWeight:req.body.unitWeight,
+      totalWeight:req.body.totalWeight,
+      totalUnits:req.body.totalUnits,
+      timeOut:req.body.timeOut,
+      destination:req.body.destination,
       userId:req.body.userId,
-      formateNumber:formateNumber.form25,
+      formateNumber:formateNumber.form24,
       createdBy:req.body.createdBy,
       issueNumber:req.body.issueNumber,
       status:true
     }    
-    const submitDetails = new outwordVehicleCheckListModel(obj)
+    const submitDetails = new despatchFGModel(obj)
     const formDetails = await submitDetails.save()
     return res.status(statusCode.success).send({
       message: message.SUCCESS
