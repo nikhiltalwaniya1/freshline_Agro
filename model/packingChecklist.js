@@ -7,63 +7,191 @@ const packingChecklistSchema = new Schema(
     packingMaterialIssue: {
       type: Object,
       default: {
-        materialId:{
-          type:Boolean,
+        materialId: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isFollowFIFO:{
-          type:Boolean,
+        isFollowFIFO: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isSufficentQuantity:{
-          type:Boolean,
+        isSufficentQuantity: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        qualityOfMaterial:{
-          type:Boolean,
+        qualityOfMaterial: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isDamagePeaceIssue:{
-          type:Boolean,
+        isDamagePeaceIssue: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isFullFillRequirement:{
-          type:Boolean,
+        isFullFillRequirement: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         }
       }
     },
     midStagePacking: {
       type: Object,
       default: {
-        isProtectiveWithCloths:{
-          type:Boolean,
+        isProtectiveWithCloths: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isPackingMaterialHandling:{
-          type:Boolean,
+        isPackingMaterialHandling: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isSufficentQuantity:{
-          type:Boolean,
+        isSufficentQuantity: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isWeighingBalance:{
-          type:Boolean,
+        isWeighingBalance: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isBatchNoinOrder:{
-          type:Boolean,
+        isBatchNoinOrder: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isFGReportMaintaing:{
-          type:Boolean,
+        isFGReportMaintaing: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         }
       }
     },
     endStagePacking: {
       type: Object,
       default: {
-        isPackedAsPerProcedure:{
-          type:Boolean,
+        isPackedAsPerProcedure: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        batchNoVerified:{
-          type:Boolean,
+        batchNoVerified: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        qualityOfPacking:{
-          type:Boolean,
+        qualityOfPacking: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         },
-        isHyginClearance:{
-          type:Boolean,
+        isHyginClearance: {
+          type: Object,
+          default: {
+            isOk: {
+              type: Boolean,
+            },
+            comment: {
+              type: String,
+            }
+          }
         }
       }
     },
@@ -76,15 +204,15 @@ const packingChecklistSchema = new Schema(
       default: '',
       ref: "user",
     },
-    status:{
-      type:Boolean,
-      default:false
+    status: {
+      type: Boolean,
+      default: false
     },
     formateNumber: {
       type: String,
       default: ''
     },
-    createdBy:{
+    createdBy: {
       type: String,
       default: '',
       ref: "user",
@@ -92,7 +220,7 @@ const packingChecklistSchema = new Schema(
     issueNumber: {
       type: String,
       default: ''
-    } 
+    }
   },
   {
     timestamps: true,
