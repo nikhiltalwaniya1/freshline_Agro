@@ -139,4 +139,8 @@ router.post("/createFinshedGoodSPackingReport", checkToken, formController.creat
 router.post("/createPackingCheckList", checkToken, formController.createPackingCheckList)
 //Api for create OutWord Vehicle Check List
 router.post("/createOutWordVehicleCheckList", checkToken, formController.createOutWordVehicleCheckList)
+//Api for create line clearance after Packing
+router.post("/createlineclearanceafterPacking", checkToken, formController.createlineclearanceafterPacking)
+//Api for create despatch Register of FinshedGoods
+router.post("/createdespatchRegisterofFinshedGoods", checkToken, formController.createdespatchRegisterofFinshedGoods)
 module.exports = router
